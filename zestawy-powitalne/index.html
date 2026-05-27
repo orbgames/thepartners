@@ -68,10 +68,11 @@
             letter-spacing: -0.5px;
             color: var(--dark);
             text-decoration: none;
+            z-index: 101; /* Keep above mobile menu */
         }
         .nav-logo span { color: var(--red); }
         
-        /* NEW: Navigation Links */
+        /* Navigation Links */
         .nav-menu {
             display: flex;
             gap: 32px;
@@ -109,6 +110,24 @@
             transition: background 0.2s;
         }
         .nav-cta:hover { background: var(--red-dark); }
+
+        /* HAMBURGER MENU (Hidden on Desktop) */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 101;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
 
         /* HERO */
         .hero {
@@ -268,7 +287,6 @@
             line-height: 1.6;
             margin-bottom: 20px;
         }
-        /* NEW: Service Card Links */
         .service-link {
             font-size: 14px;
             font-weight: 600;
@@ -384,7 +402,7 @@
             font-weight: 700;
         }
 
-        /* FOOTER (Updated to columns) */
+        /* FOOTER */
         footer {
             padding: 80px 24px 60px;
             background: var(--dark);
@@ -416,7 +434,6 @@
         }
         .footer-contact a:hover { color: white; }
         
-        /* NEW: Footer Links Column */
         .footer-links-col {
             display: flex;
             flex-direction: column;
@@ -452,12 +469,53 @@
             color: #6B7280;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE & MOBILE MENU */
         @media (max-width: 768px) {
-            .nav-inner { flex-direction: column; gap: 16px; text-align: center; }
-            .nav-menu { flex-direction: column; gap: 12px; }
+            .hamburger {
+                display: block; /* Show hamburger button */
+            }
+            .nav-inner {
+                padding: 0 24px; /* Ensure logo and menu button align nicely */
+            }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                
+                /* Hidden by default */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+            .nav-menu.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+
+            /* Main structural adjustments for mobile */
+            .hero { padding-top: 140px; } /* Fixed padding since menu is absolute */
             .steps { grid-template-columns: 1fr; gap: 32px; }
-            .hero { padding-top: 200px; }
             .content-section { padding: 60px 24px; }
             .services-grid { grid-template-columns: 1fr; gap: 16px; }
             .footer-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
@@ -470,6 +528,13 @@
     <nav>
         <div class="nav-inner">
             <a href="/" class="nav-logo">THE <span>PARTNERS</span></a>
+            
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <div class="nav-menu">
                 <a href="/zestawy-powitalne/">Zestawy powitalne</a>
                 <a href="/odziez-firmowa/">Odzież firmowa</a>
@@ -609,5 +674,22 @@
         </div>
     </footer>
 
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu automatically when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
