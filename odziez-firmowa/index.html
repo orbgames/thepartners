@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta charset="UTF-8">
+    <meta name="description" content="Personalizowana odzież firmowa, bluzy i koszulki z logo dla firm IT w Warszawie. Jakość premium, nowoczesne kroje. Zamów darmowy mockup dla Twojego zespołu!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odzież firmowa i bluzy z logo dla pracowników IT | The Partners</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "The Partners",
+      "description": "Zestawy powitalne, merch i prezenty firmowe dla firm technologicznych.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warszawa",
+        "addressCountry": "PL"
+      },
+      "telephone": "+48 500 555 291",
+      "email": "inquiries@thepartners.biz"
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --red: #C8352E;
+            --red-dark: #A12B25;
+            --red-light: #F9EEEE;
+            --dark: #1A1A1A;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-weight: 900;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            color: var(--dark);
+            text-decoration: none;
+            z-index: 101;
+        }
+        .nav-logo span { color: var(--red); }
+        
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-menu a:not(.nav-cta) {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-menu a:not(.nav-cta):hover {
+            color: var(--red);
+        }
+        
+        .nav-logo, .nav-logo span,
+        .footer-logo, .footer-logo span {
+            transition: color 0.2s ease-in-out;
+        }
+        .nav-logo:hover { color: var(--red); }
+        .nav-logo:hover span { color: var(--dark); }
+        .footer-logo:hover { color: var(--red); }
+        .footer-logo:hover span { color: var(--white); }
+
+        .nav-cta {
+            background: var(--red);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--red-dark); }
+
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 101;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 160px 24px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-light) 100%);
+        }
+        .hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--red); }
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(200,53,46,0.3);
+        }
+        .hero-cta:hover { 
+            background: var(--red-dark); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200,53,46,0.4);
+        }
+        
+        .hero-image {
+            max-width: 900px;
+            margin: 60px auto 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .hero-image img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            padding: 80px 24px;
+            background: var(--white);
+        }
+        .content-section.alt {
+            background: var(--gray-light);
+        }
+        .content-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .content-inner h2 {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .content-inner p {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .content-inner h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .feature-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        .feature-list li {
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: var(--dark);
+        }
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .feature-list strong {
+            font-weight: 700;
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 100px 24px;
+            background: var(--gray-light);
+        }
+        .services-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .services h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-card:hover { transform: translateY(-4px); }
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .service-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--red);
+            text-decoration: none;
+            margin-top: auto;
+            transition: color 0.1s;
+        }
+        .service-link:hover {
+            color: var(--red-dark);
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 100px 24px;
+            background: var(--dark);
+            color: var(--white);
+        }
+        .process-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .process h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 60px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .step-num {
+            width: 56px;
+            height: 56px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+        .step h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .step p {
+            font-size: 15px;
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 100px 24px;
+            background: var(--red);
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .cta-section p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 36px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-white {
+            display: inline-block;
+            background: white;
+            color: var(--red);
+            padding: 16px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        .cta-white:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* SEO BLOCK */
+        .seo-block {
+            padding: 60px 24px;
+            background: var(--white);
+            border-top: 1px solid var(--gray-light);
+        }
+        .seo-block-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        .seo-block-inner h2 {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 24px 60px;
+            background: var(--dark);
+            color: #9CA3AF;
+        }
+        .footer-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 60px;
+            text-align: left;
+        }
+        .footer-logo {
+            font-weight: 900;
+            font-size: 22px;
+            color: white;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .footer-logo span { color: var(--red); }
+        .footer-contact {
+            line-height: 2;
+        }
+        .footer-contact a {
+            color: #9CA3AF;
+            text-decoration: none;
+        }
+        .footer-contact a:hover { color: white; }
+        
+        .footer-links-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-links-col h4 {
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .footer-links-col a {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.1s;
+        }
+        .footer-links-col a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .footer-copy {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-inner { padding: 0 24px; }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+            .nav-menu.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+            .hero { padding-top: 140px; }
+            .steps { grid-template-columns: 1fr; gap: 32px; }
+            .content-section { padding: 60px 24px; }
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .footer-inner { 
+                flex-direction: column;
+                align-items: center; 
+                gap: 40px; 
+                text-align: center; 
+            }
+            .footer-links-col { align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">THE <span>PARTNERS</span></a>
+            
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu">
+                <a href="/zestawy-powitalne/">Zestawy powitalne</a>
+                <a href="/odziez-firmowa/">Odzież firmowa</a>
+                <a href="/prezenty-firmowe/">Prezenty firmowe</a>
+                <a href="#kontakt" class="nav-cta">Darmowy mockup</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Odzież firmowa premium, którą Twój zespół z dumą <span>założy po pracy</span></h1>
+            <p>Zaprojektujemy i dostarczymy wysokiej jakości bluzy, koszulki i czapki, które budują prawdziwe zaangażowanie. Produkcja i dostawa pod drzwi w Warszawie.</p>
+            <a href="#kontakt" class="hero-cta">Zamów darmowy mockup na bluzie →</a>
+        </div>
+        
+        <div class="hero-image">
+            <img src="bluza-firmowa-z-logo-premium.jpg" alt="Czarna bluza firmowa z precyzyjnie wyhaftowanym logo noszona przez programistę ze studia IT">
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="content-inner">
+            <h2>Koniec z ubraniami, które służą za piżamę</h2>
+            <p>Największym błędem przy zamawianiu firmowych ubrań jest oszczędzanie na materiale. Efekt? Sztywny poliester i kiepski krój lądują na dnie szafy lub służą jako ubranie robocze po domu. W The Partners pracujemy inaczej. Oferujemy odzież, z której korzystają fani streetwearu.</p>
+            
+            <h3>Dlaczego nasza odzież jest noszona z dumą?</h3>
+            <ul class="feature-list">
+                <li><strong>Gruba, miękka bawełna:</strong> Współpracujemy z producentami premium, aby dostarczać materiały, które przyjemnie otulają i pozwalają skórze oddychać.</li>
+                <li><strong>Nowoczesne kroje:</strong> Klasyczne fasony, modny oversize i dopasowanie, które nie przypomina tanich t-shirtów promocyjnych.</li>
+                <li><strong>Detale robiące różnicę:</strong> Ukryte szwy, dopracowane zamki i możliwość wszycia własnych metek.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="content-section alt">
+        <div class="content-inner">
+            <h2>Znakowanie, które przetrwa setki prań</h2>
+            <p>Twoje logo to świętość Twojej firmy, dlatego nie może się łuszczyć, pękać ani blaknąć po kilku tygodniach. Stosujemy wyłącznie najtrwalsze techniki znakowania odzieży. Od niezwykle precyzyjnego haftu komputerowego, który dodaje bluzom elegancji, po nowoczesny i głęboki sitodruk, idealny do skomplikowanych projektów graficznych na koszulkach. Gwarantujemy, że kolory będą idealnie odwzorowane zgodnie z Twoim brandbookiem.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="content-inner">
+            <h2>Odzież stworzona dla nowoczesnych technologii</h2>
+            <p>Znamy estetykę i wymagania nowoczesnych zespołów IT. Projektujemy merch odzieżowy, który idealnie wpisuje się w kulturę technologiczną. Nasze bluzy z kapturem (hoodies) i t-shirty są codziennie noszone przez twórców gamedev, programistów podczas hackathonów i uczestników konferencji z sektora Web3 oraz blockchain. Dajemy Twojemu zespołowi ubrania, które po prostu chcą nosić w biurze i poza nim.</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="services-inner">
+            <h2>Sprawdź również</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🎁</div>
+                        <h3>Zestawy powitalne</h3>
+                        <p>Pierwsze wrażenie dla nowych pracowników. Spersonalizowane zestawy powitalne, które mówią "dobrze, że tu jesteś".</p>
+                    </div>
+                    <a href="/zestawy-powitalne/" class="service-link">Zobacz zestawy onboardingowe →</a>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">👕</div>
+                        <h3>Odzież firmowa</h3>
+                        <p>Personalizowane bluzy, koszulki, torby, czapki - zaprojektowane tak, żeby ludzie chcieli je nosić też poza biurem.</p>
+                    </div>
+                    <a href="/odziez-firmowa/" class="service-link">Zobacz odzież premium →</a>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🎂</div>
+                        <h3>Prezenty Firmowe</h3>
+                        <p>Urodziny, rocznice, święta, eventy. Zestawy prezentowe dla pracowników z charakterem, nie generyczny kosz ze sklepu.</p>
+                    </div>
+                    <a href="/prezenty-firmowe/" class="service-link">Zobacz prezenty firmowe →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="process-inner">
+            <h2>Jak to działa?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Brief</h3>
+                    <p>Opowiadacie nam o potrzebach zespołu, krojach ubrań i budżecie. 15 minut rozmowy wystarczy.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Projekt i darmowy mockup</h3>
+                    <p>Przygotujemy realistyczne mockupy na odzieży. Widzicie dokładnie umiejscowienie haftu i nadruku.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Dostawa</h3>
+                    <p>Produkujemy i dostarczamy pod drzwi waszego biura w Warszawie. Gotowe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="kontakt">
+        <h2>Chcesz zobaczyć logo swojej firmy na bluzie premium?</h2>
+        <p>Przygotujemy projekt za darmo. Bez zobowiązań, bez haczyka. Zobaczysz, jak może wyglądać prawdziwa duma zespołu.</p>
+        <a href="mailto:inquiries@thepartners.biz" class="cta-white">Zamów darmowy mockup →</a>
+    </section>
+
+    <section class="seo-block">
+        <div class="seo-block-inner">
+            <h2>Dlaczego personalizowana odzież firmowa to podstawa kultury IT?</h2>
+            <p>Nowoczesna odzież firmowa z nadrukiem to znacznie więcej niż tylko odzież robocza – to potężne narzędzie employer brandingu i integracji. Kiedy pracownicy noszą bluzy z logo firmy po godzinach, stają się naturalnymi ambasadorami marki. Jako sprawdzony producent odzieży firmowej w Warszawie, wiemy, jak dobrać gramaturę materiału, techniki haftu i nadruku, aby sprostać wymaganiom branży technologicznej. Od klasycznych t-shirtów bawełnianych, przez ciepłe bluzy rozpinane i z kapturem (hoodie), po eleganckie polówki dla kadry zarządzającej. Niezależnie czy ubierasz startup, software house czy korporację IT, dostarczamy personalizowaną odzież dla pracowników, która wspiera budowanie lojalności i poczucia przynależności do zespołu.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <a href="/" class="footer-logo">THE <span>PARTNERS</span></a>
+                <div class="footer-contact">
+                    📧 <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a><br>
+                    📱 <a href="tel:+48500555291">+48 500 555 291</a><br>
+                    📍 Warszawa, Polska
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h4>Nasze usługi</h4>
+                <a href="/zestawy-powitalne/">Zestawy powitalne</a>
+                <a href="/odziez-firmowa/">Odzież firmowa</a>
+                <a href="/prezenty-firmowe/">Prezenty firmowe</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copy">© 2026 The Partners. Wszystkie prawa zastrzeżone.</div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
