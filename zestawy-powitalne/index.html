@@ -70,6 +70,19 @@
             text-decoration: none;
         }
         .nav-logo span { color: var(--red); }
+        
+        /* LOGO HOVER EFFECTS */
+        .nav-logo, .nav-logo span,
+        .footer-logo, .footer-logo span {
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-logo:hover { color: var(--red); }
+        .nav-logo:hover span { color: var(--dark); }
+
+        .footer-logo:hover { color: var(--red); }
+        .footer-logo:hover span { color: var(--white); }
+
         .nav-cta {
             background: var(--red);
             color: white;
@@ -125,7 +138,7 @@
             box-shadow: 0 6px 20px rgba(200,53,46,0.4);
         }
         
-        /* NEW: Hero Image for Landing Pages */
+        /* Hero Image for Landing Pages */
         .hero-image {
             max-width: 900px;
             margin: 60px auto 0;
@@ -139,7 +152,7 @@
             object-fit: cover;
         }
 
-        /* NEW: Content Sections for Landing Pages */
+        /* Content Sections for Landing Pages */
         .content-section {
             padding: 80px 24px;
             background: var(--white);
@@ -193,7 +206,7 @@
             font-weight: 700;
         }
 
-        /* HOW IT WORKS (Reused from Home) */
+        /* HOW IT WORKS */
         .process {
             padding: 100px 24px;
             background: var(--dark);
@@ -239,7 +252,7 @@
             line-height: 1.6;
         }
 
-        /* CTA SECTION (Reused from Home) */
+        /* CTA SECTION */
         .cta-section {
             padding: 100px 24px;
             background: var(--red);
@@ -276,7 +289,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
 
-        /* NEW: SEO Block */
+        /* SEO Block */
         .seo-block {
             padding: 60px 24px;
             background: var(--white);
@@ -296,7 +309,7 @@
             font-weight: 700;
         }
 
-        /* FOOTER (Reused from Home) */
+        /* FOOTER */
         footer {
             padding: 60px 24px;
             background: var(--dark);
@@ -313,6 +326,7 @@
             color: white;
             margin-bottom: 20px;
             text-decoration: none;
+            display: inline-block;
         }
         .footer-logo span { color: var(--red); }
         .footer-contact {
