@@ -71,15 +71,30 @@
         }
         .nav-logo span { color: var(--red); }
         
+        /* NEW: Navigation Links */
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-menu a:not(.nav-cta) {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-menu a:not(.nav-cta):hover {
+            color: var(--red);
+        }
+        
         /* LOGO HOVER EFFECTS */
         .nav-logo, .nav-logo span,
         .footer-logo, .footer-logo span {
             transition: color 0.2s ease-in-out;
         }
-
         .nav-logo:hover { color: var(--red); }
         .nav-logo:hover span { color: var(--dark); }
-
         .footer-logo:hover { color: var(--red); }
         .footer-logo:hover span { color: var(--white); }
 
@@ -97,7 +112,7 @@
 
         /* HERO */
         .hero {
-            padding: 140px 24px 80px;
+            padding: 160px 24px 80px;
             text-align: center;
             background: linear-gradient(180deg, var(--white) 0%, var(--gray-light) 100%);
         }
@@ -206,6 +221,66 @@
             font-weight: 700;
         }
 
+        /* SERVICES */
+        .services {
+            padding: 100px 24px;
+            background: var(--gray-light);
+        }
+        .services-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .services h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-card:hover { transform: translateY(-4px); }
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        /* NEW: Service Card Links */
+        .service-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--red);
+            text-decoration: none;
+            margin-top: auto;
+            transition: color 0.1s;
+        }
+        .service-link:hover {
+            color: var(--red-dark);
+        }
+
         /* HOW IT WORKS */
         .process {
             padding: 100px 24px;
@@ -309,16 +384,19 @@
             font-weight: 700;
         }
 
-        /* FOOTER */
+        /* FOOTER (Updated to columns) */
         footer {
-            padding: 60px 24px;
+            padding: 80px 24px 60px;
             background: var(--dark);
             color: #9CA3AF;
-            text-align: center;
         }
         .footer-inner {
-            max-width: 600px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            text-align: left;
         }
         .footer-logo {
             font-weight: 900;
@@ -330,7 +408,6 @@
         }
         .footer-logo span { color: var(--red); }
         .footer-contact {
-            margin-bottom: 24px;
             line-height: 2;
         }
         .footer-contact a {
@@ -338,6 +415,38 @@
             text-decoration: none;
         }
         .footer-contact a:hover { color: white; }
+        
+        /* NEW: Footer Links Column */
+        .footer-links-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-links-col h4 {
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .footer-links-col a {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.1s;
+        }
+        .footer-links-col a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
         .footer-copy {
             font-size: 13px;
             color: #6B7280;
@@ -345,9 +454,14 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .nav-inner { flex-direction: column; gap: 16px; text-align: center; }
+            .nav-menu { flex-direction: column; gap: 12px; }
             .steps { grid-template-columns: 1fr; gap: 32px; }
-            .hero { padding-top: 120px; }
+            .hero { padding-top: 200px; }
             .content-section { padding: 60px 24px; }
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .footer-links-col { align-items: center; }
         }
     </style>
 </head>
@@ -356,7 +470,12 @@
     <nav>
         <div class="nav-inner">
             <a href="/" class="nav-logo">THE <span>PARTNERS</span></a>
-            <a href="#kontakt" class="nav-cta">Darmowy mockup</a>
+            <div class="nav-menu">
+                <a href="/zestawy-powitalne/">Zestawy powitalne</a>
+                <a href="/odziez-firmowa/">Odzież firmowa</a>
+                <a href="/prezenty-firmowe/">Prezenty firmowe</a>
+                <a href="#kontakt" class="nav-cta">Darmowy mockup</a>
+            </div>
         </div>
     </nav>
 
@@ -400,6 +519,38 @@
         </div>
     </section>
 
+    <section class="services">
+        <div class="services-inner">
+            <h2>Co robimy</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🎁</div>
+                        <h3>Zestawy powitalne</h3>
+                        <p>Pierwsze wrażenie dla nowych pracowników. Spersonalizowane zestawy powitalne, które mówią "dobrze, że tu jesteś".</p>
+                    </div>
+                    <a href="/zestawy-powitalne/" class="service-link">Zobacz zestawy onboardingowe →</a>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">👕</div>
+                        <h3>Odzież firmowa</h3>
+                        <p>Personalizowane bluzy, koszulki, torby, czapki - zaprojektowane tak, żeby ludzie chcieli je nosić też poza biurem.</p>
+                    </div>
+                    <a href="/odziez-firmowa/" class="service-link">Zobacz odzież premium →</a>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🎂</div>
+                        <h3>Prezenty Firmowe</h3>
+                        <p>Urodziny, rocznice, święta, eventy. Zestawy prezentowe dla pracowników z charakterem, nie generyczny kosz ze sklepu.</p>
+                    </div>
+                    <a href="/prezenty-firmowe/" class="service-link">Zobacz prezenty firmowe →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="process">
         <div class="process-inner">
             <h2>Jak to działa?</h2>
@@ -438,12 +589,22 @@
 
     <footer>
         <div class="footer-inner">
-            <a href="/" class="footer-logo">THE <span>PARTNERS</span></a>
-            <div class="footer-contact">
-                📧 <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a><br>
-                📱 <a href="tel:+48500555291">+48 500 555 291</a><br>
-                📍 Warszawa, Polska
+            <div>
+                <a href="/" class="footer-logo">THE <span>PARTNERS</span></a>
+                <div class="footer-contact">
+                    📧 <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a><br>
+                    📱 <a href="tel:+48500555291">+48 500 555 291</a><br>
+                    📍 Warszawa, Polska
+                </div>
             </div>
+            <div class="footer-links-col">
+                <h4>Nasze usługi</h4>
+                <a href="/zestawy-powitalne/">Zestawy powitalne</a>
+                <a href="/odziez-firmowa/">Odzież firmowa</a>
+                <a href="/prezenty-firmowe/">Prezenty firmowe</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
             <div class="footer-copy">© 2026 The Partners. Wszystkie prawa zastrzeżone.</div>
         </div>
     </footer>
