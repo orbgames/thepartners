@@ -135,7 +135,7 @@
             transform: translateX(-50%) translateY(-50%);
             z-index: 0;
             object-fit: cover;
-            opacity: 0.6; /* Dims the video slightly for text contrast */
+            opacity: 0.8; /* Dims the video slightly for text contrast */
         }
         
         /* Dark Gradient Overlay */
@@ -646,9 +646,8 @@
     <!-- UPDATED HERO SECTION WITH VIDEO BACKGROUND -->
     <section class="hero">
         <!-- Hero Video Loop (Plays inline, muted automatically) -->
-        <video class="hero-video" autoplay loop muted playsinline>
+	<video class="hero-video" autoplay loop muted playsinline poster="hero-poster.jpg">
     		<source src="hero-background.mp4" type="video/mp4">
-    		Twój przeglądarka nie obsługuje tagu wideo.
 	</video>
         
         <!-- Overlay to ensure text readability -->
