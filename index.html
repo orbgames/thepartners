@@ -315,12 +315,36 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
             font-size: 16px;
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            align-items: center;
+            gap: 14px;
             font-weight: 500;
         }
         .problem-col li:last-child { border-bottom: none; }
-        .problem-col li span { flex-shrink: 0; transform: scale(1.2); }
+        
+        /* STATUS ICONS */
+        .status-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .status-badge.bad {
+            background: #FEE2E2;
+            color: #DC2626;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        .status-badge.good {
+            background: #ECFDF5;
+            color: #059669;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+        .status-badge svg {
+            width: 13px;
+            height: 13px;
+        }
 
         /* SERVICES */
         .services {
@@ -357,15 +381,31 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
         .service-icon {
-            font-size: 56px;
-            margin-bottom: 24px;
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 24px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: transform 0.4s ease;
+            justify-content: center;
+            background: var(--red-light);
+            color: var(--red);
+            border-radius: 20px;
+            border: 1px solid rgba(200, 53, 46, 0.15);
+            box-shadow: 0 8px 24px rgba(200, 53, 46, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(-5deg);
+            transform: translateY(-4px) scale(1.08) rotate(-4deg);
+            background: var(--red);
+            color: var(--white);
+            box-shadow: 0 14px 30px rgba(200, 53, 46, 0.32);
+            border-color: transparent;
+        }
+        .service-icon svg {
+            width: 38px;
+            height: 38px;
+            stroke-width: 1.8;
+            transition: stroke 0.3s ease;
         }
         .service-card h3 {
             font-size: 22px;
@@ -526,61 +566,392 @@
             line-height: 1.7;
         }
 
-        /* CTA SECTION */
+        /* CTA & CONTACT FORM SECTION */
         .cta-section {
             padding: 120px 24px;
-            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-            text-align: center;
-            color: white;
+            background: linear-gradient(160deg, #1A1A1C 0%, #101011 100%);
+            color: var(--white);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
         .cta-section::before {
             content: '';
             position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: rotate 20s linear infinite;
+            top: -20%; right: -10%; width: 550px; height: 550px;
+            background: radial-gradient(circle, rgba(200, 53, 46, 0.18) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -20%; left: -10%; width: 550px; height: 550px;
+            background: radial-gradient(circle, rgba(200, 53, 46, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
-        .cta-inner {
+        .cta-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 56px;
+            align-items: start;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            text-align: left;
         }
-        .cta-section h2 {
-            font-size: clamp(32px, 4vw, 44px);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
+        .cta-info-col {
+            padding-top: 16px;
         }
-        .cta-section p {
-            font-size: 20px;
-            opacity: 0.9;
-            margin-bottom: 40px;
-            max-width: 540px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-        .cta-white {
+        .cta-badge {
             display: inline-block;
-            background: white;
-            color: var(--red);
-            padding: 20px 48px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 16px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 6px 14px;
+            background: rgba(200, 53, 46, 0.18);
+            border: 1px solid rgba(200, 53, 46, 0.35);
+            color: #FFA49F;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
-        .cta-white:hover { 
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 16px 32px rgba(0,0,0,0.2);
-            color: var(--red-dark);
+        .cta-info-col h2 {
+            font-size: clamp(32px, 3.8vw, 46px);
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -1.2px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        .cta-info-col h2 span {
+            color: var(--red);
+        }
+        .cta-info-col p {
+            font-size: 17px;
+            color: #9CA3AF;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        .cta-perks {
+            list-style: none;
+            margin-bottom: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .cta-perk {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #E5E7EB;
+        }
+        .cta-perk-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(200, 53, 46, 0.2);
+            color: #FF8F89;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .cta-perk-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.5;
+        }
+        .cta-direct-contact {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .direct-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .direct-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #9CA3AF;
+            font-weight: 700;
+        }
+        .direct-val {
+            color: var(--white);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .direct-val:hover {
+            color: var(--red);
+        }
+
+        /* FORM CARD */
+        .contact-card {
+            background: rgba(28, 28, 30, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #D1D5DB;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .form-label .optional {
+            font-size: 11px;
+            color: #6B7280;
+            font-weight: 400;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+        }
+        .form-textarea {
+            min-height: 85px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 42px;
+            cursor: pointer;
+        }
+        .form-select option {
+            background: #1F2937;
+            color: #FFFFFF;
+        }
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #6B7280;
+        }
+        .form-input:focus-visible, .form-select:focus-visible, .form-textarea:focus-visible {
+            outline: none;
+            border-color: var(--red);
+            background: rgba(255, 255, 255, 0.09);
+            box-shadow: 0 0 0 3px rgba(200, 53, 46, 0.3);
+        }
+        .form-input:user-invalid:not(:placeholder-shown), 
+        .form-textarea:user-invalid:not(:placeholder-shown) {
+            border-color: #EF4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+        .form-input:user-valid:not(:placeholder-shown),
+        .form-textarea:user-valid:not(:placeholder-shown) {
+            border-color: #10B981;
+        }
+        
+        /* FORM FEEDBACK & ERROR */
+        .form-error-msg {
+            display: none;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 13px;
+            color: #FCA5A5;
+            line-height: 1.45;
+            text-align: center;
+        }
+        .form-error-msg a {
+            color: #FFFFFF;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* CONSENT */
+        .consent-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 2px;
+        }
+        .consent-label {
+            font-size: 12px;
+            color: #9CA3AF;
+            line-height: 1.5;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .consent-label input {
+            accent-color: var(--red);
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            width: 100%;
+            min-height: 54px;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 24px rgba(200, 53, 46, 0.35);
+            margin-top: 4px;
+            position: relative;
+        }
+        .submit-btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(200, 53, 46, 0.45);
+        }
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        .submit-btn:focus-visible {
+            outline: 3px solid rgba(200, 53, 46, 0.5);
+            outline-offset: 3px;
+        }
+        .submit-btn.loading {
+            opacity: 0.85;
+            pointer-events: none;
+        }
+        .submit-btn.loading .btn-text {
+            visibility: hidden;
+        }
+        .btn-spinner {
+            display: none;
+            width: 22px;
+            height: 22px;
+            border: 2.5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #FFFFFF;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            position: absolute;
+        }
+        .submit-btn.loading .btn-spinner {
+            display: block;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* SUCCESS STATE */
+        .form-success-state {
+            display: none;
+            text-align: center;
+            padding: 40px 10px;
+            animation: fadeInScale 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .success-icon-wrap {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+        }
+        .success-icon-wrap svg {
+            width: 36px;
+            height: 36px;
+            stroke-width: 2.5;
+        }
+        .form-success-state h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .form-success-state p {
+            color: #D1D5DB;
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto 28px;
+        }
+        .btn-reset-form {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-reset-form:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
 
         /* FOOTER */
@@ -603,23 +974,70 @@
             letter-spacing: -0.5px;
         }
         .footer-logo span { color: var(--red); }
-        .footer-contact {
+        .footer-contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
             margin-bottom: 32px;
-            line-height: 2.2;
-            font-size: 15px;
         }
-        .footer-contact a {
+        .footer-contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             color: #D1D5DB;
             text-decoration: none;
-            transition: color 0.2s;
+            font-size: 15px;
+            transition: all 0.2s ease;
         }
-        .footer-contact a:hover { color: white; }
+        .footer-contact-item:hover {
+            color: var(--white);
+            transform: translateX(2px);
+        }
+        .footer-contact-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--red);
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-contact-icon svg {
+            width: 100%;
+            height: 100%;
+        }
         .footer-copy {
             font-size: 14px;
             color: #6B7280;
         }
 
         /* RESPONSIVE */
+        @media (max-width: 960px) {
+            .cta-container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .cta-info-col {
+                text-align: center;
+            }
+            .cta-perks {
+                align-items: center;
+            }
+            .cta-direct-contact {
+                justify-content: center;
+            }
+            .contact-card {
+                padding: 32px 20px;
+            }
+            .form-row-2 {
+                grid-template-columns: 1fr;
+            }
+            .chips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         @media (max-width: 768px) {
             .hero { padding: 160px 24px 80px; }
             .showcase-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -685,19 +1103,75 @@
                 <div class="problem-col bad reveal">
                     <h3>Bez nas</h3>
                     <ul>
-                        <li><span>❌</span> Generyczne kubki z logo za 5 zł</li>
-                        <li><span>❌</span> Tygodnie maili z 5 drukarniami</li>
-                        <li><span>❌</span> Bluzy, których nikt nie chce nosić</li>
-                        <li><span>❌</span> Paczki, które wyglądają jak z hurtowni</li>
+                        <li>
+                            <span class="status-badge bad" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </span>
+                            Generyczne kubki z logo za 5 zł
+                        </li>
+                        <li>
+                            <span class="status-badge bad" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </span>
+                            Tygodnie maili z 5 drukarniami
+                        </li>
+                        <li>
+                            <span class="status-badge bad" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </span>
+                            Bluzy, których nikt nie chce nosić
+                        </li>
+                        <li>
+                            <span class="status-badge bad" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </span>
+                            Paczki, które wyglądają jak z hurtowni
+                        </li>
                     </ul>
                 </div>
                 <div class="problem-col good reveal" style="transition-delay: 0.2s;">
                     <h3>Z nami</h3>
                     <ul>
-                        <li><span>✅</span> Merch dopasowany do waszego brandu</li>
-                        <li><span>✅</span> Jeden partner - od projektu po dostawę</li>
-                        <li><span>✅</span> Produkty, które ludzie faktycznie używają</li>
-                        <li><span>✅</span> Gotowe na czas, za każdym razem</li>
+                        <li>
+                            <span class="status-badge good" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </span>
+                            Merch dopasowany do waszego brandu
+                        </li>
+                        <li>
+                            <span class="status-badge good" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </span>
+                            Jeden partner - od projektu po dostawę
+                        </li>
+                        <li>
+                            <span class="status-badge good" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </span>
+                            Produkty, które ludzie faktycznie używają
+                        </li>
+                        <li>
+                            <span class="status-badge good" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </span>
+                            Gotowe na czas, za każdym razem
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -709,17 +1183,39 @@
             <h2 class="reveal">Co robimy</h2>
             <div class="services-grid">
                 <div class="service-card reveal">
-                    <div class="service-icon">🎁</div>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="8" width="18" height="13" rx="3"></rect>
+                            <path d="M12 8v13"></path>
+                            <path d="M3 12h18"></path>
+                            <path d="M12 8C10.5 4.5 7 4.5 7 7.5c0 1.5 2 2.5 5 2.5s5-1 5-2.5C17 4.5 13.5 4.5 12 8z"></path>
+                        </svg>
+                    </div>
                     <h3>Zestawy powitalne</h3>
                     <p>Pierwsze wrażenie dla nowych pracowników. Spersonalizowane zestawy powitalne, które mówią "dobrze, że tu jesteś".</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.1s;">
-                    <div class="service-icon">👕</div>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
+                            <path d="M9.5 2.5a3 3 0 0 0 5 0"></path>
+                        </svg>
+                    </div>
                     <h3>Odzież firmowa</h3>
                     <p>Personalizowane bluzy, koszulki, torby, czapki - zaprojektowane tak, żeby ludzie chcieli je nosić też poza biurem.</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.2s;">
-                    <div class="service-icon">🎂</div>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
+                            <path d="M4 12h16"></path>
+                            <path d="M12 22V12"></path>
+                            <rect x="2" y="7" width="20" height="5" rx="2"></rect>
+                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                            <path d="m19 2 1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>
+                        </svg>
+                    </div>
                     <h3>Prezenty Firmowe</h3>
                     <p>Urodziny, rocznice, święta, eventy. Zestawy prezentowe dla pracowników z charakterem, nie generyczny kosz ze sklepu.</p>
                 </div>
@@ -799,29 +1295,181 @@
     </section>
 
     <section class="cta-section" id="kontakt">
-        <div class="cta-inner reveal">
-            <h2>Chcesz zobaczyć mockup w kolorach Twojej firmy?</h2>
-            <p>Przygotujemy go za darmo. Bez zobowiązań, bez haczyka. Po prostu chcemy pokazać, co potrafimy.</p>
-            <a href="mailto:inquiries@thepartners.biz" class="cta-white">Zamów darmowy mockup →</a>
+        <div class="cta-container">
+            <div class="cta-info-col reveal">
+                <div class="cta-badge">Bezpłatny projekt & wizualizacja</div>
+                <h2>Zamów darmowy mockup w barwach <span>Twojej firmy</span></h2>
+                <p>Przygotujemy realistyczny projekt odzieży lub zestawów powitalnych w kolorach Twojego brandu w 24 godziny. Zobaczysz efekt przed podjęciem decyzji.</p>
+                
+                <ul class="cta-perks">
+                    <li class="cta-perk">
+                        <span class="cta-perk-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        Darmowy mockup graficzny z Twoim logo w 24h
+                    </li>
+                    <li class="cta-perk">
+                        <span class="cta-perk-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        Próbki tkanin, gramatury i rodzajów znakowania
+                    </li>
+                    <li class="cta-perk">
+                        <span class="cta-perk-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        Bez zobowiązań i bez ukrytych opłat
+                    </li>
+                    <li class="cta-perk">
+                        <span class="cta-perk-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        Dostawa bezpośrednio do biura w Warszawie
+                    </li>
+                </ul>
+
+                <div class="cta-direct-contact">
+                    <div class="direct-item">
+                        <span class="direct-label">Telefon bezpośredni</span>
+                        <a href="tel:+48500555291" class="direct-val">+48 500 555 291</a>
+                    </div>
+                    <div class="direct-item">
+                        <span class="direct-label">Email kontaktowy</span>
+                        <a href="mailto:inquiries@thepartners.biz" class="direct-val">inquiries@thepartners.biz</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card reveal" style="transition-delay: 0.15s;">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/inquiries@thepartners.biz" method="POST" novalidate>
+                    <!-- Serverless Webform Backend (FormSubmit / Web3Forms) -->
+                    <!-- Bezpłatna obsługa bez serwera backendowego - zgłoszenia trafiają bezpośrednio na e-mail -->
+                    <input type="hidden" name="_subject" value="Nowe zapytanie o bezpłatny mockup — The Partners">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <!-- Ochrona antyspamowa Honeypot (niewidoczna dla ludzi, łapie boty) -->
+                    <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="contact-name" class="form-label">Imię i nazwisko</label>
+                            <input type="text" id="contact-name" name="name" class="form-input" placeholder="np. Anna Kowalska" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email" class="form-label">Służbowy e-mail</label>
+                            <input type="email" id="contact-email" name="email" class="form-input" placeholder="anna@firma.pl" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="contact-company" class="form-label">Nazwa firmy</label>
+                            <input type="text" id="contact-company" name="company" class="form-input" placeholder="np. Tech Solutions" required autocomplete="organization">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone" class="form-label">Telefon <span class="optional">(opcjonalnie)</span></label>
+                            <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+48 500 000 000" autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Wiadomość / Czego potrzebujesz? <span class="optional">(opcjonalnie)</span></label>
+                        <textarea id="contact-message" name="message" class="form-textarea" placeholder="Opisz krótko swoje potrzeby, np. orientacyjną liczbę bluz lub zestawów powitalnych, pożądany termin realizacji..."></textarea>
+                    </div>
+
+                    <div class="consent-group">
+                        <label class="consent-label">
+                            <input type="checkbox" id="contact-consent" name="consent" required>
+                            <span>Wyrażam zgodę na kontakt w celu przygotowania bezpłatnej wizualizacji oraz kalkulacji. Szanujemy Twoją prywatność.</span>
+                        </label>
+                    </div>
+
+                    <div class="form-error-msg" id="form-error-msg" role="alert" aria-live="assertive"></div>
+
+                    <button type="submit" class="submit-btn" id="contact-submit-btn">
+                        <span class="btn-text">Zamów bezpłatny mockup →</span>
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                    </button>
+                </form>
+
+                <div class="form-success-state" id="form-success-state" role="status" aria-live="polite">
+                    <div class="success-icon-wrap" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                    <h3 id="success-title">Dziękujemy za kontakt!</h3>
+                    <p id="success-desc">Otrzymaliśmy Twoje zapytanie. Nasz grafik przygotuje bezpłatny mockup z Twoim logo i skontaktujemy się w ciągu 24 godzin.</p>
+                    <button type="button" class="btn-reset-form" id="btn-reset-form">Wyślij kolejne zapytanie</button>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-inner reveal">
             <div class="footer-logo">THE <span>PARTNERS</span></div>
-            <div class="footer-contact">
-                📧 <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a><br>
-                📱 <a href="tel:+48500555291">+48 500 555 291</a><br>
-                💼 <a href="https://www.linkedin.com/company/partners-biz/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br>
-                📍 Warszawa, Polska
-            </div>
+            <ul class="footer-contact-list">
+                <li>
+                    <a href="mailto:inquiries@thepartners.biz" class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </span>
+                        <span>inquiries@thepartners.biz</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tel:+48500555291" class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </span>
+                        <span>+48 500 555 291</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/company/partners-biz/" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                            </svg>
+                        </span>
+                        <span>LinkedIn: /company/partners-biz</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="footer-contact-item" style="cursor: default;">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </span>
+                        <span>Warszawa, Polska</span>
+                    </span>
+                </li>
+            </ul>
             <div class="footer-copy">© 2026 The Partners. Wszystkie prawa zastrzeżone.</div>
         </div>
     </footer>
 
-    <!-- LIGHTWEIGHT SCROLL ANIMATION SCRIPT -->
+    <!-- INTERACTION SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Reveal on scroll
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -850,6 +1498,124 @@
                     nav.style.padding = '16px 0';
                 }
             });
+
+            // Contact Form Handling with Static/Serverless Third-Party Webform Backend
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('contact-submit-btn');
+            const successState = document.getElementById('form-success-state');
+            const successTitle = document.getElementById('success-title');
+            const successDesc = document.getElementById('success-desc');
+            const resetBtn = document.getElementById('btn-reset-form');
+            const errorMsg = document.getElementById('form-error-msg');
+
+            if (contactForm && submitBtn && successState) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    // Check standard HTML5 validity
+                    if (!contactForm.checkValidity()) {
+                        contactForm.reportValidity();
+                        return;
+                    }
+
+                    if (errorMsg) {
+                        errorMsg.style.display = 'none';
+                        errorMsg.textContent = '';
+                    }
+
+                    submitBtn.classList.add('loading');
+                    submitBtn.disabled = true;
+                    submitBtn.setAttribute('aria-busy', 'true');
+
+                    const formData = new FormData(contactForm);
+                    const formObject = Object.fromEntries(formData.entries());
+
+                    // Target FormSubmit AJAX endpoint (keeps page 100% serverless, zero server or db setup required)
+                    const endpoint = 'https://formsubmit.co/ajax/inquiries@thepartners.biz';
+
+                    try {
+                        // Check if running directly on file:// protocol (FormSubmit requires HTTP/HTTPS origin)
+                        if (window.location.protocol === 'file:') {
+                            console.warn('[Serverless Form] Uruchomiono z protokołu file://. FormSubmit wymaga serwera HTTP/HTTPS (np. localhost, Vercel, Netlify, GitHub Pages).');
+                            await new Promise(resolve => setTimeout(resolve, 800));
+                            showSuccessState(
+                                'Dziękujemy za kontakt! (Tryb podglądu)',
+                                'Formularz jest w pełni zintegrowany z FormSubmit (inquiries@thepartners.biz). Na hostingu lub lokalnym serwerze http (np. npx serve) zapytania trafiają bezpośrednio do skrzynki odbiorczej.'
+                            );
+                            return;
+                        }
+
+                        const response = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(formObject)
+                        });
+
+                        const result = await response.json();
+
+                        // FormSubmit returns { success: "true", message: "..." } on success
+                        // Or if first time: { success: "false", message: "This form needs Activation..." }
+                        const isActivationNotice = result.message && (
+                            result.message.toLowerCase().includes('activation') ||
+                            result.message.toLowerCase().includes('activate form')
+                        );
+
+                        if (response.ok && (result.success === "true" || result.success === true)) {
+                            showSuccessState(
+                                'Dziękujemy za kontakt!',
+                                'Otrzymaliśmy Twoje zapytanie. Nasz grafik przygotuje bezpłatny mockup z Twoim logo i skontaktujemy się w ciągu 24 godzin.'
+                            );
+                        } else if (isActivationNotice) {
+                            showSuccessState(
+                                'Potwierdź aktywację formularza',
+                                'Wiadomość została przesłana! Ponieważ jest to pierwsze zgłoszenie, na adres inquiries@thepartners.biz wysłano link aktywacyjny FormSubmit. Kliknij przycisk aktywacji w odebranej wiadomości, aby natychmiast odblokować dostarczanie zapytań.'
+                            );
+                        } else {
+                            throw new Error(result.message || 'Nie udało się wysłać formularza.');
+                        }
+                    } catch (err) {
+                        console.error('[Form Error]', err);
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                        submitBtn.removeAttribute('aria-busy');
+
+                        if (errorMsg) {
+                            errorMsg.innerHTML = 'Wystąpił problem z wysłaniem zapytania. Spróbuj ponownie lub napisz bezpośrednio na: <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a>';
+                            errorMsg.style.display = 'block';
+                        } else {
+                            alert('Wystąpił problem z wysłaniem formularza. Prosimy o kontakt: inquiries@thepartners.biz');
+                        }
+                    }
+                });
+
+                function showSuccessState(title, desc) {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('aria-busy');
+                    contactForm.reset();
+                    contactForm.style.display = 'none';
+
+                    if (successTitle && title) successTitle.textContent = title;
+                    if (successDesc && desc) successDesc.textContent = desc;
+
+                    successState.style.display = 'block';
+                }
+
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        contactForm.reset();
+                        if (errorMsg) {
+                            errorMsg.style.display = 'none';
+                            errorMsg.textContent = '';
+                        }
+                        successState.style.display = 'none';
+                        contactForm.style.display = 'flex';
+                    });
+                }
+            }
         });
     </script>
 </body>
