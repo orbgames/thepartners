@@ -110,6 +110,16 @@
             gap: 8px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .btn-text-mobile {
+            display: none;
+        }
+
+        .btn-text-desktop {
+            display: inline;
         }
 
         .nav-back-btn:hover {
@@ -214,17 +224,19 @@
             font-size: 20px;
             font-weight: 800;
             color: var(--dark);
+            line-height: 1.35;
             margin-bottom: 20px;
             padding-bottom: 12px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             display: flex;
-            align-items: center;
-            gap: 12px;
+            align-items: baseline;
+            gap: 8px;
         }
 
         .rodo-card h2 span.sec-num {
             color: var(--red);
             font-weight: 900;
+            flex-shrink: 0;
         }
 
         .rodo-card p {
@@ -430,12 +442,40 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .nav-inner {
+                padding: 0 16px;
+                gap: 12px;
+            }
+
+            .nav-logo {
+                font-size: 18px;
+            }
+
+            .nav-back-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+                gap: 6px;
+            }
+
+            .btn-text-desktop {
+                display: none;
+            }
+
+            .btn-text-mobile {
+                display: inline;
+            }
+
             .rodo-header {
                 padding: 120px 20px 40px;
             }
 
             .rodo-card {
                 padding: 26px 20px;
+            }
+
+            .rodo-card h2 {
+                font-size: 18px;
+                gap: 8px;
             }
 
             .company-box {
@@ -459,12 +499,13 @@
                 THE <span>PARTNERS</span>
             </a>
             <a href="index.html" class="nav-back-btn" title="Wróć do strony głównej">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                <span>Wróć do strony głównej</span>
+                <span class="btn-text-desktop">Wróć do strony głównej</span>
+                <span class="btn-text-mobile">Wróć</span>
             </a>
         </div>
     </nav>
