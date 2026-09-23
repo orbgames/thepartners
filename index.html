@@ -104,7 +104,7 @@
 
         .nav-logo {
             font-weight: 900;
-            font-size: 20px;
+            font-size: 26px;
             letter-spacing: -0.5px;
             color: var(--dark);
         }
@@ -134,7 +134,7 @@
         /* HERO - CINEMATIC VIDEO BACKGROUND */
         .hero {
             position: relative;
-            padding: 220px 24px 140px;
+            padding: 140px 24px 140px;
             text-align: center;
             background: var(--dark);
             color: var(--white);
@@ -313,7 +313,7 @@
 
         /* PROBLEM-SOLUTION */
         .problem {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: var(--white);
         }
 
@@ -421,7 +421,7 @@
 
         /* SERVICES */
         .services {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: linear-gradient(180deg, var(--white) 0%, var(--gray-light) 100%);
         }
 
@@ -503,7 +503,7 @@
 
         /* HOW IT WORKS */
         .process {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: var(--dark);
             color: var(--white);
             position: relative;
@@ -587,7 +587,7 @@
 
         /* PORTFOLIO */
         .portfolio {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: var(--white);
         }
 
@@ -675,7 +675,7 @@
 
         /* CTA & CONTACT FORM SECTION */
         .cta-section {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: linear-gradient(160deg, #1A1A1C 0%, #101011 100%);
             color: var(--white);
             position: relative;
@@ -1356,28 +1356,61 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 6px 14px;
-            background-color: transparent;
-            color: #ffffff;
+            padding: 6px 16px;
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--white);
             border: 1px solid var(--banner-border);
             border-radius: 6px;
             font-size: 0.875rem;
             font-weight: 600;
             text-decoration: none;
             white-space: nowrap;
-            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            /* Скрывает луч за пределами скругления */
+            transition: all 0.25s ease-in-out;
+            box-shadow: 0 0 10px rgba(200, 53, 46, 0.2);
+        }
+
+        .holiday-banner__btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -120%;
+            width: 60%;
+            height: 200%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.45),
+                    transparent);
+            transform: rotate(25deg);
+            animation: holidaySweep 3.2s ease-in-out infinite;
+        }
+
+        @keyframes holidaySweep {
+
+            0%,
+            20% {
+                left: -120%;
+            }
+
+            50%,
+            100% {
+                left: 180%;
+            }
         }
 
         .holiday-banner__btn:hover {
-            background-color: var(--banner-accent);
-            border-color: var(--banner-accent);
-            color: #ffffff;
+            background-color: var(--red);
+            border-color: var(--red);
+            color: var(--white);
             transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(200, 53, 46, 0.45);
         }
 
         .holiday-banner__btn:active {
-            background-color: var(--banner-accent-hover);
-            border-color: var(--banner-accent-hover);
+            background-color: var(--red-dark);
+            border-color: var(--red-dark);
             transform: translateY(0);
         }
 
