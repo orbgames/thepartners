@@ -78,19 +78,85 @@
             transform: translateY(0);
         }
 
+        /* ==========================================================================
+           HOLIDAY STICKY BAR (COMPACT & RESPONSIVE)
+           ========================================================================== */
+        .holiday-banner {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #121212;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+
+        .holiday-banner__container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .holiday-banner__link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
+            width: 100%;
+            transition: opacity 0.2s ease;
+        }
+
+        .holiday-banner__link:hover {
+            opacity: 0.9;
+        }
+
+        .holiday-banner__icon {
+            font-size: 15px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .holiday-banner__text strong {
+            color: var(--red);
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
+        .holiday-banner__cta-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            background: rgba(200, 53, 46, 0.25);
+            border: 1px solid var(--red);
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+
         /* NAV - GLASSMORPHISM */
         nav {
             position: fixed;
-            top: 48;
+            top: 37px;
             width: 100%;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 100;
-            padding: 16px 0;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            transition: padding 0.3s ease;
+            transition: padding 0.3s ease, top 0.2s ease;
         }
 
         .nav-inner {
@@ -104,7 +170,7 @@
 
         .nav-logo {
             font-weight: 900;
-            font-size: 26px;
+            font-size: 20px;
             letter-spacing: -0.5px;
             color: var(--dark);
         }
@@ -131,10 +197,14 @@
             box-shadow: 0 6px 20px rgba(200, 53, 46, 0.35);
         }
 
-        /* HERO - CINEMATIC VIDEO BACKGROUND */
+        /* HERO - CINEMATIC VIDEO BACKGROUND & ABOVE-THE-FOLD FIT */
         .hero {
             position: relative;
-            padding: 140px 24px 140px;
+            min-height: calc(100vh - 37px);
+            padding: 130px 24px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             background: var(--dark);
             color: var(--white);
@@ -154,7 +224,6 @@
             z-index: 0;
             object-fit: cover;
             opacity: 0.8;
-            /* Dims the video slightly for text contrast */
         }
 
         /* Dark Gradient Overlay */
@@ -176,11 +245,11 @@
         }
 
         .hero h1 {
-            font-size: clamp(40px, 6vw, 68px);
+            font-size: clamp(32px, 4.8vw, 58px);
             font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
             color: var(--white);
         }
 
@@ -188,23 +257,21 @@
             color: var(--red);
             display: inline-block;
             text-shadow: 0 0 40px rgba(200, 53, 46, 0.3);
-            /* Subtle neon glow for tech vibe */
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             color: #D1D5DB;
-            /* Lighter gray to contrast dark background */
             max-width: 580px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+            margin: 0 auto 28px;
+            line-height: 1.6;
         }
 
         .hero-cta {
             display: inline-block;
             background: var(--red);
             color: white;
-            padding: 18px 44px;
+            padding: 16px 40px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
@@ -238,19 +305,18 @@
         }
 
         .hero-sub {
-            margin-top: 16px;
-            font-size: 14px;
+            margin-top: 14px;
+            font-size: 13px;
             color: #9CA3AF;
             font-weight: 500;
         }
 
-        /* PRODUCT SHOWCASE - HOVER MICRO-INTERACTIONS */
+        /* PRODUCT SHOWCASE */
         .showcase {
             padding: 80px 24px;
             background: var(--gray-light);
             position: relative;
             z-index: 2;
-            /* Ensures it sits above the dark hero gradient cleanly */
         }
 
         .showcase-grid {
@@ -313,7 +379,7 @@
 
         /* PROBLEM-SOLUTION */
         .problem {
-            padding: 100px 24px;
+            padding: 120px 24px;
             background: var(--white);
         }
 
@@ -421,7 +487,7 @@
 
         /* SERVICES */
         .services {
-            padding: 100px 24px;
+            padding: 120px 24px;
             background: linear-gradient(180deg, var(--white) 0%, var(--gray-light) 100%);
         }
 
@@ -503,7 +569,7 @@
 
         /* HOW IT WORKS */
         .process {
-            padding: 100px 24px;
+            padding: 120px 24px;
             background: var(--dark);
             color: var(--white);
             position: relative;
@@ -587,7 +653,7 @@
 
         /* PORTFOLIO */
         .portfolio {
-            padding: 100px 24px;
+            padding: 120px 24px;
             background: var(--white);
         }
 
@@ -675,7 +741,7 @@
 
         /* CTA & CONTACT FORM SECTION */
         .cta-section {
-            padding: 100px 24px;
+            padding: 120px 24px;
             background: linear-gradient(160deg, #1A1A1C 0%, #101011 100%);
             color: var(--white);
             position: relative;
@@ -1213,7 +1279,9 @@
             color: #6B7280;
         }
 
-        /* RESPONSIVE */
+        /* ==========================================================================
+           RESPONSIVE & SCREEN FIT MEDIA QUERIES
+           ========================================================================== */
         @media (max-width: 960px) {
             .cta-container {
                 grid-template-columns: 1fr;
@@ -1240,15 +1308,119 @@
             .form-row-2 {
                 grid-template-columns: 1fr;
             }
+        }
 
-            .chips-grid {
-                grid-template-columns: 1fr;
+        /* Ноутбуки и мониторы со стандартной/невысокой высотой экрана */
+        @media (max-height: 850px) {
+            .hero {
+                padding-top: 115px;
+                padding-bottom: 35px;
+            }
+
+            .hero h1 {
+                font-size: clamp(28px, 4vw, 44px);
+                margin-bottom: 12px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+
+            .hero-cta {
+                padding: 13px 32px;
+                font-size: 15px;
+            }
+
+            .hero-sub {
+                margin-top: 10px;
+                font-size: 12px;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-height: 720px) {
             .hero {
-                padding: 160px 24px 80px;
+                padding-top: 100px;
+                padding-bottom: 25px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* Мобильные экраны: ультракомпактная шапка и точная посадка Hero */
+        @media (max-width: 768px) {
+            .holiday-banner__container {
+                padding: 6px 12px;
+            }
+
+            .holiday-banner__link {
+                font-size: 12px;
+                gap: 6px;
+            }
+
+            nav {
+                top: 33px;
+                padding: 10px 0;
+            }
+
+            .nav-inner {
+                padding: 0 16px;
+            }
+
+            .nav-logo {
+                font-size: 18px;
+            }
+
+            .nav-cta {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: calc(100vh - 33px);
+                padding: 95px 16px 25px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+                line-height: 1.15;
+                letter-spacing: -0.8px;
+                margin-bottom: 12px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                line-height: 1.45;
+                margin-bottom: 18px;
+                max-width: 320px;
+            }
+
+            .hero-cta {
+                padding: 14px 28px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 310px;
+            }
+
+            .hero-sub {
+                margin-top: 10px;
+                font-size: 11px;
+                line-height: 1.35;
+                max-width: 290px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .showcase-grid {
@@ -1292,151 +1464,8 @@
                 padding: 40px 24px;
             }
         }
-
-        /* ==========================================================================
-   Holiday Sticky Bar Styles
-   ========================================================================== */
-
-        :root {
-            --banner-bg: #141414;
-            --banner-text: #ffffff;
-            --banner-accent: #c8352e;
-            --banner-accent-hover: #a12b25;
-            --banner-border: rgba(255, 255, 255, 0.15);
-        }
-
-        .holiday-banner {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: var(--banner-bg);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            font-family: inherit;
-            color: var(--banner-text);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-        }
-
-        .holiday-banner__container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .holiday-banner__text {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-
-        .holiday-banner__icon {
-            font-size: 1.15rem;
-            line-height: 1;
-        }
-
-        .holiday-banner__desc {
-            color: var(--banner-accent);
-            font-weight: 600;
-        }
-
-        .holiday-banner__arrow {
-            color: var(--banner-accent);
-            font-weight: bold;
-        }
-
-        .holiday-banner__btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 16px;
-            background-color: rgba(255, 255, 255, 0.04);
-            color: var(--white);
-            border: 1px solid var(--banner-border);
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-            /* Скрывает луч за пределами скругления */
-            transition: all 0.25s ease-in-out;
-            box-shadow: 0 0 10px rgba(200, 53, 46, 0.2);
-        }
-
-        .holiday-banner__btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -120%;
-            width: 60%;
-            height: 200%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.45),
-                    transparent);
-            transform: rotate(25deg);
-            animation: holidaySweep 3.2s ease-in-out infinite;
-        }
-
-        @keyframes holidaySweep {
-
-            0%,
-            20% {
-                left: -120%;
-            }
-
-            50%,
-            100% {
-                left: 180%;
-            }
-        }
-
-        .holiday-banner__btn:hover {
-            background-color: var(--red);
-            border-color: var(--red);
-            color: var(--white);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(200, 53, 46, 0.45);
-        }
-
-        .holiday-banner__btn:active {
-            background-color: var(--red-dark);
-            border-color: var(--red-dark);
-            transform: translateY(0);
-        }
-
-        /* Адаптив для планшетов и мобильных устройств */
-        @media (max-width: 768px) {
-            .holiday-banner__container {
-                flex-direction: column;
-                justify-content: center;
-                gap: 8px;
-                padding: 8px 16px;
-                text-align: center;
-            }
-
-            .holiday-banner__text {
-                font-size: 0.85rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 4px;
-            }
-
-            .holiday-banner__btn {
-                padding: 4px 12px;
-                font-size: 0.8125rem;
-            }
-        }
     </style>
+
 </head>
 
 <body>
