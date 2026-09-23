@@ -81,7 +81,7 @@
         /* NAV - GLASSMORPHISM */
         nav {
             position: fixed;
-            top: 0;
+            top: 48;
             width: 100%;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
@@ -1292,10 +1292,137 @@
                 padding: 40px 24px;
             }
         }
+
+        /* ==========================================================================
+   Holiday Sticky Bar Styles
+   ========================================================================== */
+
+        :root {
+            --banner-bg: #141414;
+            --banner-text: #ffffff;
+            --banner-accent: #c8352e;
+            --banner-accent-hover: #a12b25;
+            --banner-border: rgba(255, 255, 255, 0.15);
+        }
+
+        .holiday-banner {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--banner-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: inherit;
+            color: var(--banner-text);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .holiday-banner__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .holiday-banner__text {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .holiday-banner__icon {
+            font-size: 1.15rem;
+            line-height: 1;
+        }
+
+        .holiday-banner__desc {
+            color: var(--banner-accent);
+            font-weight: 600;
+        }
+
+        .holiday-banner__arrow {
+            color: var(--banner-accent);
+            font-weight: bold;
+        }
+
+        .holiday-banner__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid var(--banner-border);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .holiday-banner__btn:hover {
+            background-color: var(--banner-accent);
+            border-color: var(--banner-accent);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .holiday-banner__btn:active {
+            background-color: var(--banner-accent-hover);
+            border-color: var(--banner-accent-hover);
+            transform: translateY(0);
+        }
+
+        /* Адаптив для планшетов и мобильных устройств */
+        @media (max-width: 768px) {
+            .holiday-banner__container {
+                flex-direction: column;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 16px;
+                text-align: center;
+            }
+
+            .holiday-banner__text {
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .holiday-banner__btn {
+                padding: 4px 12px;
+                font-size: 0.8125rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Top Holiday Sticky Bar -->
+    <aside class="holiday-banner" role="banner" aria-label="Katalog świąteczny">
+        <div class="holiday-banner__container">
+            <div class="holiday-banner__text">
+                <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
+                <span class="holiday-banner__title">Szukasz pomysłów na prezenty świąteczne?</span>
+                <span class="holiday-banner__desc">Sprawdź naszą nową ofertę</span>
+                <span class="holiday-banner__arrow" aria-hidden="true">→</span>
+            </div>
+            <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
+                class="holiday-banner__btn">
+                <span class="holiday-banner__btn-icon" aria-hidden="true">📖</span>
+                <span>Zobacz teraz</span>
+            </a>
+        </div>
+    </aside>
 
     <nav>
         <div class="nav-inner">
@@ -1693,7 +1820,7 @@
     </section>
 
     <!-- FOOTER -->
-<footer>
+    <footer>
         <div class="footer-inner reveal">
             <div class="footer-logo">THE <span>PARTNERS</span></div>
             <ul class="footer-contact-list">
