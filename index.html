@@ -41,8 +41,6 @@
             --gray: #6B7280;
             --gray-light: #F3F4F6;
             --white: #FFFFFF;
-            --banner-bg: #141414;
-            --banner-border: rgba(255, 255, 255, 0.15);
         }
 
         body {
@@ -80,97 +78,19 @@
             transform: translateY(0);
         }
 
-        /* ==========================================================================
-           HOLIDAY STICKY BAR
-           ========================================================================== */
-        .holiday-banner {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: var(--banner-bg);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--white);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-        }
-
-        .holiday-banner__container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .holiday-banner__text {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-
-        .holiday-banner__icon {
-            font-size: 1.15rem;
-            line-height: 1;
-        }
-
-        .holiday-banner__desc {
-            color: var(--red);
-            font-weight: 600;
-        }
-
-        .holiday-banner__arrow {
-            color: var(--red);
-            font-weight: bold;
-        }
-
-        .holiday-banner__btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background-color: transparent;
-            color: var(--white);
-            border: 1px solid var(--banner-border);
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .holiday-banner__btn:hover {
-            background-color: var(--red);
-            border-color: var(--red);
-            color: var(--white);
-            transform: translateY(-1px);
-        }
-
-        .holiday-banner__btn:active {
-            background-color: var(--red-dark);
-            border-color: var(--red-dark);
-            transform: translateY(0);
-        }
-
         /* NAV - GLASSMORPHISM */
         nav {
             position: fixed;
-            top: 48px;
+            top: 48;
             width: 100%;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 100;
-            padding: 14px 0;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            transition: padding 0.3s ease, top 0.2s ease;
+            transition: padding 0.3s ease;
         }
 
         .nav-inner {
@@ -184,7 +104,7 @@
 
         .nav-logo {
             font-weight: 900;
-            font-size: 20px;
+            font-size: 26px;
             letter-spacing: -0.5px;
             color: var(--dark);
         }
@@ -211,14 +131,10 @@
             box-shadow: 0 6px 20px rgba(200, 53, 46, 0.35);
         }
 
-        /* HERO - CINEMATIC VIDEO BACKGROUND & ABOVE-THE-FOLD FIT */
+        /* HERO - CINEMATIC VIDEO BACKGROUND */
         .hero {
             position: relative;
-            min-height: calc(100vh - 48px);
-            padding: 140px 24px 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 140px 24px 140px;
             text-align: center;
             background: var(--dark);
             color: var(--white);
@@ -238,6 +154,7 @@
             z-index: 0;
             object-fit: cover;
             opacity: 0.8;
+            /* Dims the video slightly for text contrast */
         }
 
         /* Dark Gradient Overlay */
@@ -259,11 +176,11 @@
         }
 
         .hero h1 {
-            font-size: clamp(34px, 5vw, 62px);
+            font-size: clamp(40px, 6vw, 68px);
             font-weight: 900;
-            line-height: 1.08;
-            letter-spacing: -1.5px;
-            margin-bottom: 18px;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
             color: var(--white);
         }
 
@@ -271,21 +188,23 @@
             color: var(--red);
             display: inline-block;
             text-shadow: 0 0 40px rgba(200, 53, 46, 0.3);
+            /* Subtle neon glow for tech vibe */
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             color: #D1D5DB;
+            /* Lighter gray to contrast dark background */
             max-width: 580px;
-            margin: 0 auto 28px;
-            line-height: 1.6;
+            margin: 0 auto 40px;
+            line-height: 1.7;
         }
 
         .hero-cta {
             display: inline-block;
             background: var(--red);
             color: white;
-            padding: 16px 40px;
+            padding: 18px 44px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
@@ -319,18 +238,19 @@
         }
 
         .hero-sub {
-            margin-top: 14px;
-            font-size: 13px;
+            margin-top: 16px;
+            font-size: 14px;
             color: #9CA3AF;
             font-weight: 500;
         }
 
-        /* PRODUCT SHOWCASE */
+        /* PRODUCT SHOWCASE - HOVER MICRO-INTERACTIONS */
         .showcase {
             padding: 80px 24px;
             background: var(--gray-light);
             position: relative;
             z-index: 2;
+            /* Ensures it sits above the dark hero gradient cleanly */
         }
 
         .showcase-grid {
@@ -393,7 +313,7 @@
 
         /* PROBLEM-SOLUTION */
         .problem {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: var(--white);
         }
 
@@ -501,7 +421,7 @@
 
         /* SERVICES */
         .services {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: linear-gradient(180deg, var(--white) 0%, var(--gray-light) 100%);
         }
 
@@ -583,7 +503,7 @@
 
         /* HOW IT WORKS */
         .process {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: var(--dark);
             color: var(--white);
             position: relative;
@@ -667,7 +587,7 @@
 
         /* PORTFOLIO */
         .portfolio {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: var(--white);
         }
 
@@ -755,7 +675,7 @@
 
         /* CTA & CONTACT FORM SECTION */
         .cta-section {
-            padding: 120px 24px;
+            padding: 100px 24px;
             background: linear-gradient(160deg, #1A1A1C 0%, #101011 100%);
             color: var(--white);
             position: relative;
@@ -1293,9 +1213,7 @@
             color: #6B7280;
         }
 
-        /* ==========================================================================
-           RESPONSIVE & SCREEN FIT MEDIA QUERIES
-           ========================================================================== */
+        /* RESPONSIVE */
         @media (max-width: 960px) {
             .cta-container {
                 grid-template-columns: 1fr;
@@ -1322,82 +1240,15 @@
             .form-row-2 {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* Dopasowanie do laptopów z niską rozdzielczością (1366x768, MacBook Air ze skalowaniem) */
-        @media (max-height: 850px) {
-            .hero {
-                padding-top: 120px;
-                padding-bottom: 40px;
-            }
-
-            .hero h1 {
-                font-size: clamp(28px, 4.2vw, 46px);
-                margin-bottom: 12px;
-            }
-
-            .hero p {
-                font-size: 16px;
-                line-height: 1.5;
-                margin-bottom: 22px;
-            }
-
-            .hero-cta {
-                padding: 13px 32px;
-                font-size: 15px;
-            }
-
-            .hero-sub {
-                margin-top: 10px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-height: 720px) {
-            .hero {
-                padding-top: 110px;
-                padding-bottom: 30px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-                margin-bottom: 10px;
-            }
-
-            .hero p {
-                font-size: 15px;
-                margin-bottom: 16px;
+            .chips-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .holiday-banner__container {
-                flex-direction: column;
-                justify-content: center;
-                gap: 8px;
-                padding: 8px 16px;
-                text-align: center;
-            }
-
-            .holiday-banner__text {
-                font-size: 0.85rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 4px;
-            }
-
-            .holiday-banner__btn {
-                padding: 4px 12px;
-                font-size: 0.8125rem;
-            }
-
-            nav {
-                top: 74px; /* Kompensacja wyższego bannera na telefonach */
-            }
-
             .hero {
-                padding: 140px 20px 60px;
-                min-height: auto;
+                padding: 160px 24px 80px;
             }
 
             .showcase-grid {
@@ -1439,6 +1290,150 @@
 
             .service-card {
                 padding: 40px 24px;
+            }
+        }
+
+        /* ==========================================================================
+   Holiday Sticky Bar Styles
+   ========================================================================== */
+
+        :root {
+            --banner-bg: #141414;
+            --banner-text: #ffffff;
+            --banner-accent: #c8352e;
+            --banner-accent-hover: #a12b25;
+            --banner-border: rgba(255, 255, 255, 0.15);
+        }
+
+        .holiday-banner {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--banner-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: inherit;
+            color: var(--banner-text);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .holiday-banner__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .holiday-banner__text {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .holiday-banner__icon {
+            font-size: 1.15rem;
+            line-height: 1;
+        }
+
+        .holiday-banner__desc {
+            color: var(--banner-accent);
+            font-weight: 600;
+        }
+
+        .holiday-banner__arrow {
+            color: var(--banner-accent);
+            font-weight: bold;
+        }
+
+        .holiday-banner__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--white);
+            border: 1px solid var(--banner-border);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            /* Скрывает луч за пределами скругления */
+            transition: all 0.25s ease-in-out;
+            box-shadow: 0 0 10px rgba(200, 53, 46, 0.2);
+        }
+
+        .holiday-banner__btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -120%;
+            width: 60%;
+            height: 200%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.45),
+                    transparent);
+            transform: rotate(25deg);
+            animation: holidaySweep 3.2s ease-in-out infinite;
+        }
+
+        @keyframes holidaySweep {
+
+            0%,
+            20% {
+                left: -120%;
+            }
+
+            50%,
+            100% {
+                left: 180%;
+            }
+        }
+
+        .holiday-banner__btn:hover {
+            background-color: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(200, 53, 46, 0.45);
+        }
+
+        .holiday-banner__btn:active {
+            background-color: var(--red-dark);
+            border-color: var(--red-dark);
+            transform: translateY(0);
+        }
+
+        /* Адаптив для планшетов и мобильных устройств */
+        @media (max-width: 768px) {
+            .holiday-banner__container {
+                flex-direction: column;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 16px;
+                text-align: center;
+            }
+
+            .holiday-banner__text {
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .holiday-banner__btn {
+                padding: 4px 12px;
+                font-size: 0.8125rem;
             }
         }
     </style>
@@ -1782,10 +1777,13 @@
             <div class="contact-card reveal" style="transition-delay: 0.15s;">
                 <form id="contact-form" class="contact-form" action="https://formsubmit.co/inquiries@thepartners.biz"
                     method="POST" novalidate>
+                    <!-- Serverless Webform Backend (FormSubmit / Web3Forms) -->
+                    <!-- Bezpłatna obsługa bez serwera backendowego - zgłoszenia trafiają bezpośrednio na e-mail -->
                     <input type="hidden" name="_subject" value="Nowe zapytanie o bezpłatny mockup — The Partners">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
 
+                    <!-- Ochrona antyspamowa Honeypot (niewidoczna dla ludzi, łapie boty) -->
                     <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off"
                         aria-hidden="true">
 
@@ -1818,7 +1816,7 @@
 
                     <div class="form-group">
                         <label for="contact-message" class="form-label">Wiadomość / Czego potrzebujesz? <span
-                                    class="optional">(opcjonalnie)</span></label>
+                                class="optional">(opcjonalnie)</span></label>
                         <textarea id="contact-message" name="message" class="form-textarea"
                             placeholder="Opisz krótko swoje potrzeby, np. orientacyjną liczbę bluz lub zestawów powitalnych, pożądany termin realizacji..."></textarea>
                     </div>
@@ -1955,13 +1953,13 @@
             const nav = document.querySelector('nav');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    nav.style.padding = '10px 0';
+                    nav.style.padding = '12px 0';
                 } else {
-                    nav.style.padding = '14px 0';
+                    nav.style.padding = '16px 0';
                 }
             });
 
-            // Contact Form Handling with FormSubmit AJAX
+            // Contact Form Handling with Static/Serverless Third-Party Webform Backend
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('contact-submit-btn');
             const successState = document.getElementById('form-success-state');
@@ -1974,6 +1972,7 @@
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
+                    // Check standard HTML5 validity
                     if (!contactForm.checkValidity()) {
                         contactForm.reportValidity();
                         return;
@@ -1990,15 +1989,18 @@
 
                     const formData = new FormData(contactForm);
                     const formObject = Object.fromEntries(formData.entries());
+
+                    // Target FormSubmit AJAX endpoint (keeps page 100% serverless, zero server or db setup required)
                     const endpoint = 'https://formsubmit.co/ajax/inquiries@thepartners.biz';
 
                     try {
+                        // Check if running directly on file:// protocol (FormSubmit requires HTTP/HTTPS origin)
                         if (window.location.protocol === 'file:') {
-                            console.warn('[Serverless Form] Uruchomiono z protokołu file://.');
+                            console.warn('[Serverless Form] Uruchomiono z protokołu file://. FormSubmit wymaga serwera HTTP/HTTPS (np. localhost, Vercel, Netlify, GitHub Pages).');
                             await new Promise(resolve => setTimeout(resolve, 800));
                             showSuccessState(
                                 'Dziękujemy za kontakt! (Tryb podglądu)',
-                                'Formularz jest w pełni zintegrowany z FormSubmit (inquiries@thepartners.biz).'
+                                'Formularz jest w pełni zintegrowany z FormSubmit (inquiries@thepartners.biz). Na hostingu lub lokalnym serwerze http (np. npx serve) zapytania trafiają bezpośrednio do skrzynki odbiorczej.'
                             );
                             return;
                         }
@@ -2013,6 +2015,9 @@
                         });
 
                         const result = await response.json();
+
+                        // FormSubmit returns { success: "true", message: "..." } on success
+                        // Or if first time: { success: "false", message: "This form needs Activation..." }
                         const isActivationNotice = result.message && (
                             result.message.toLowerCase().includes('activation') ||
                             result.message.toLowerCase().includes('activate form')
@@ -2026,7 +2031,7 @@
                         } else if (isActivationNotice) {
                             showSuccessState(
                                 'Potwierdź aktywację formularza',
-                                'Wiadomość została przesłana! Ponieważ jest to pierwsze zgłoszenie, na adres inquiries@thepartners.biz wysłano link aktywacyjny FormSubmit.'
+                                'Wiadomość została przesłana! Ponieważ jest to pierwsze zgłoszenie, na adres inquiries@thepartners.biz wysłano link aktywacyjny FormSubmit. Kliknij przycisk aktywacji w odebranej wiadomości, aby natychmiast odblokować dostarczanie zapytań.'
                             );
                         } else {
                             throw new Error(result.message || 'Nie udało się wysłać formularza.');
