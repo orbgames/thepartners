@@ -41,6 +41,8 @@
             --gray: #6B7280;
             --gray-light: #F3F4F6;
             --white: #FFFFFF;
+            --banner-bg: #141414;
+            --banner-border: rgba(255, 255, 255, 0.15);
         }
 
         body {
@@ -79,7 +81,7 @@
         }
 
         /* ==========================================================================
-           HOLIDAY STICKY BAR (COMPACT & RESPONSIVE)
+           HOLIDAY STICKY BAR
            ========================================================================== */
         .holiday-banner {
             position: sticky;
@@ -87,73 +89,85 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: #121212;
+            background-color: var(--banner-bg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+            color: var(--white);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
         .holiday-banner__container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 8px 16px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 20px;
         }
 
-        .holiday-banner__link {
+        .holiday-banner__text {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 13px;
+            font-size: 0.9375rem;
             font-weight: 500;
-            width: 100%;
-            transition: opacity 0.2s ease;
-        }
-
-        .holiday-banner__link:hover {
-            opacity: 0.9;
+            letter-spacing: -0.01em;
         }
 
         .holiday-banner__icon {
-            font-size: 15px;
+            font-size: 1.15rem;
             line-height: 1;
-            flex-shrink: 0;
         }
 
-        .holiday-banner__text strong {
+        .holiday-banner__desc {
             color: var(--red);
-            font-weight: 700;
-            margin-left: 2px;
+            font-weight: 600;
         }
 
-        .holiday-banner__cta-tag {
+        .holiday-banner__arrow {
+            color: var(--red);
+            font-weight: bold;
+        }
+
+        .holiday-banner__btn {
             display: inline-flex;
             align-items: center;
-            padding: 2px 8px;
-            background: rgba(200, 53, 46, 0.25);
-            border: 1px solid var(--red);
-            border-radius: 4px;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            flex-shrink: 0;
+            gap: 6px;
+            padding: 6px 14px;
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--banner-border);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .holiday-banner__btn:hover {
+            background-color: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .holiday-banner__btn:active {
+            background-color: var(--red-dark);
+            border-color: var(--red-dark);
+            transform: translateY(0);
         }
 
         /* NAV - GLASSMORPHISM */
         nav {
             position: fixed;
-            top: 37px;
+            top: 48px;
             width: 100%;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 100;
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
             transition: padding 0.3s ease, top 0.2s ease;
@@ -200,8 +214,8 @@
         /* HERO - CINEMATIC VIDEO BACKGROUND & ABOVE-THE-FOLD FIT */
         .hero {
             position: relative;
-            min-height: calc(100vh - 37px);
-            padding: 130px 24px 50px;
+            min-height: calc(100vh - 48px);
+            padding: 140px 24px 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -245,7 +259,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(32px, 4.8vw, 58px);
+            font-size: clamp(34px, 5vw, 62px);
             font-weight: 900;
             line-height: 1.08;
             letter-spacing: -1.5px;
@@ -1310,22 +1324,22 @@
             }
         }
 
-        /* Ноутбуки и мониторы со стандартной/невысокой высотой экрана */
+        /* Dopasowanie do laptopów z niską rozdzielczością (1366x768, MacBook Air ze skalowaniem) */
         @media (max-height: 850px) {
             .hero {
-                padding-top: 115px;
-                padding-bottom: 35px;
+                padding-top: 120px;
+                padding-bottom: 40px;
             }
 
             .hero h1 {
-                font-size: clamp(28px, 4vw, 44px);
+                font-size: clamp(28px, 4.2vw, 46px);
                 margin-bottom: 12px;
             }
 
             .hero p {
                 font-size: 16px;
                 line-height: 1.5;
-                margin-bottom: 20px;
+                margin-bottom: 22px;
             }
 
             .hero-cta {
@@ -1341,86 +1355,49 @@
 
         @media (max-height: 720px) {
             .hero {
-                padding-top: 100px;
-                padding-bottom: 25px;
+                padding-top: 110px;
+                padding-bottom: 30px;
             }
 
             .hero h1 {
-                font-size: 30px;
+                font-size: 32px;
                 margin-bottom: 10px;
             }
 
             .hero p {
-                font-size: 14px;
+                font-size: 15px;
                 margin-bottom: 16px;
             }
         }
 
-        /* Мобильные экраны: ультракомпактная шапка и точная посадка Hero */
         @media (max-width: 768px) {
             .holiday-banner__container {
-                padding: 6px 12px;
+                flex-direction: column;
+                justify-content: center;
+                gap: 8px;
+                padding: 8px 16px;
+                text-align: center;
             }
 
-            .holiday-banner__link {
-                font-size: 12px;
-                gap: 6px;
+            .holiday-banner__text {
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .holiday-banner__btn {
+                padding: 4px 12px;
+                font-size: 0.8125rem;
             }
 
             nav {
-                top: 33px;
-                padding: 10px 0;
-            }
-
-            .nav-inner {
-                padding: 0 16px;
-            }
-
-            .nav-logo {
-                font-size: 18px;
-            }
-
-            .nav-cta {
-                padding: 8px 16px;
-                font-size: 13px;
+                top: 74px; /* Kompensacja wyższego bannera na telefonach */
             }
 
             .hero {
-                min-height: calc(100vh - 33px);
-                padding: 95px 16px 25px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 26px;
-                line-height: 1.15;
-                letter-spacing: -0.8px;
-                margin-bottom: 12px;
-            }
-
-            .hero p {
-                font-size: 14px;
-                line-height: 1.45;
-                margin-bottom: 18px;
-                max-width: 320px;
-            }
-
-            .hero-cta {
-                padding: 14px 28px;
-                font-size: 14px;
-                width: 100%;
-                max-width: 310px;
-            }
-
-            .hero-sub {
-                margin-top: 10px;
-                font-size: 11px;
-                line-height: 1.35;
-                max-width: 290px;
-                margin-left: auto;
-                margin-right: auto;
+                padding: 140px 20px 60px;
+                min-height: auto;
             }
 
             .showcase-grid {
@@ -1465,7 +1442,6 @@
             }
         }
     </style>
-
 </head>
 
 <body>
@@ -1806,13 +1782,10 @@
             <div class="contact-card reveal" style="transition-delay: 0.15s;">
                 <form id="contact-form" class="contact-form" action="https://formsubmit.co/inquiries@thepartners.biz"
                     method="POST" novalidate>
-                    <!-- Serverless Webform Backend (FormSubmit / Web3Forms) -->
-                    <!-- Bezpłatna obsługa bez serwera backendowego - zgłoszenia trafiają bezpośrednio na e-mail -->
                     <input type="hidden" name="_subject" value="Nowe zapytanie o bezpłatny mockup — The Partners">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
 
-                    <!-- Ochrona antyspamowa Honeypot (niewidoczna dla ludzi, łapie boty) -->
                     <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off"
                         aria-hidden="true">
 
@@ -1845,7 +1818,7 @@
 
                     <div class="form-group">
                         <label for="contact-message" class="form-label">Wiadomość / Czego potrzebujesz? <span
-                                class="optional">(opcjonalnie)</span></label>
+                                    class="optional">(opcjonalnie)</span></label>
                         <textarea id="contact-message" name="message" class="form-textarea"
                             placeholder="Opisz krótko swoje potrzeby, np. orientacyjną liczbę bluz lub zestawów powitalnych, pożądany termin realizacji..."></textarea>
                     </div>
@@ -1982,13 +1955,13 @@
             const nav = document.querySelector('nav');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    nav.style.padding = '12px 0';
+                    nav.style.padding = '10px 0';
                 } else {
-                    nav.style.padding = '16px 0';
+                    nav.style.padding = '14px 0';
                 }
             });
 
-            // Contact Form Handling with Static/Serverless Third-Party Webform Backend
+            // Contact Form Handling with FormSubmit AJAX
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('contact-submit-btn');
             const successState = document.getElementById('form-success-state');
@@ -2001,7 +1974,6 @@
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
-                    // Check standard HTML5 validity
                     if (!contactForm.checkValidity()) {
                         contactForm.reportValidity();
                         return;
@@ -2018,18 +1990,15 @@
 
                     const formData = new FormData(contactForm);
                     const formObject = Object.fromEntries(formData.entries());
-
-                    // Target FormSubmit AJAX endpoint (keeps page 100% serverless, zero server or db setup required)
                     const endpoint = 'https://formsubmit.co/ajax/inquiries@thepartners.biz';
 
                     try {
-                        // Check if running directly on file:// protocol (FormSubmit requires HTTP/HTTPS origin)
                         if (window.location.protocol === 'file:') {
-                            console.warn('[Serverless Form] Uruchomiono z protokołu file://. FormSubmit wymaga serwera HTTP/HTTPS (np. localhost, Vercel, Netlify, GitHub Pages).');
+                            console.warn('[Serverless Form] Uruchomiono z protokołu file://.');
                             await new Promise(resolve => setTimeout(resolve, 800));
                             showSuccessState(
                                 'Dziękujemy za kontakt! (Tryb podglądu)',
-                                'Formularz jest w pełni zintegrowany z FormSubmit (inquiries@thepartners.biz). Na hostingu lub lokalnym serwerze http (np. npx serve) zapytania trafiają bezpośrednio do skrzynki odbiorczej.'
+                                'Formularz jest w pełni zintegrowany z FormSubmit (inquiries@thepartners.biz).'
                             );
                             return;
                         }
@@ -2044,9 +2013,6 @@
                         });
 
                         const result = await response.json();
-
-                        // FormSubmit returns { success: "true", message: "..." } on success
-                        // Or if first time: { success: "false", message: "This form needs Activation..." }
                         const isActivationNotice = result.message && (
                             result.message.toLowerCase().includes('activation') ||
                             result.message.toLowerCase().includes('activate form')
@@ -2060,7 +2026,7 @@
                         } else if (isActivationNotice) {
                             showSuccessState(
                                 'Potwierdź aktywację formularza',
-                                'Wiadomość została przesłana! Ponieważ jest to pierwsze zgłoszenie, na adres inquiries@thepartners.biz wysłano link aktywacyjny FormSubmit. Kliknij przycisk aktywacji w odebranej wiadomości, aby natychmiast odblokować dostarczanie zapytań.'
+                                'Wiadomość została przesłana! Ponieważ jest to pierwsze zgłoszenie, na adres inquiries@thepartners.biz wysłano link aktywacyjny FormSubmit.'
                             );
                         } else {
                             throw new Error(result.message || 'Nie udało się wysłać formularza.');
