@@ -235,7 +235,7 @@
         }
 
         .page-input {
-            width: 52px;
+            width: 56px;
             height: 32px;
             border-radius: 6px;
             border: 1px solid rgba(0, 0, 0, 0.12);
@@ -293,6 +293,7 @@
         .nav-cta--outline:hover {
             background: var(--gray-light);
             color: var(--dark);
+            transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
@@ -310,7 +311,6 @@
         }
 
         #flipbook-container {
-            /* Smooth horizontal centering transition when opening/closing the front or back cover */
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: transform;
             filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.65));
@@ -411,8 +411,8 @@
                 </div>
 
                 <div class="nav-actions">
-                    <a href="thepartners-katalog-2026.pdf" download class="nav-cta">Pobierz PDF</a>
-                    <a href="/#kontakt" class="nav-cta nav-cta--outline hide-mobile">Darmowy mockup</a>
+                    <a href="thepartners-katalog-2026.pdf" download class="nav-cta nav-cta--outline">Pobierz PDF</a>
+                    <a href="/#kontakt" class="nav-cta hide-mobile">Darmowy mockup</a>
                 </div>
             </div>
         </nav>
@@ -514,10 +514,8 @@
                 return;
             }
             if (pageNumber === 1) {
-                // Page 1 sits on the right side of the 2-page spread -> shift left by 25% of total spread width
                 container.style.transform = 'translateX(-25%)';
             } else if (pageNumber === TOTAL_PAGES) {
-                // Page 422 sits on the left side of the 2-page spread -> shift right by 25% of total spread width
                 container.style.transform = 'translateX(25%)';
             } else {
                 container.style.transform = 'translateX(0)';
@@ -558,7 +556,6 @@
 
             pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-            // Center page 1 immediately on load
             updateBookCentering(1);
 
             function preloadRange(centerPage) {
@@ -578,20 +575,59 @@
             }
 
             const pageInput = document.getElementById('page-jump');
+            let currentSpreadPage = 1;
 
             pageFlip.on('flip', (e) => {
-                const currentPage = e.data + 1;
-                pageInput.value = currentPage;
-                updateBookCentering(currentPage);
-                preloadRange(currentPage);
+                currentSpreadPage = e.data + 1;
+                pageInput.value = currentSpreadPage;
+                updateBookCentering(currentSpreadPage);
+                preloadRange(currentSpreadPage);
             });
 
+            function jumpToTargetPage(rawVal) {
+                let target = parseInt(rawVal, 10);
+                if (isNaN(target)) return;
+                target = Math.max(1, Math.min(TOTAL_PAGES, target));
+
+                const isDesktopSpread = window.innerWidth >= 768;
+
+                // When clicking the Up spinner (+1) on an even spread page (e.g. 4 -> 5),
+                // flip to the next spread (6) instead of snapping back to 4.
+                if (isDesktopSpread && target === currentSpreadPage + 1 && currentSpreadPage > 1) {
+                    pageFlip.flipNext();
+                    return;
+                }
+
+                // When clicking the Down spinner (-1), flip to the previous spread
+                if (isDesktopSpread && target === currentSpreadPage - 1) {
+                    pageFlip.flipPrev();
+                    return;
+                }
+
+                preloadRange(target);
+                pageFlip.turnToPage(target - 1);
+                currentSpreadPage = pageFlip.getCurrentPageIndex() + 1;
+                pageInput.value = currentSpreadPage;
+                updateBookCentering(currentSpreadPage);
+            }
+
+            // Handle native Up/Down spinner arrow clicks immediately
+            pageInput.addEventListener('input', () => {
+                const val = parseInt(pageInput.value, 10);
+                if (!isNaN(val) && Math.abs(val - currentSpreadPage) === 1) {
+                    jumpToTargetPage(val);
+                }
+            });
+
+            // Handle manual page number entry on Enter or blur
             pageInput.addEventListener('change', () => {
-                let target = parseInt(pageInput.value, 10);
-                if (target >= 1 && target <= TOTAL_PAGES) {
-                    preloadRange(target);
-                    pageFlip.turnToPage(target - 1);
-                    updateBookCentering(target);
+                jumpToTargetPage(pageInput.value);
+            });
+
+            pageInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    jumpToTargetPage(pageInput.value);
+                    pageInput.blur();
                 }
             });
 
@@ -608,7 +644,8 @@
             // Mouse Wheel Flipping (Wheel Down -> Next Page, Wheel Up -> Prev Page)
             let isWheelLocked = false;
             window.addEventListener('wheel', (e) => {
-                if (Math.abs(e.deltaY) < 10) return; // Ignore tiny accidental trackpad jitter
+                if (document.activeElement === pageInput) return;
+                if (Math.abs(e.deltaY) < 10) return;
                 if (isWheelLocked) return;
 
                 isWheelLocked = true;
