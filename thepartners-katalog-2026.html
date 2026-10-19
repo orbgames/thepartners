@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Katalog 2026 The Partners — personalizowana odzież firmowa, zestawy powitalne i gadżety dla firm IT w Warszawie.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog 2026 — Gadżety i Merch Firmowy | The Partners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #C8352E;
+            --red-dark: #A12B25;
+            --red-light: #F9EEEE;
+            --dark: #1A1A1A;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+            --banner-bg: #141414;
+            --banner-text: #ffffff;
+            --banner-accent: #c8352e;
+            --banner-accent-hover: #a12b25;
+            --banner-border: rgba(255, 255, 255, 0.15);
+        }
+
+        html, body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark);
+            background: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* PREMIUM NOISE TEXTURE OVERLAY */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* UNIFIED STICKY HEADER FROM INDEX.HTML */
+        .site-header {
+            width: 100%;
+            z-index: 1000;
+            flex-shrink: 0;
+        }
+
+        /* HOLIDAY STICKY BAR */
+        .holiday-banner {
+            width: 100%;
+            background-color: var(--banner-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--banner-text);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .holiday-banner__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .holiday-banner__text {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+
+        .holiday-banner__icon {
+            font-size: 1.05rem;
+            line-height: 1;
+        }
+
+        .holiday-banner__desc {
+            color: var(--banner-accent);
+            font-weight: 600;
+        }
+
+        .holiday-banner__arrow {
+            color: var(--banner-accent);
+            font-weight: bold;
+        }
+
+        .holiday-banner__lang-group {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--banner-border);
+            border-radius: 6px;
+            padding: 2px;
+            gap: 2px;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(200, 53, 46, 0.2);
+        }
+
+        .holiday-banner__lang-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            line-height: 1;
+            transition: all 0.2s ease-in-out;
+            white-space: nowrap;
+        }
+
+        .holiday-banner__lang-btn:hover {
+            background-color: var(--red);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(200, 53, 46, 0.4);
+        }
+
+        .flag-icon {
+            width: 14px;
+            height: 10px;
+            border-radius: 2px;
+            display: block;
+            flex-shrink: 0;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        /* NAV - GLASSMORPHISM FROM INDEX.HTML */
+        nav {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-logo {
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: var(--dark);
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--red);
+        }
+
+        /* FLIPBOOK CONTROLS IN NAV */
+        .catalog-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gray-light);
+            padding: 4px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .ctrl-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: var(--white);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .ctrl-btn:hover {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        .page-counter {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 4px;
+        }
+
+        .page-input {
+            width: 52px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: var(--white);
+            color: var(--dark);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .page-input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(200, 53, 46, 0.15);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-cta {
+            background: var(--red);
+            color: white;
+            padding: 9px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(200, 53, 46, 0.2);
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 53, 46, 0.35);
+        }
+
+        .nav-cta--outline {
+            background: var(--white);
+            color: var(--dark);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-cta--outline:hover {
+            background: var(--gray-light);
+            color: var(--dark);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* FLIPBOOK VIEWPORT */
+        main.catalog-stage {
+            flex: 1;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 30%, rgba(200, 53, 46, 0.12) 0%, #141414 70%);
+            padding: 14px 24px;
+            overflow: hidden;
+        }
+
+        #flipbook-container {
+            /* Smooth horizontal centering transition when opening/closing the front or back cover */
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+            filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.65));
+        }
+
+        .page {
+            background-color: var(--white);
+            overflow: hidden;
+        }
+
+        .page.cover-page {
+            background-color: #141414;
+        }
+
+        .page img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        @media (max-width: 768px) {
+            .holiday-banner__container {
+                justify-content: space-between;
+                padding: 6px 14px;
+                min-height: 36px;
+            }
+            .holiday-banner__text { font-size: 0.78rem; gap: 5px; }
+            .holiday-banner__desc, .holiday-banner__arrow { display: none !important; }
+            nav { padding: 7px 0; }
+            .nav-inner { padding: 0 12px; gap: 8px; }
+            .nav-logo { font-size: 18px; }
+            .nav-cta { padding: 6px 12px; font-size: 12px; border-radius: 6px; }
+            .hide-mobile { display: none; }
+            main.catalog-stage { padding: 8px 10px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Unified Header matching index.html -->
+    <header class="site-header" id="site-header">
+        <aside class="holiday-banner" role="banner" aria-label="Katalog świąteczny">
+            <div class="holiday-banner__container">
+                <div class="holiday-banner__text">
+                    <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
+                    <span class="holiday-banner__title">Prezenty świąteczne 2026</span>
+                    <span class="holiday-banner__desc">Sprawdź ofertę</span>
+                    <span class="holiday-banner__arrow" aria-hidden="true">→</span>
+                </div>
+
+                <div class="holiday-banner__lang-group" role="group" aria-label="Wybierz wersję katalogu">
+                    <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
+                        class="holiday-banner__lang-btn" title="Katalog w języku polskim">
+                        <svg class="flag-icon" viewBox="0 0 16 12" aria-hidden="true">
+                            <rect width="16" height="6" fill="#FFFFFF" />
+                            <rect y="6" width="16" height="6" fill="#DC143C" />
+                        </svg>
+                        <span>PL</span>
+                    </a>
+                    <a href="/prezenty-swiateczne-2026-the-partners-en.pdf" target="_blank" rel="noopener noreferrer"
+                        class="holiday-banner__lang-btn" title="Catalog in English">
+                        <svg class="flag-icon" viewBox="0 0 60 30" aria-hidden="true">
+                            <clipPath id="s">
+                                <path d="M0,0 v30 h60 v-30 z" />
+                            </clipPath>
+                            <clipPath id="t">
+                                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
+                            </clipPath>
+                            <g clip-path="url(#s)">
+                                <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
+                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
+                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E"
+                                    stroke-width="4" />
+                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
+                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
+                            </g>
+                        </svg>
+                        <span>EN</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <nav>
+            <div class="nav-inner">
+                <a href="/" class="nav-logo">THE <span>PARTNERS</span></a>
+
+                <div class="catalog-controls">
+                    <button class="ctrl-btn" id="prev-btn" title="Poprzednia strona">❮</button>
+                    <span class="page-counter">
+                        <input type="number" id="page-jump" class="page-input" value="1" min="1" max="422">
+                        <span>/ 422</span>
+                    </span>
+                    <button class="ctrl-btn" id="next-btn" title="Następna strona">❯</button>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="thepartners-katalog-2026.pdf" download class="nav-cta">Pobierz PDF</a>
+                    <a href="/#kontakt" class="nav-cta nav-cta--outline hide-mobile">Darmowy mockup</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="catalog-stage" id="catalog-stage">
+        <div id="flipbook-container"></div>
+    </main>
+
+    <script>
+        const TOTAL_PAGES = 422;
+        const IMG_EXT = 'webp';
+        const container = document.getElementById('flipbook-container');
+
+        // Automatically trims baked-in top/bottom white bars from page-1.webp and page-422.webp
+        function removeBakedWhiteBars(imgElement, srcUrl) {
+            const tempImg = new Image();
+            tempImg.crossOrigin = 'anonymous';
+            tempImg.onload = () => {
+                const w = tempImg.naturalWidth;
+                const h = tempImg.naturalHeight;
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(tempImg, 0, 0);
+
+                try {
+                    const data = ctx.getImageData(0, 0, w, h).data;
+                    let top = 0;
+                    let bottom = h - 1;
+
+                    const isRowWhite = (y) => {
+                        for (let x = Math.floor(w * 0.1); x < Math.floor(w * 0.9); x += 10) {
+                            const idx = (y * w + x) * 4;
+                            if (data[idx] < 240 || data[idx + 1] < 240 || data[idx + 2] < 240) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    };
+
+                    while (top < h * 0.25 && isRowWhite(top)) top++;
+                    while (bottom > h * 0.75 && isRowWhite(bottom)) bottom--;
+
+                    const croppedHeight = bottom - top + 1;
+                    if (top > 4 || (h - 1 - bottom) > 4) {
+                        const outCanvas = document.createElement('canvas');
+                        outCanvas.width = w;
+                        outCanvas.height = croppedHeight;
+                        outCanvas.getContext('2d').drawImage(tempImg, 0, top, w, croppedHeight, 0, 0, w, croppedHeight);
+                        imgElement.src = outCanvas.toDataURL('image/webp', 0.92);
+                        return;
+                    }
+                } catch (e) {
+                    // Fallback if file:// blocks canvas pixel inspection
+                }
+                imgElement.src = srcUrl;
+            };
+            tempImg.onerror = () => { imgElement.src = srcUrl; };
+            tempImg.src = srcUrl;
+        }
+
+        // Build all 422 page elements
+        for (let i = 1; i <= TOTAL_PAGES; i++) {
+            const pageDiv = document.createElement('div');
+            const isCover = (i === 1 || i === TOTAL_PAGES);
+            pageDiv.className = isCover ? 'page cover-page' : 'page';
+
+            const img = document.createElement('img');
+            const url = `katalog-pages/page-${i}.${IMG_EXT}`;
+
+            if (i === 1) {
+                removeBakedWhiteBars(img, url);
+            } else if (i <= 6) {
+                img.src = url;
+            } else {
+                img.dataset.src = url;
+                if (i === TOTAL_PAGES) img.dataset.cover = 'true';
+            }
+
+            pageDiv.appendChild(img);
+            container.appendChild(pageDiv);
+        }
+
+        function detectAspectRatio() {
+            return new Promise((resolve) => {
+                const probe = new Image();
+                probe.onload = () => resolve(probe.naturalWidth / probe.naturalHeight);
+                probe.onerror = () => resolve(0.7071);
+                probe.src = `katalog-pages/page-2.${IMG_EXT}`;
+            });
+        }
+
+        // Center front cover (page 1) and back cover (page 422) horizontally on desktop 2-page view
+        function updateBookCentering(pageNumber) {
+            if (window.innerWidth < 768) {
+                container.style.transform = 'translateX(0)';
+                return;
+            }
+            if (pageNumber === 1) {
+                // Page 1 sits on the right side of the 2-page spread -> shift left by 25% of total spread width
+                container.style.transform = 'translateX(-25%)';
+            } else if (pageNumber === TOTAL_PAGES) {
+                // Page 422 sits on the left side of the 2-page spread -> shift right by 25% of total spread width
+                container.style.transform = 'translateX(25%)';
+            } else {
+                container.style.transform = 'translateX(0)';
+            }
+        }
+
+        async function startFlipbook() {
+            const aspectRatio = await detectAspectRatio();
+            const headerEl = document.getElementById('site-header');
+            const headerHeight = headerEl ? headerEl.offsetHeight : 96;
+
+            const verticalPadding = 28;
+            const horizontalPadding = 48;
+
+            const availHeight = window.innerHeight - headerHeight - verticalPadding;
+            const availWidth = window.innerWidth - horizontalPadding;
+            const isMobile = window.innerWidth < 768;
+
+            let pageHeight = availHeight;
+            let pageWidth = Math.floor(pageHeight * aspectRatio);
+
+            const spreadWidth = isMobile ? pageWidth : pageWidth * 2;
+            if (spreadWidth > availWidth) {
+                pageWidth = Math.floor(isMobile ? availWidth : availWidth / 2);
+                pageHeight = Math.floor(pageWidth / aspectRatio);
+            }
+
+            const pageFlip = new St.PageFlip(container, {
+                width: pageWidth,
+                height: pageHeight,
+                size: 'fixed',
+                flippingTime: 450,
+                maxShadowOpacity: 0.45,
+                showCover: true,
+                usePortrait: isMobile,
+                mobileScrollSupport: false
+            });
+
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+            // Center page 1 immediately on load
+            updateBookCentering(1);
+
+            function preloadRange(centerPage) {
+                const pages = document.querySelectorAll('.page img');
+                for (let p = Math.max(1, centerPage - 4); p <= Math.min(TOTAL_PAGES, centerPage + 6); p++) {
+                    const img = pages[p - 1];
+                    if (img && img.dataset.src) {
+                        const targetUrl = img.dataset.src;
+                        delete img.dataset.src;
+                        if (img.dataset.cover === 'true') {
+                            removeBakedWhiteBars(img, targetUrl);
+                        } else {
+                            img.src = targetUrl;
+                        }
+                    }
+                }
+            }
+
+            const pageInput = document.getElementById('page-jump');
+
+            pageFlip.on('flip', (e) => {
+                const currentPage = e.data + 1;
+                pageInput.value = currentPage;
+                updateBookCentering(currentPage);
+                preloadRange(currentPage);
+            });
+
+            pageInput.addEventListener('change', () => {
+                let target = parseInt(pageInput.value, 10);
+                if (target >= 1 && target <= TOTAL_PAGES) {
+                    preloadRange(target);
+                    pageFlip.turnToPage(target - 1);
+                    updateBookCentering(target);
+                }
+            });
+
+            document.getElementById('prev-btn').addEventListener('click', () => pageFlip.flipPrev());
+            document.getElementById('next-btn').addEventListener('click', () => pageFlip.flipNext());
+
+            // Keyboard Left/Right navigation
+            window.addEventListener('keydown', (e) => {
+                if (document.activeElement === pageInput) return;
+                if (e.key === 'ArrowRight') pageFlip.flipNext();
+                if (e.key === 'ArrowLeft') pageFlip.flipPrev();
+            });
+
+            // Mouse Wheel Flipping (Wheel Down -> Next Page, Wheel Up -> Prev Page)
+            let isWheelLocked = false;
+            window.addEventListener('wheel', (e) => {
+                if (Math.abs(e.deltaY) < 10) return; // Ignore tiny accidental trackpad jitter
+                if (isWheelLocked) return;
+
+                isWheelLocked = true;
+                if (e.deltaY > 0) {
+                    pageFlip.flipNext();
+                } else if (e.deltaY < 0) {
+                    pageFlip.flipPrev();
+                }
+
+                setTimeout(() => {
+                    isWheelLocked = false;
+                }, 280);
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                const currentPage = parseInt(pageInput.value, 10) || 1;
+                updateBookCentering(currentPage);
+            });
+        }
+
+        startFlipbook();
+    </script>
+</body>
+
+</html>
