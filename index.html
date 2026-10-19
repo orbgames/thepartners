@@ -243,6 +243,32 @@
             box-shadow: 0 6px 20px rgba(200, 53, 46, 0.35);
         }
 
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-cta--outline {
+            background: var(--white);
+            color: var(--dark);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-cta--outline:hover {
+            background: var(--gray-light);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .nav-actions {
+                gap: 6px;
+            }
+        }
+
         /* HERO - CINEMATIC VIDEO BACKGROUND */
         .hero {
             position: relative;
@@ -1379,7 +1405,10 @@
         <nav>
             <div class="nav-inner">
                 <div class="nav-logo">THE <span>PARTNERS</span></div>
-                <a href="#kontakt" class="nav-cta">Darmowy mockup</a>
+                <div class="nav-actions">
+                    <a href="katalog-2026.html" class="nav-cta nav-cta--outline">Katalog 2026</a>
+                    <a href="#kontakt" class="nav-cta">Darmowy mockup</a>
+                </div>
             </div>
         </nav>
     </header>
