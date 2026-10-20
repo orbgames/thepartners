@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="description"
         content="Katalog 2026 The Partners — personalizowana odzież firmowa, zestawy powitalne i gadżety dla firm IT w Warszawie.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Katalog 2026 — Gadżety i Merch Firmowy | The Partners</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -36,6 +36,7 @@
 
         html, body {
             height: 100vh;
+            height: 100dvh;
             width: 100vw;
             overflow: hidden;
             display: flex;
@@ -184,13 +185,14 @@
             color: var(--dark);
             white-space: nowrap;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .nav-logo span {
             color: var(--red);
         }
 
-        /* FLIPBOOK CONTROLS IN NAV */
+        /* FLIPBOOK CONTROLS */
         .catalog-controls {
             display: flex;
             align-items: center;
@@ -199,6 +201,7 @@
             padding: 4px 8px;
             border-radius: 10px;
             border: 1px solid rgba(0, 0, 0, 0.06);
+            flex-shrink: 0;
         }
 
         .ctrl-btn {
@@ -216,9 +219,12 @@
             justify-content: center;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            flex-shrink: 0;
+            user-select: none;
         }
 
-        .ctrl-btn:hover {
+        .ctrl-btn:hover,
+        .ctrl-btn:active {
             background: var(--red);
             color: var(--white);
             border-color: var(--red);
@@ -228,14 +234,15 @@
             font-size: 13px;
             font-weight: 600;
             color: var(--gray);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             padding: 0 4px;
+            white-space: nowrap;
         }
 
         .page-input {
-            width: 56px;
+            width: 54px;
             height: 32px;
             border-radius: 6px;
             border: 1px solid rgba(0, 0, 0, 0.12);
@@ -258,6 +265,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-shrink: 0;
         }
 
         .nav-cta {
@@ -303,6 +311,7 @@
             width: 100%;
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: radial-gradient(circle at 50% 30%, rgba(200, 53, 46, 0.12) 0%, #141414 70%);
@@ -334,20 +343,124 @@
             -webkit-user-drag: none;
         }
 
+        /* MOBILE BOTTOM BAR (Hidden on Desktop) */
+        .mobile-bottom-bar {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .holiday-banner__container {
                 justify-content: space-between;
                 padding: 6px 14px;
                 min-height: 36px;
+                gap: 8px;
             }
-            .holiday-banner__text { font-size: 0.78rem; gap: 5px; }
-            .holiday-banner__desc, .holiday-banner__arrow { display: none !important; }
-            nav { padding: 7px 0; }
-            .nav-inner { padding: 0 12px; gap: 8px; }
-            .nav-logo { font-size: 18px; }
-            .nav-cta { padding: 6px 12px; font-size: 12px; border-radius: 6px; }
-            .hide-mobile { display: none; }
-            main.catalog-stage { padding: 8px 10px; }
+            .holiday-banner__text {
+                font-size: 0.78rem;
+                gap: 5px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .holiday-banner__desc,
+            .holiday-banner__arrow {
+                display: none !important;
+            }
+            .holiday-banner__lang-group {
+                padding: 1px;
+                gap: 1px;
+            }
+            .holiday-banner__lang-btn {
+                padding: 3px 6px;
+                font-size: 0.7rem;
+                gap: 3px;
+                height: 22px;
+            }
+            .flag-icon {
+                width: 12px;
+                height: 9px;
+            }
+
+            /* COMPACT NAV ON MOBILE MATCHING INDEX.HTML */
+            nav {
+                padding: 7px 0;
+            }
+            .nav-inner {
+                padding: 0 14px;
+                gap: 8px;
+            }
+            .nav-logo {
+                font-size: 18px;
+                letter-spacing: -0.3px;
+            }
+            .nav-actions {
+                gap: 6px;
+            }
+            .nav-cta {
+                padding: 6px 12px;
+                font-size: 12px;
+                border-radius: 6px;
+            }
+            .desktop-controls {
+                display: none !important;
+            }
+
+            /* Maximize book stage on mobile */
+            main.catalog-stage {
+                padding: 6px 8px 62px 8px;
+                justify-content: center;
+            }
+
+            /* Floating bottom navigation pill for mobile */
+            .mobile-bottom-bar {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                position: fixed;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(26, 26, 26, 0.92);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                padding: 5px 10px;
+                border-radius: 12px;
+                z-index: 1000;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+
+            .mobile-bottom-bar .ctrl-btn {
+                width: 34px;
+                height: 34px;
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--white);
+                border-color: rgba(255, 255, 255, 0.12);
+            }
+
+            .mobile-bottom-bar .ctrl-btn:active {
+                background: var(--red);
+                border-color: var(--red);
+            }
+
+            .mobile-bottom-bar .page-counter {
+                color: #D1D5DB;
+                font-size: 13px;
+            }
+
+            .mobile-bottom-bar .page-input {
+                width: 48px;
+                height: 32px;
+                background: rgba(255, 255, 255, 0.12);
+                color: var(--white);
+                border-color: rgba(255, 255, 255, 0.2);
+                -moz-appearance: textfield;
+            }
+            .mobile-bottom-bar .page-input::-webkit-outer-spin-button,
+            .mobile-bottom-bar .page-input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
         }
     </style>
 </head>
@@ -401,7 +514,8 @@
             <div class="nav-inner">
                 <a href="/" class="nav-logo">THE <span>PARTNERS</span></a>
 
-                <div class="catalog-controls">
+                <!-- Desktop Controls (Hidden on Mobile) -->
+                <div class="catalog-controls desktop-controls">
                     <button class="ctrl-btn" id="prev-btn" title="Poprzednia strona">❮</button>
                     <span class="page-counter">
                         <input type="number" id="page-jump" class="page-input" value="1" min="1" max="422">
@@ -410,9 +524,10 @@
                     <button class="ctrl-btn" id="next-btn" title="Następna strona">❯</button>
                 </div>
 
+                <!-- Both buttons remain visible on Desktop & Mobile -->
                 <div class="nav-actions">
                     <a href="thepartners-katalog-2026.pdf" download class="nav-cta nav-cta--outline">Pobierz PDF</a>
-                    <a href="/#kontakt" class="nav-cta hide-mobile">Darmowy mockup</a>
+                    <a href="/#kontakt" class="nav-cta">Darmowy mockup</a>
                 </div>
             </div>
         </nav>
@@ -420,6 +535,16 @@
 
     <main class="catalog-stage" id="catalog-stage">
         <div id="flipbook-container"></div>
+
+        <!-- Mobile Floating Bottom Bar (Visible only on < 768px) -->
+        <div class="mobile-bottom-bar">
+            <button class="ctrl-btn" id="prev-btn-mob" aria-label="Poprzednia strona">❮</button>
+            <span class="page-counter">
+                <input type="number" id="page-jump-mob" class="page-input" value="1" min="1" max="422">
+                <span>/ 422</span>
+            </span>
+            <button class="ctrl-btn" id="next-btn-mob" aria-label="Następna strona">❯</button>
+        </div>
     </main>
 
     <script>
@@ -525,32 +650,48 @@
         async function startFlipbook() {
             const aspectRatio = await detectAspectRatio();
             const headerEl = document.getElementById('site-header');
-            const headerHeight = headerEl ? headerEl.offsetHeight : 96;
+            const headerHeight = headerEl ? headerEl.offsetHeight : 80;
+            const isMobile = window.innerWidth < 768;
 
-            const verticalPadding = 28;
-            const horizontalPadding = 48;
+            // Reserve space for the bottom floating pill on mobile
+            const verticalPadding = isMobile ? 68 : 28;
+            const horizontalPadding = isMobile ? 16 : 48;
 
             const availHeight = window.innerHeight - headerHeight - verticalPadding;
             const availWidth = window.innerWidth - horizontalPadding;
-            const isMobile = window.innerWidth < 768;
 
-            let pageHeight = availHeight;
-            let pageWidth = Math.floor(pageHeight * aspectRatio);
+            let pageWidth, pageHeight;
 
-            const spreadWidth = isMobile ? pageWidth : pageWidth * 2;
-            if (spreadWidth > availWidth) {
-                pageWidth = Math.floor(isMobile ? availWidth : availWidth / 2);
+            if (isMobile) {
+                // On mobile, prioritize filling the screen width with a single portrait page
+                pageWidth = availWidth;
                 pageHeight = Math.floor(pageWidth / aspectRatio);
+                if (pageHeight > availHeight) {
+                    pageHeight = availHeight;
+                    pageWidth = Math.floor(pageHeight * aspectRatio);
+                }
+            } else {
+                // On desktop, fit 2-page spread vertically
+                pageHeight = availHeight;
+                pageWidth = Math.floor(pageHeight * aspectRatio);
+                if (pageWidth * 2 > availWidth) {
+                    pageWidth = Math.floor(availWidth / 2);
+                    pageHeight = Math.floor(pageWidth / aspectRatio);
+                }
             }
 
             const pageFlip = new St.PageFlip(container, {
                 width: pageWidth,
                 height: pageHeight,
-                size: 'fixed',
+                size: isMobile ? 'stretch' : 'fixed',
+                minWidth: pageWidth,
+                maxWidth: pageWidth,
+                minHeight: pageHeight,
+                maxHeight: pageHeight,
                 flippingTime: 450,
                 maxShadowOpacity: 0.45,
                 showCover: true,
-                usePortrait: isMobile,
+                usePortrait: true,
                 mobileScrollSupport: false
             });
 
@@ -574,12 +715,18 @@
                 }
             }
 
-            const pageInput = document.getElementById('page-jump');
+            const pageInputDesk = document.getElementById('page-jump');
+            const pageInputMob = document.getElementById('page-jump-mob');
             let currentSpreadPage = 1;
+
+            function syncInputs(val) {
+                pageInputDesk.value = val;
+                pageInputMob.value = val;
+            }
 
             pageFlip.on('flip', (e) => {
                 currentSpreadPage = e.data + 1;
-                pageInput.value = currentSpreadPage;
+                syncInputs(currentSpreadPage);
                 updateBookCentering(currentSpreadPage);
                 preloadRange(currentSpreadPage);
             });
@@ -591,14 +738,11 @@
 
                 const isDesktopSpread = window.innerWidth >= 768;
 
-                // When clicking the Up spinner (+1) on an even spread page (e.g. 4 -> 5),
-                // flip to the next spread (6) instead of snapping back to 4.
                 if (isDesktopSpread && target === currentSpreadPage + 1 && currentSpreadPage > 1) {
                     pageFlip.flipNext();
                     return;
                 }
 
-                // When clicking the Down spinner (-1), flip to the previous spread
                 if (isDesktopSpread && target === currentSpreadPage - 1) {
                     pageFlip.flipPrev();
                     return;
@@ -607,36 +751,38 @@
                 preloadRange(target);
                 pageFlip.turnToPage(target - 1);
                 currentSpreadPage = pageFlip.getCurrentPageIndex() + 1;
-                pageInput.value = currentSpreadPage;
+                syncInputs(currentSpreadPage);
                 updateBookCentering(currentSpreadPage);
             }
 
-            // Handle native Up/Down spinner arrow clicks immediately
-            pageInput.addEventListener('input', () => {
-                const val = parseInt(pageInput.value, 10);
-                if (!isNaN(val) && Math.abs(val - currentSpreadPage) === 1) {
-                    jumpToTargetPage(val);
-                }
-            });
+            [pageInputDesk, pageInputMob].forEach((inputEl) => {
+                inputEl.addEventListener('input', () => {
+                    const val = parseInt(inputEl.value, 10);
+                    if (!isNaN(val) && Math.abs(val - currentSpreadPage) === 1) {
+                        jumpToTargetPage(val);
+                    }
+                });
 
-            // Handle manual page number entry on Enter or blur
-            pageInput.addEventListener('change', () => {
-                jumpToTargetPage(pageInput.value);
-            });
+                inputEl.addEventListener('change', () => {
+                    jumpToTargetPage(inputEl.value);
+                });
 
-            pageInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    jumpToTargetPage(pageInput.value);
-                    pageInput.blur();
-                }
+                inputEl.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        jumpToTargetPage(inputEl.value);
+                        inputEl.blur();
+                    }
+                });
             });
 
             document.getElementById('prev-btn').addEventListener('click', () => pageFlip.flipPrev());
             document.getElementById('next-btn').addEventListener('click', () => pageFlip.flipNext());
+            document.getElementById('prev-btn-mob').addEventListener('click', () => pageFlip.flipPrev());
+            document.getElementById('next-btn-mob').addEventListener('click', () => pageFlip.flipNext());
 
             // Keyboard Left/Right navigation
             window.addEventListener('keydown', (e) => {
-                if (document.activeElement === pageInput) return;
+                if (document.activeElement === pageInputDesk || document.activeElement === pageInputMob) return;
                 if (e.key === 'ArrowRight') pageFlip.flipNext();
                 if (e.key === 'ArrowLeft') pageFlip.flipPrev();
             });
@@ -644,7 +790,7 @@
             // Mouse Wheel Flipping (Wheel Down -> Next Page, Wheel Up -> Prev Page)
             let isWheelLocked = false;
             window.addEventListener('wheel', (e) => {
-                if (document.activeElement === pageInput) return;
+                if (document.activeElement === pageInputDesk || document.activeElement === pageInputMob) return;
                 if (Math.abs(e.deltaY) < 10) return;
                 if (isWheelLocked) return;
 
@@ -661,8 +807,7 @@
             }, { passive: true });
 
             window.addEventListener('resize', () => {
-                const currentPage = parseInt(pageInput.value, 10) || 1;
-                updateBookCentering(currentPage);
+                updateBookCentering(currentSpreadPage);
             });
         }
 
