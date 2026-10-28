@@ -2,478 +2,58 @@
 <html lang="pl">
 
 <head>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
-    <meta name="description"
-        content="Katalog 2026 The Partners — personalizowana odzież firmowa, zestawy powitalne i gadżety dla firm IT w Warszawie.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Katalog 2026 — Gadżety i Merch Firmowy | The Partners</title>
+    <title>Katalog 2026 — Gadżety, Odzież Firmowa i Welcome Packi | The Partners</title>
+    <meta name="description"
+        content="Katalog 2026 The Partners — 422 strony inspiracji: personalizowana odzież firmowa z haftem, zestawy powitalne (welcome packi), elektronika i gadżety premium dla firm IT w Warszawie.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thepartners.biz/thepartners-katalog-2026.html">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thepartners.biz/thepartners-katalog-2026.html">
+    <meta property="og:title" content="Katalog 2026 — Gadżety i Merch Firmowy | The Partners">
+    <meta property="og:description"
+        content="Przeglądaj pełny katalog produktów 2026 (422 strony): odzież firmowa, plecaki, termosy, elektronika z logo i zestawy powitalne dla zespołów IT i gamedev.">
+    <meta property="og:image" content="https://thepartners.biz/zestaw-powitalny.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        :root {
-            --red: #C8352E;
-            --red-dark: #A12B25;
-            --red-light: #F9EEEE;
-            --dark: #1A1A1A;
-            --gray: #6B7280;
-            --gray-light: #F3F4F6;
-            --white: #FFFFFF;
-            --banner-bg: #141414;
-            --banner-text: #ffffff;
-            --banner-accent: #c8352e;
-            --banner-accent-hover: #a12b25;
-            --banner-border: rgba(255, 255, 255, 0.15);
-        }
-
-        html, body {
-            height: 100vh;
-            height: 100dvh;
-            width: 100vw;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--dark);
-            background: var(--dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-        }
-
-        /* PREMIUM NOISE TEXTURE OVERLAY */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* UNIFIED STICKY HEADER FROM INDEX.HTML */
-        .site-header {
-            width: 100%;
-            z-index: 1000;
-            flex-shrink: 0;
-        }
-
-        /* HOLIDAY STICKY BAR */
-        .holiday-banner {
-            width: 100%;
-            background-color: var(--banner-bg);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--banner-text);
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .holiday-banner__container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 8px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .holiday-banner__text {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            white-space: nowrap;
-        }
-
-        .holiday-banner__icon {
-            font-size: 1.05rem;
-            line-height: 1;
-        }
-
-        .holiday-banner__desc {
-            color: var(--banner-accent);
-            font-weight: 600;
-        }
-
-        .holiday-banner__arrow {
-            color: var(--banner-accent);
-            font-weight: bold;
-        }
-
-        .holiday-banner__lang-group {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--banner-border);
-            border-radius: 6px;
-            padding: 2px;
-            gap: 2px;
-            flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(200, 53, 46, 0.2);
-        }
-
-        .holiday-banner__lang-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            color: var(--white);
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-decoration: none;
-            line-height: 1;
-            transition: all 0.2s ease-in-out;
-            white-space: nowrap;
-        }
-
-        .holiday-banner__lang-btn:hover {
-            background-color: var(--red);
-            color: var(--white);
-            box-shadow: 0 2px 8px rgba(200, 53, 46, 0.4);
-        }
-
-        .flag-icon {
-            width: 14px;
-            height: 10px;
-            border-radius: 2px;
-            display: block;
-            flex-shrink: 0;
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-        }
-
-        /* NAV - GLASSMORPHISM FROM INDEX.HTML */
-        nav {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .nav-logo {
-            font-weight: 900;
-            font-size: 24px;
-            letter-spacing: -0.5px;
-            color: var(--dark);
-            white-space: nowrap;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .nav-logo span {
-            color: var(--red);
-        }
-
-        /* FLIPBOOK CONTROLS */
-        .catalog-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--gray-light);
-            padding: 4px 8px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            flex-shrink: 0;
-        }
-
-        .ctrl-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            background: var(--white);
-            color: var(--dark);
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-            flex-shrink: 0;
-            user-select: none;
-        }
-
-        .ctrl-btn:hover,
-        .ctrl-btn:active {
-            background: var(--red);
-            color: var(--white);
-            border-color: var(--red);
-        }
-
-        .page-counter {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gray);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0 4px;
-            white-space: nowrap;
-        }
-
-        .page-input {
-            width: 54px;
-            height: 32px;
-            border-radius: 6px;
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            background: var(--white);
-            color: var(--dark);
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-
-        .page-input:focus {
-            outline: none;
-            border-color: var(--red);
-            box-shadow: 0 0 0 3px rgba(200, 53, 46, 0.15);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        .nav-cta {
-            background: var(--red);
-            color: white;
-            padding: 9px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 14px rgba(200, 53, 46, 0.2);
-            flex-shrink: 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-cta:hover {
-            background: var(--red-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(200, 53, 46, 0.35);
-        }
-
-        .nav-cta--outline {
-            background: var(--white);
-            color: var(--dark);
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-        }
-
-        .nav-cta--outline:hover {
-            background: var(--gray-light);
-            color: var(--dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        /* FLIPBOOK VIEWPORT */
-        main.catalog-stage {
-            flex: 1;
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at 50% 30%, rgba(200, 53, 46, 0.12) 0%, #141414 70%);
-            padding: 14px 24px;
-            overflow: hidden;
-        }
-
-        #flipbook-container {
-            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-            will-change: transform;
-            filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.65));
-        }
-
-        .page {
-            background-color: var(--white);
-            overflow: hidden;
-        }
-
-        .page.cover-page {
-            background-color: #141414;
-        }
-
-        .page img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-            display: block;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        /* MOBILE BOTTOM BAR (Hidden on Desktop) */
-        .mobile-bottom-bar {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .holiday-banner__container {
-                justify-content: space-between;
-                padding: 6px 14px;
-                min-height: 36px;
-                gap: 8px;
-            }
-            .holiday-banner__text {
-                font-size: 0.78rem;
-                gap: 5px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .holiday-banner__desc,
-            .holiday-banner__arrow {
-                display: none !important;
-            }
-            .holiday-banner__lang-group {
-                padding: 1px;
-                gap: 1px;
-            }
-            .holiday-banner__lang-btn {
-                padding: 3px 6px;
-                font-size: 0.7rem;
-                gap: 3px;
-                height: 22px;
-            }
-            .flag-icon {
-                width: 12px;
-                height: 9px;
-            }
-
-            /* COMPACT NAV ON MOBILE MATCHING INDEX.HTML */
-            nav {
-                padding: 7px 0;
-            }
-            .nav-inner {
-                padding: 0 14px;
-                gap: 8px;
-            }
-            .nav-logo {
-                font-size: 18px;
-                letter-spacing: -0.3px;
-            }
-            .nav-actions {
-                gap: 6px;
-            }
-            .nav-cta {
-                padding: 6px 12px;
-                font-size: 12px;
-                border-radius: 6px;
-            }
-            .desktop-controls {
-                display: none !important;
-            }
-
-            /* Maximize book stage on mobile */
-            main.catalog-stage {
-                padding: 6px 8px 62px 8px;
-                justify-content: center;
-            }
-
-            /* Floating bottom navigation pill for mobile */
-            .mobile-bottom-bar {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 12px;
-                position: fixed;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(26, 26, 26, 0.92);
-                backdrop-filter: blur(14px);
-                -webkit-backdrop-filter: blur(14px);
-                border: 1px solid rgba(255, 255, 255, 0.14);
-                padding: 5px 10px;
-                border-radius: 12px;
-                z-index: 1000;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            }
-
-            .mobile-bottom-bar .ctrl-btn {
-                width: 34px;
-                height: 34px;
-                background: rgba(255, 255, 255, 0.1);
-                color: var(--white);
-                border-color: rgba(255, 255, 255, 0.12);
-            }
-
-            .mobile-bottom-bar .ctrl-btn:active {
-                background: var(--red);
-                border-color: var(--red);
-            }
-
-            .mobile-bottom-bar .page-counter {
-                color: #D1D5DB;
-                font-size: 13px;
-            }
-
-            .mobile-bottom-bar .page-input {
-                width: 48px;
-                height: 32px;
-                background: rgba(255, 255, 255, 0.12);
-                color: var(--white);
-                border-color: rgba(255, 255, 255, 0.2);
-                -moz-appearance: textfield;
-            }
-            .mobile-bottom-bar .page-input::-webkit-outer-spin-button,
-            .mobile-bottom-bar .page-input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-        }
-    </style>
+    <!-- JSON-LD CollectionPage Schema for the 2026 Catalogue -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Katalog 2026 — Gadżety, Odzież Firmowa i Merch B2B | The Partners",
+      "url": "https://thepartners.biz/thepartners-katalog-2026.html",
+      "description": "Pełny katalog gadżetów reklamowych, odzieży firmowej, plecaków, elektroniki i zestawów powitalnych na rok 2026 dla firm w Warszawie i całej Polsce.",
+      "publisher": {
+        "@type": "LocalBusiness",
+        "name": "The Partners",
+        "url": "https://thepartners.biz/",
+        "telephone": "+48 500 555 291",
+        "email": "inquiries@thepartners.biz"
+      }
+    }
+    </script>
 </head>
 
-<body>
+<body class="catalog-page">
     <!-- Unified Header matching index.html -->
     <header class="site-header" id="site-header">
         <aside class="holiday-banner" role="banner" aria-label="Katalog świąteczny">
             <div class="holiday-banner__container">
                 <div class="holiday-banner__text">
                     <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
-                    <span class="holiday-banner__title">Prezenty świąteczne 2026</span>
-                    <span class="holiday-banner__desc">Sprawdź ofertę</span>
+                    <span class="holiday-banner__title" data-i18n="banner_title">Prezenty świąteczne 2026</span>
+                    <span class="holiday-banner__desc" data-i18n="banner_desc">Sprawdź ofertę</span>
                     <span class="holiday-banner__arrow" aria-hidden="true">→</span>
                 </div>
 
@@ -512,27 +92,32 @@
 
         <nav>
             <div class="nav-inner">
-                <a href="/" class="nav-logo">THE <span>PARTNERS</span></a>
+                <a href="index.html" class="nav-logo" id="logo-home-link">THE <span>PARTNERS</span></a>
 
                 <!-- Desktop Controls (Hidden on Mobile) -->
                 <div class="catalog-controls desktop-controls">
                     <button class="ctrl-btn" id="prev-btn" title="Poprzednia strona">❮</button>
                     <span class="page-counter">
-                        <input type="number" id="page-jump" class="page-input" value="1" min="1" max="422">
+                        <input type="number" id="page-jump" class="page-input" value="1" min="1" max="422" aria-label="Numer strony">
                         <span>/ 422</span>
                     </span>
                     <button class="ctrl-btn" id="next-btn" title="Następna strona">❯</button>
                 </div>
 
-                <!-- Both buttons remain visible on Desktop & Mobile -->
+                <!-- Actions + Language Toggle -->
                 <div class="nav-actions">
-                    <a href="thepartners-katalog-2026.pdf" download class="nav-cta nav-cta--outline">Pobierz PDF</a>
-                    <a href="/#kontakt" class="nav-cta">Darmowy mockup</a>
+                    <a href="thepartners-katalog-2026.pdf" download class="nav-cta nav-cta--outline" data-i18n="cat_download">Pobierz PDF</a>
+                    <a href="index.html#kontakt" class="nav-cta" id="mockup-cta-link" data-i18n="cat_mockup">Darmowy mockup</a>
+                    <div class="lang-toggle" role="group" aria-label="Language switcher">
+                        <button type="button" class="lang-toggle__btn active" data-lang-btn="pl">PL</button>
+                        <button type="button" class="lang-toggle__btn" data-lang-btn="en">EN</button>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- INTERACTIVE FLIPBOOK STAGE (Takes full initial viewport height) -->
     <main class="catalog-stage" id="catalog-stage">
         <div id="flipbook-container"></div>
 
@@ -540,17 +125,329 @@
         <div class="mobile-bottom-bar">
             <button class="ctrl-btn" id="prev-btn-mob" aria-label="Poprzednia strona">❮</button>
             <span class="page-counter">
-                <input type="number" id="page-jump-mob" class="page-input" value="1" min="1" max="422">
+                <input type="number" id="page-jump-mob" class="page-input" value="1" min="1" max="422" aria-label="Numer strony">
                 <span>/ 422</span>
             </span>
             <button class="ctrl-btn" id="next-btn-mob" aria-label="Następna strona">❯</button>
         </div>
     </main>
 
+    <!-- KEYWORD-RICH SEO TEXT SECTION BELOW THE FLIPBOOK -->
+    <section class="catalog-seo-section" id="kategorie-produktow">
+        <div class="catalog-seo-inner">
+            <div class="catalog-seo-header">
+                <h1 data-i18n="seo_h1">Katalog Gadżetów Firmowych i Merchu B2B <span>2026</span></h1>
+                <p data-i18n="seo_intro">
+                    Powyższy interaktywny katalog 2026 obejmuje ponad 400 stron starannie wyselekcjonowanych produktów
+                    do tworzenia zestawów powitalnych (welcome packów), odzieży firmowej z logo oraz prezentów
+                    świątecznych i okolicznościowych dla branży IT, gamedev i nowoczesnych firm w Warszawie. Wybierz
+                    interesujące Cię produkty i zamów darmowy mockup graficzny w barwach Twojej marki.
+                </p>
+            </div>
+
+            <div class="catalog-seo-grid">
+                <article class="catalog-seo-card">
+                    <h2 data-i18n="cat1_h2">Odzież Firmowa i Tekstylia z Logo</h2>
+                    <p data-i18n="cat1_p">
+                        Wysokogatunkowe bluzy firmowe typu hoodie i crewneck o wysokiej gramaturze, koszulki z bawełny
+                        organicznej, kurtki softshell, czapki z daszkiem, czapki zimowe beanie oraz skarpetki
+                        korporacyjne. Znakowanie trwałym haftem komputerowym (w tym haftem 3D), sitodrukiem oraz
+                        nadrukiem DTF.
+                    </p>
+                    <div class="catalog-seo-tags">
+                        <span class="catalog-seo-tag" data-i18n="cat1_t1">Bluzy z haftem</span>
+                        <span class="catalog-seo-tag" data-i18n="cat1_t2">Koszulki firmowe premium</span>
+                        <span class="catalog-seo-tag" data-i18n="cat1_t3">Bawełna organiczna GOTS</span>
+                    </div>
+                </article>
+
+                <article class="catalog-seo-card">
+                    <h2 data-i18n="cat2_h2">Plecaki na Laptopa i Torby Podróżne</h2>
+                    <p data-i18n="cat2_p">
+                        Praktyczne plecaki miejskie i biznesowe z przegrodą na laptopa 15,6"–17", plecaki podróżne
+                        35L z materiałów rPET, torby na ramię, worki żeglarskie oraz bawełniane torby typu tote bag na
+                        konferencje technologiczne i wyjazdy integracyjne zespołów IT.
+                    </p>
+                    <div class="catalog-seo-tags">
+                        <span class="catalog-seo-tag" data-i18n="cat2_t1">Plecaki firmowe IT</span>
+                        <span class="catalog-seo-tag" data-i18n="cat2_t2">Torby na laptopa z logo</span>
+                        <span class="catalog-seo-tag" data-i18n="cat2_t3">Plecaki rPET z recyklingu</span>
+                    </div>
+                </article>
+
+                <article class="catalog-seo-card">
+                    <h2 data-i18n="cat3_h2">Elektronika i Akcesoria Technologiczne</h2>
+                    <p data-i18n="cat3_p">
+                        Nowoczesne gadżety elektroniczne idealne do paczek onboardingowych i prezentów VIP: magnetyczne
+                        powerbanki 10000 mAh z MagSafe, słuchawki bezprzewodowe TWS z redukcją szumów ENC, ładowarki
+                        indukcyjne, głośniki Bluetooth, lokalizatory oraz wielofunkcyjne kable z podświetlanym logo.
+                    </p>
+                    <div class="catalog-seo-tags">
+                        <span class="catalog-seo-tag" data-i18n="cat3_t1">Powerbanki z logo</span>
+                        <span class="catalog-seo-tag" data-i18n="cat3_t2">Słuchawki bezprzewodowe ENC</span>
+                        <span class="catalog-seo-tag" data-i18n="cat3_t3">Gadżety elektroniczne B2B</span>
+                    </div>
+                </article>
+
+                <article class="catalog-seo-card">
+                    <h2 data-i18n="cat4_h2">Kubki Termiczne, Butelki i Drinkware</h2>
+                    <p data-i18n="cat4_p">
+                        Stalowe butelki termiczne próżniowe utrzymujące temperaturę do 12–24h, szczelne kubki termiczne
+                        do biura i samochodu, kubki ceramiczne z nadrukiem oraz szklane bidony. Precyzyjne znakowanie za
+                        pomocą graweru laserowego 360° lub kolorowego druku UV.
+                    </p>
+                    <div class="catalog-seo-tags">
+                        <span class="catalog-seo-tag" data-i18n="cat4_t1">Kubki termiczne z grawerem</span>
+                        <span class="catalog-seo-tag" data-i18n="cat4_t2">Butelki termiczne z logo</span>
+                        <span class="catalog-seo-tag" data-i18n="cat4_t3">Stal nierdzewna z recyklingu</span>
+                    </div>
+                </article>
+
+                <article class="catalog-seo-card">
+                    <h2 data-i18n="cat5_h2">Biuro, Home Office i Zestawy Powitalne</h2>
+                    <p data-i18n="cat5_p">
+                        Kompletne wyposażenie do welcome packów dla nowych pracowników: notesy w twardej oprawie z
+                        tłoczeniem, metalowe długopisy i pióra z grawerem, podkładki na biurko, smycze, przypinki na
+                        eventy oraz personalizowane pudełka fasonowe i magnetyczne w kolorach Pantone firmy.
+                    </p>
+                    <div class="catalog-seo-tags">
+                        <span class="catalog-seo-tag" data-i18n="cat5_t1">Welcome packi Warszawa</span>
+                        <span class="catalog-seo-tag" data-i18n="cat5_t2">Notesy z tłoczeniem logo</span>
+                        <span class="catalog-seo-tag" data-i18n="cat5_t3">Pudełka prezentowe z nadrukiem</span>
+                    </div>
+                </article>
+
+                <article class="catalog-seo-card">
+                    <h2 data-i18n="cat6_h2">Gadżety Eco, Outdoor i Bezpieczeństwo</h2>
+                    <p data-i18n="cat6_p">
+                        Upominki z certyfikowanych materiałów ekologicznych (bambus, korek, bawełna organiczna, rPET)
+                        oraz akcesoria outdoorowe: parasole wiatroodporne z logo, latarki ratunkowe 400 lm ze zbijakiem
+                        do szyb, multitoole, koce polarowe oraz zestawy piknikowe i podróżne.
+                    </p>
+                    <div class="catalog-seo-tags">
+                        <span class="catalog-seo-tag" data-i18n="cat6_t1">Gadżety ekologiczne B2B</span>
+                        <span class="catalog-seo-tag" data-i18n="cat6_t2">Parasole firmowe z nadrukiem</span>
+                        <span class="catalog-seo-tag" data-i18n="cat6_t3">Akcesoria outdoor i podróżne</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="catalog-seo-cta-box">
+                <h2 data-i18n="seo_cta_h2">Znalazłeś produkt w katalogu? Zamów darmowy mockup!</h2>
+                <p data-i18n="seo_cta_p">
+                    Podaj nam numer strony z katalogu lub opisz, jakiego zestawu szukasz. W 24–48 godzin przygotujemy
+                    bezpłatną wizualizację z Twoim logo oraz wycenę z dostawą do biura w Warszawie.
+                </p>
+                <a href="index.html#kontakt" class="hero-cta" id="bottom-mockup-link" data-i18n="seo_cta_btn">Zamów darmowy mockup →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIFIED FOOTER MATCHING INDEX.HTML -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">THE <span>PARTNERS</span></div>
+            <ul class="footer-contact-list">
+                <li>
+                    <a href="mailto:inquiries@thepartners.biz" class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </span>
+                        <span>inquiries@thepartners.biz</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tel:+48500555291" class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span>+48 500 555 291</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/company/partners-biz/" class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                        </span>
+                        <span>LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="footer-contact-item" style="cursor: default;">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </span>
+                        <span data-i18n="footer_addr">Al. Jerozolimskie 200, 02-486 Warszawa</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="footer-contact-item" style="cursor: default;">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <line x1="10" y1="9" x2="8" y2="9"></line>
+                            </svg>
+                        </span>
+                        <span>NIP: 9512616772</span>
+                    </span>
+                </li>
+            </ul>
+            <div class="footer-copy" data-i18n="footer_copy">© 2026 The Partners (JDG PARTNERS Andrii Sharanevych). Wszystkie prawa zastrzeżone.
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // BILINGUAL PL / EN TOGGLE FOR CATALOGUE 2026 PAGE
+        const catalogTranslations = {
+            pl: {
+                page_title: 'Katalog 2026 — Gadżety, Odzież Firmowa i Welcome Packi | The Partners',
+                banner_title: 'Prezenty świąteczne 2026',
+                banner_desc: 'Sprawdź ofertę',
+                cat_download: 'Pobierz PDF',
+                cat_mockup: 'Darmowy mockup',
+                seo_h1: 'Katalog Gadżetów Firmowych i Merchu B2B <span>2026</span>',
+                seo_intro: 'Powyższy interaktywny katalog 2026 obejmuje ponad 400 stron starannie wyselekcjonowanych produktów do tworzenia zestawów powitalnych (welcome packów), odzieży firmowej z logo oraz prezentów świątecznych i okolicznościowych dla branży IT, gamedev i nowoczesnych firm w Warszawie. Wybierz interesujące Cię produkty i zamów darmowy mockup graficzny w barwach Twojej marki.',
+                cat1_h2: 'Odzież Firmowa i Tekstylia z Logo',
+                cat1_p: 'Wysokogatunkowe bluzy firmowe typu hoodie i crewneck o wysokiej gramaturze, koszulki z bawełny organicznej, kurtki softshell, czapki z daszkiem, czapki zimowe beanie oraz skarpetki korporacyjne. Znakowanie trwałym haftem komputerowym (w tym haftem 3D), sitodrukiem oraz nadrukiem DTF.',
+                cat1_t1: 'Bluzy z haftem',
+                cat1_t2: 'Koszulki firmowe premium',
+                cat1_t3: 'Bawełna organiczna GOTS',
+                cat2_h2: 'Plecaki na Laptopa i Torby Podróżne',
+                cat2_p: 'Praktyczne plecaki miejskie i biznesowe z przegrodą na laptopa 15,6"–17", plecaki podróżne 35L z materiałów rPET, torby na ramię, worki żeglarskie oraz bawełniane torby typu tote bag na konferencje technologiczne i wyjazdy integracyjne zespołów IT.',
+                cat2_t1: 'Plecaki firmowe IT',
+                cat2_t2: 'Torby na laptopa z logo',
+                cat2_t3: 'Plecaki rPET z recyklingu',
+                cat3_h2: 'Elektronika i Akcesoria Technologiczne',
+                cat3_p: 'Nowoczesne gadżety elektroniczne idealne do paczek onboardingowych i prezentów VIP: magnetyczne powerbanki 10000 mAh z MagSafe, słuchawki bezprzewodowe TWS z redukcją szumów ENC, ładowarki indukcyjne, głośniki Bluetooth, lokalizatory oraz wielofunkcyjne kable z podświetlanym logo.',
+                cat3_t1: 'Powerbanki z logo',
+                cat3_t2: 'Słuchawki bezprzewodowe ENC',
+                cat3_t3: 'Gadżety elektroniczne B2B',
+                cat4_h2: 'Kubki Termiczne, Butelki i Drinkware',
+                cat4_p: 'Stalowe butelki termiczne próżniowe utrzymujące temperaturę do 12–24h, szczelne kubki termiczne do biura i samochodu, kubki ceramiczne z nadrukiem oraz szklane bidony. Precyzyjne znakowanie za pomocą graweru laserowego 360° lub kolorowego druku UV.',
+                cat4_t1: 'Kubki termiczne z grawerem',
+                cat4_t2: 'Butelki termiczne z logo',
+                cat4_t3: 'Stal nierdzewna z recyklingu',
+                cat5_h2: 'Biuro, Home Office i Zestawy Powitalne',
+                cat5_p: 'Kompletne wyposażenie do welcome packów dla nowych pracowników: notesy w twardej oprawie z tłoczeniem, metalowe długopisy i pióra z grawerem, podkładki na biurko, smycze, przypinki na eventy oraz personalizowane pudełka fasonowe i magnetyczne w kolorach Pantone firmy.',
+                cat5_t1: 'Welcome packi Warszawa',
+                cat5_t2: 'Notesy z tłoczeniem logo',
+                cat5_t3: 'Pudełka prezentowe z nadrukiem',
+                cat6_h2: 'Gadżety Eco, Outdoor i Bezpieczeństwo',
+                cat6_p: 'Upominki z certyfikowanych materiałów ekologicznych (bambus, korek, bawełna organiczna, rPET) oraz akcesoria outdoorowe: parasole wiatroodporne z logo, latarki ratunkowe 400 lm ze zbijakiem do szyb, multitoole, koce polarowe oraz zestawy piknikowe i podróżne.',
+                cat6_t1: 'Gadżety ekologiczne B2B',
+                cat6_t2: 'Parasole firmowe z nadrukiem',
+                cat6_t3: 'Akcesoria outdoor i podróżne',
+                seo_cta_h2: 'Znalazłeś produkt w katalogu? Zamów darmowy mockup!',
+                seo_cta_p: 'Podaj nam numer strony z katalogu lub opisz, jakiego zestawu szukasz. W 24–48 godzin przygotujemy bezpłatną wizualizację z Twoim logo oraz wycenę z dostawą do biura w Warszawie.',
+                seo_cta_btn: 'Zamów darmowy mockup →',
+                footer_addr: 'Al. Jerozolimskie 200, 02-486 Warszawa',
+                footer_copy: '© 2026 The Partners (JDG PARTNERS Andrii Sharanevych). Wszystkie prawa zastrzeżone.',
+                home_href: 'index.html',
+                mockup_href: 'index.html#kontakt'
+            },
+            en: {
+                page_title: '2026 Product Catalog — Corporate Merch, Apparel & Welcome Packs | The Partners',
+                banner_title: 'Holiday Gifts 2026',
+                banner_desc: 'View catalog',
+                cat_download: 'Download PDF',
+                cat_mockup: 'Free mockup',
+                seo_h1: 'Corporate Merch & Promotional Gifts Catalog <span>2026</span>',
+                seo_intro: 'Browse our 422-page interactive 2026 catalog featuring curated products for employee onboarding welcome packs, custom branded corporate apparel, and executive holiday gifts for IT, gamedev, and tech companies in Warsaw and across Europe. Pick any item and request a free graphic mockup in your brand colors.',
+                cat1_h2: 'Custom Corporate Apparel & Textiles',
+                cat1_p: 'Heavyweight company hoodies and crewnecks, organic cotton t-shirts, softshell jackets, baseball caps, winter beanies, and custom woven socks. Retail-grade customization via computer embroidery (including 3D puff), screen printing, and DTF transfers.',
+                cat1_t1: 'Embroidered company hoodies',
+                cat1_t2: 'Premium branded t-shirts',
+                cat1_t3: 'GOTS organic cotton',
+                cat2_h2: 'Laptop Backpacks & Travel Bags',
+                cat2_p: 'Functional urban and business backpacks with padded 15.6"–17" laptop compartments, 35L rPET travel backpacks, messenger bags, duffels, and heavyweight cotton tote bags for tech conferences and IT team offsites.',
+                cat2_t1: 'Branded IT backpacks',
+                cat2_t2: 'Custom laptop bags',
+                cat2_t3: 'Recycled rPET backpacks',
+                cat3_h2: 'Tech Accessories & Custom Electronics',
+                cat3_p: 'Modern tech gifts ideal for onboarding kits and VIP packages: 10000 mAh magnetic wireless power banks, TWS wireless earbuds with ENC noise reduction, wireless chargers, Bluetooth speakers, smart trackers, and light-up charging cables.',
+                cat3_t1: 'Custom logo power banks',
+                cat3_t2: 'ENC wireless earbuds',
+                cat3_t3: 'B2B tech gadgets',
+                cat4_h2: 'Thermal Bottles, Tumblers & Drinkware',
+                cat4_p: 'Double-wall vacuum insulated stainless steel bottles (keeping drinks hot/cold for 12–24h), leak-proof travel tumblers, ceramic office mugs, and glass sports bottles. Branded with precision 360° laser engraving or full-color UV printing.',
+                cat4_t1: 'Laser-engraved tumblers',
+                cat4_t2: 'Branded thermal bottles',
+                cat4_t3: 'Recycled stainless steel',
+                cat5_h2: 'Office, Remote Work & Welcome Packs',
+                cat5_p: 'Complete essentials for new hire welcome packs: debossed hardcover notebooks, engraved metal pens, desk mats, conference lanyards, custom enamel pins, and bespoke magnetic gift boxes matched to your brand’s Pantone colors.',
+                cat5_t1: 'Employee welcome packs Warsaw',
+                cat5_t2: 'Custom debossed notebooks',
+                cat5_t3: 'Branded magnetic gift boxes',
+                cat6_h2: 'Eco Merch, Outdoor & Safety Gear',
+                cat6_p: 'Sustainable corporate gifts crafted from certified eco materials (bamboo, cork, organic cotton, rPET) alongside outdoor essentials: windproof branded umbrellas, 400 lm emergency flashlights with glass breakers and seatbelt cutters, multitools, and travel blankets.',
+                cat6_t1: 'Sustainable B2B merch',
+                cat6_t2: 'Branded windproof umbrellas',
+                cat6_t3: 'Outdoor & travel gear',
+                seo_cta_h2: 'Found an item in the catalog? Request a free mockup!',
+                seo_cta_p: 'Send us the catalog page number or tell us what kind of gift set you are building. Within 24–48 hours, we’ll prepare a free visual mockup with your logo and a quote including delivery in Warsaw or across the EU.',
+                seo_cta_btn: 'Request a free mockup →',
+                footer_addr: 'Al. Jerozolimskie 200, 02-486 Warsaw, Poland',
+                footer_copy: '© 2026 The Partners (JDG PARTNERS Andrii Sharanevych). All rights reserved.',
+                home_href: 'index-en.html',
+                mockup_href: 'index-en.html#kontakt'
+            }
+        };
+
+        function setCatalogLanguage(lang) {
+            const dict = catalogTranslations[lang] || catalogTranslations.pl;
+            document.documentElement.lang = lang;
+            document.title = dict.page_title;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.innerHTML = dict[key];
+            });
+
+            document.getElementById('logo-home-link').setAttribute('href', dict.home_href);
+            document.getElementById('mockup-cta-link').setAttribute('href', dict.mockup_href);
+            document.getElementById('bottom-mockup-link').setAttribute('href', dict.mockup_href);
+
+            document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+            });
+
+            try { localStorage.setItem('tp_lang', lang); } catch (e) {}
+        }
+
+        document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+            btn.addEventListener('click', () => setCatalogLanguage(btn.getAttribute('data-lang-btn')));
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialLang = urlParams.get('lang') || (localStorage.getItem('tp_lang')) || 'pl';
+        if (initialLang === 'en') setCatalogLanguage('en');
+
+        // FLIPBOOK LOGIC
         const TOTAL_PAGES = 422;
         const IMG_EXT = 'webp';
         const container = document.getElementById('flipbook-container');
+        const catalogStage = document.getElementById('catalog-stage');
 
         // Automatically trims baked-in top/bottom white bars from page-1.webp and page-422.webp
         function removeBakedWhiteBars(imgElement, srcUrl) {
@@ -609,6 +506,7 @@
 
             const img = document.createElement('img');
             const url = `katalog-pages/page-${i}.${IMG_EXT}`;
+            img.alt = `Katalog 2026 The Partners - Strona ${i}`;
 
             if (i === 1) {
                 removeBakedWhiteBars(img, url);
@@ -650,20 +548,19 @@
         async function startFlipbook() {
             const aspectRatio = await detectAspectRatio();
             const headerEl = document.getElementById('site-header');
-            const headerHeight = headerEl ? headerEl.offsetHeight : 80;
+            const headerHeight = headerEl ? headerEl.offsetHeight : 88;
             const isMobile = window.innerWidth < 768;
 
             // Reserve space for the bottom floating pill on mobile
             const verticalPadding = isMobile ? 68 : 28;
             const horizontalPadding = isMobile ? 16 : 48;
 
-            const availHeight = window.innerHeight - headerHeight - verticalPadding;
+            const availHeight = Math.max(460, window.innerHeight - headerHeight - verticalPadding);
             const availWidth = window.innerWidth - horizontalPadding;
 
             let pageWidth, pageHeight;
 
             if (isMobile) {
-                // On mobile, prioritize filling the screen width with a single portrait page
                 pageWidth = availWidth;
                 pageHeight = Math.floor(pageWidth / aspectRatio);
                 if (pageHeight > availHeight) {
@@ -671,7 +568,6 @@
                     pageWidth = Math.floor(pageHeight * aspectRatio);
                 }
             } else {
-                // On desktop, fit 2-page spread vertically
                 pageHeight = availHeight;
                 pageWidth = Math.floor(pageHeight * aspectRatio);
                 if (pageWidth * 2 > availWidth) {
@@ -787,11 +683,14 @@
                 if (e.key === 'ArrowLeft') pageFlip.flipPrev();
             });
 
-            // Mouse Wheel Flipping (Wheel Down -> Next Page, Wheel Up -> Prev Page)
+            // Mouse Wheel Flipping when hovering over the flipbook stage
             let isWheelLocked = false;
-            window.addEventListener('wheel', (e) => {
+            catalogStage.addEventListener('wheel', (e) => {
                 if (document.activeElement === pageInputDesk || document.activeElement === pageInputMob) return;
                 if (Math.abs(e.deltaY) < 10) return;
+
+                // Allow scrolling down to the SEO text section if user is at the last page or scrolling outside the book
+                e.preventDefault();
                 if (isWheelLocked) return;
 
                 isWheelLocked = true;
@@ -804,7 +703,7 @@
                 setTimeout(() => {
                     isWheelLocked = false;
                 }, 280);
-            }, { passive: true });
+            }, { passive: false });
 
             window.addEventListener('resize', () => {
                 updateBookCentering(currentSpreadPage);

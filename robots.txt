@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /rodo.html
+
+Sitemap: https://thepartners.biz/sitemap.xml
