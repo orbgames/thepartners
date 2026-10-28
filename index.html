@@ -161,56 +161,26 @@
     <!-- Unified Sticky Header: Holiday Banner + Navigation -->
     <header class="site-header">
         <aside class="holiday-banner" role="banner" aria-label="Katalog świąteczny">
-            <div class="holiday-banner__container">
-                <div class="holiday-banner__text">
-                    <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
-                    <span class="holiday-banner__title" data-i18n="banner_title">Prezenty świąteczne 2026</span>
-                    <span class="holiday-banner__desc" data-i18n="banner_desc">Sprawdź ofertę</span>
-                    <span class="holiday-banner__arrow" aria-hidden="true">→</span>
-                </div>
-
-                <div class="holiday-banner__lang-group" role="group" aria-label="Wybierz wersję katalogu">
-                    <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
-                        class="holiday-banner__lang-btn" title="Katalog w języku polskim">
-                        <svg class="flag-icon" viewBox="0 0 16 12" aria-hidden="true">
-                            <rect width="16" height="6" fill="#FFFFFF" />
-                            <rect y="6" width="16" height="6" fill="#DC143C" />
-                        </svg>
-                        <span>PL</span>
-                    </a>
-                    <a href="/prezenty-swiateczne-2026-the-partners-en.pdf" target="_blank" rel="noopener noreferrer"
-                        class="holiday-banner__lang-btn" title="Catalog in English">
-                        <svg class="flag-icon" viewBox="0 0 60 30" aria-hidden="true">
-                            <clipPath id="s">
-                                <path d="M0,0 v30 h60 v-30 z" />
-                            </clipPath>
-                            <clipPath id="t">
-                                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
-                            </clipPath>
-                            <g clip-path="url(#s)">
-                                <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
-                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
-                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E"
-                                    stroke-width="4" />
-                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
-                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
-                            </g>
-                        </svg>
-                        <span>EN</span>
-                    </a>
-                </div>
-            </div>
+            <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
+                class="holiday-banner__link" title="Otwórz katalog świąteczny 2026 (PDF)">
+                <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
+                <span class="holiday-banner__title">Prezenty świąteczne 2026</span>
+                <span class="holiday-banner__cta">
+                    <span>Sprawdź ofertę</span>
+                    <span aria-hidden="true">→</span>
+                </span>
+            </a>
         </aside>
 
         <nav>
             <div class="nav-inner">
                 <a href="index.html" class="nav-logo">THE <span>PARTNERS</span></a>
                 <div class="nav-actions">
-                    <a href="thepartners-katalog-2026.html" class="nav-cta nav-cta--outline" data-i18n="nav_catalog">Katalog 2026</a>
-                    <a href="#kontakt" class="nav-cta" data-i18n="nav_cta">Darmowy mockup</a>
-                    <div class="lang-toggle" role="group" aria-label="Language switcher">
-                        <a href="index.html" class="lang-toggle__btn active" data-lang-switch="pl">PL</a>
-                        <a href="index-en.html" class="lang-toggle__btn" data-lang-switch="en">EN</a>
+                    <a href="thepartners-katalog-2026.html" class="nav-cta nav-cta--outline">Katalog 2026</a>
+                    <a href="#kontakt" class="nav-cta">Darmowy mockup</a>
+                    <div class="lang-toggle" role="group" aria-label="Wybór języka">
+                        <a href="index.html" class="lang-toggle__btn active">PL</a>
+                        <a href="index-en.html" class="lang-toggle__btn">EN</a>
                     </div>
                 </div>
             </div>
@@ -226,11 +196,11 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-inner reveal">
-            <h1 data-i18n="hero_h1">Odzież firmowa i premium merch, który Twój zespół <span>naprawdę chce nosić</span></h1>
-            <p data-i18n="hero_p">Zestawy powitalne, prezenty firmowe i gadżety z logo dla firm technologicznych w Warszawie. Od projektu
+            <h1>Odzież firmowa i premium merch, który Twój zespół <span>naprawdę chce nosić</span></h1>
+            <p>Zestawy powitalne, prezenty firmowe i gadżety z logo dla firm technologicznych w Warszawie. Od projektu
                 po dostawę pod drzwi.</p>
-            <a href="#kontakt" class="hero-cta" data-i18n="hero_cta">Zamów darmowy mockup →</a>
-            <div class="hero-sub" data-i18n="hero_sub">Bez zobowiązań. Przygotujemy propozycję w kolorach Twojej firmy.</div>
+            <a href="#kontakt" class="hero-cta">Zamów darmowy mockup →</a>
+            <div class="hero-sub">Bez zobowiązań. Przygotujemy propozycję w kolorach Twojej firmy.</div>
         </div>
     </section>
 
@@ -238,27 +208,27 @@
         <div class="showcase-grid">
             <div class="showcase-item reveal">
                 <img src="zestaw-powitalny.jpg" alt="Zestaw powitalny dla nowych pracowników firmy IT w Warszawie">
-                <div class="label" data-i18n="show_1">Zestaw powitalny</div>
+                <div class="label">Zestaw powitalny</div>
             </div>
             <div class="showcase-item reveal" style="transition-delay: 0.1s;">
                 <img src="bluza-firmowa-z-logo.jpg"
                     alt="Czarno-czerwona bluza firmowa z logo dla producenta gier komputerowych">
-                <div class="label" data-i18n="show_2">Bluza firmowa z logo</div>
+                <div class="label">Bluza firmowa z logo</div>
             </div>
             <div class="showcase-item reveal" style="transition-delay: 0.2s;">
                 <img src="prezent-firmowy.jpg"
                     alt="Elegancki świąteczny prezent firmowy z personalizowanym termosem dla studia gamedev">
-                <div class="label" data-i18n="show_3">Prezent firmowy</div>
+                <div class="label">Prezent firmowy</div>
             </div>
         </div>
     </section>
 
     <section class="problem">
         <div class="problem-inner">
-            <h2 class="reveal" data-i18n="prob_h2">Twój HR nie powinien być działem zakupów gadżetów</h2>
+            <h2 class="reveal">Twój HR nie powinien być działem zakupów gadżetów</h2>
             <div class="problem-grid">
                 <div class="problem-col bad reveal">
-                    <h3 data-i18n="prob_bad_title">Bez nas</h3>
+                    <h3>Bez nas</h3>
                     <ul>
                         <li>
                             <span class="status-badge bad" aria-hidden="true">
@@ -267,7 +237,7 @@
                                     <path d="M18 6L6 18M6 6l12 12" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_bad_1">Generyczne kubki z logo</span>
+                            <span>Generyczne kubki z logo</span>
                         </li>
                         <li>
                             <span class="status-badge bad" aria-hidden="true">
@@ -276,7 +246,7 @@
                                     <path d="M18 6L6 18M6 6l12 12" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_bad_2">Tygodnie maili z 5 drukarniami</span>
+                            <span>Tygodnie maili z 5 drukarniami</span>
                         </li>
                         <li>
                             <span class="status-badge bad" aria-hidden="true">
@@ -285,7 +255,7 @@
                                     <path d="M18 6L6 18M6 6l12 12" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_bad_3">Bluzy, których nikt nie chce nosić</span>
+                            <span>Bluzy, których nikt nie chce nosić</span>
                         </li>
                         <li>
                             <span class="status-badge bad" aria-hidden="true">
@@ -294,12 +264,12 @@
                                     <path d="M18 6L6 18M6 6l12 12" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_bad_4">Paczki, które wyglądają jak z hurtowni</span>
+                            <span>Paczki, które wyglądają jak z hurtowni</span>
                         </li>
                     </ul>
                 </div>
                 <div class="problem-col good reveal" style="transition-delay: 0.2s;">
-                    <h3 data-i18n="prob_good_title">Z nami</h3>
+                    <h3>Z nami</h3>
                     <ul>
                         <li>
                             <span class="status-badge good" aria-hidden="true">
@@ -308,7 +278,7 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_good_1">Merch dopasowany do waszego brandu</span>
+                            <span>Merch dopasowany do waszego brandu</span>
                         </li>
                         <li>
                             <span class="status-badge good" aria-hidden="true">
@@ -317,7 +287,7 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_good_2">Jeden partner - od projektu po dostawę</span>
+                            <span>Jeden partner - od projektu po dostawę</span>
                         </li>
                         <li>
                             <span class="status-badge good" aria-hidden="true">
@@ -326,7 +296,7 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_good_3">Produkty, które ludzie faktycznie używają</span>
+                            <span>Produkty, które ludzie faktycznie używają</span>
                         </li>
                         <li>
                             <span class="status-badge good" aria-hidden="true">
@@ -335,7 +305,7 @@
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </span>
-                            <span data-i18n="prob_good_4">Gotowe na czas, za każdym razem</span>
+                            <span>Gotowe na czas, za każdym razem</span>
                         </li>
                     </ul>
                 </div>
@@ -345,7 +315,7 @@
 
     <section class="services">
         <div class="services-inner">
-            <h2 class="reveal" data-i18n="serv_h2">Co robimy</h2>
+            <h2 class="reveal">Co robimy</h2>
             <div class="services-grid">
                 <div class="service-card reveal">
                     <div class="service-icon" aria-hidden="true">
@@ -358,8 +328,8 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 data-i18n="serv_1_h3">Zestawy powitalne</h3>
-                    <p data-i18n="serv_1_p">Pierwsze wrażenie dla nowych pracowników. Spersonalizowane zestawy powitalne, które mówią
+                    <h3>Zestawy powitalne</h3>
+                    <p>Pierwsze wrażenie dla nowych pracowników. Spersonalizowane zestawy powitalne, które mówią
                         "dobrze, że tu jesteś".</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.1s;">
@@ -372,8 +342,8 @@
                             <path d="M9.5 2.5a3 3 0 0 0 5 0"></path>
                         </svg>
                     </div>
-                    <h3 data-i18n="serv_2_h3">Odzież firmowa</h3>
-                    <p data-i18n="serv_2_p">Personalizowane bluzy, koszulki, torby, czapki - zaprojektowane tak, żeby ludzie chcieli je nosić
+                    <h3>Odzież firmowa</h3>
+                    <p>Personalizowane bluzy, koszulki, torby, czapki - zaprojektowane tak, żeby ludzie chcieli je nosić
                         też poza biurem.</p>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.2s;">
@@ -389,8 +359,8 @@
                             <path d="m19 2 1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>
                         </svg>
                     </div>
-                    <h3 data-i18n="serv_3_h3">Prezenty firmowe</h3>
-                    <p data-i18n="serv_3_p">Urodziny, rocznice, święta, eventy. Zestawy prezentowe dla pracowników z charakterem, nie
+                    <h3>Prezenty firmowe</h3>
+                    <p>Urodziny, rocznice, święta, eventy. Zestawy prezentowe dla pracowników z charakterem, nie
                         generyczny kosz ze sklepu.</p>
                 </div>
             </div>
@@ -399,24 +369,24 @@
 
     <section class="process">
         <div class="process-inner">
-            <h2 class="reveal" data-i18n="proc_h2">Jak to działa?</h2>
+            <h2 class="reveal">Jak to działa?</h2>
             <div class="steps">
                 <div class="step reveal">
                     <div class="step-num">1</div>
-                    <h3 data-i18n="proc_1_h3">Brief</h3>
-                    <p data-i18n="proc_1_p">Opowiadacie nam czego potrzebujecie, na kiedy i jaki macie budżet. 15 minut rozmowy wystarczy.
+                    <h3>Brief</h3>
+                    <p>Opowiadacie nam czego potrzebujecie, na kiedy i jaki macie budżet. 15 minut rozmowy wystarczy.
                     </p>
                 </div>
                 <div class="step reveal" style="transition-delay: 0.15s;">
                     <div class="step-num">2</div>
-                    <h3 data-i18n="proc_2_h3">Projekt i darmowy mockup</h3>
-                    <p data-i18n="proc_2_p">Przygotujemy mockupy w kolorach waszej firmy. Widzicie dokładnie jak będzie wyglądał gotowy
+                    <h3>Projekt i darmowy mockup</h3>
+                    <p>Przygotujemy mockupy w kolorach waszej firmy. Widzicie dokładnie jak będzie wyglądał gotowy
                         produkt.</p>
                 </div>
                 <div class="step reveal" style="transition-delay: 0.3s;">
                     <div class="step-num">3</div>
-                    <h3 data-i18n="proc_3_h3">Dostawa</h3>
-                    <p data-i18n="proc_3_p">Produkujemy i dostarczamy pod drzwi waszego biura w Warszawie. Gotowe.</p>
+                    <h3>Dostawa</h3>
+                    <p>Produkujemy i dostarczamy pod drzwi waszego biura w Warszawie. Gotowe.</p>
                 </div>
             </div>
         </div>
@@ -424,7 +394,7 @@
 
     <section class="portfolio">
         <div class="portfolio-inner">
-            <h2 class="reveal" data-i18n="port_h2">Nasze realizacje</h2>
+            <h2 class="reveal">Nasze realizacje</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-card reveal">
                     <div class="portfolio-img">
@@ -432,9 +402,9 @@
                             alt="Limitowana seria przypinek i gadżety z logo dla uczestników konferencji technologicznej blockchain">
                     </div>
                     <div class="portfolio-info">
-                        <div class="portfolio-tag" data-i18n="port_1_tag">Gadżety na eventy i konferencje</div>
-                        <h3 data-i18n="port_1_h3">Limitowana seria przypinek na konferencję</h3>
-                        <p data-i18n="port_1_p">Pamiątkowe przypinki z limitowanej serii, zaprojektowane specjalnie dla prelegentów i gości
+                        <div class="portfolio-tag">Gadżety na eventy i konferencje</div>
+                        <h3>Limitowana seria przypinek na konferencję</h3>
+                        <p>Pamiątkowe przypinki z limitowanej serii, zaprojektowane specjalnie dla prelegentów i gości
                             konferencji poświęconych technologii blockchain.</p>
                     </div>
                 </div>
@@ -444,9 +414,9 @@
                             alt="Czarne plecaki firmowe z logo jako zestawy na wyjazd integracyjny zespołu IT">
                     </div>
                     <div class="portfolio-info">
-                        <div class="portfolio-tag" data-i18n="port_2_tag">Plecaki i zestawy integracyjne</div>
-                        <h3 data-i18n="port_2_h3">Firmowe plecaki dla zespołu</h3>
-                        <p data-i18n="port_2_p">Praktyczne i spersonalizowane plecaki, zaprojektowane specjalnie na firmowe spotkanie
+                        <div class="portfolio-tag">Plecaki i zestawy integracyjne</div>
+                        <h3>Firmowe plecaki dla zespołu</h3>
+                        <p>Praktyczne i spersonalizowane plecaki, zaprojektowane specjalnie na firmowe spotkanie
                             integracyjne zespołu IT.</p>
                     </div>
                 </div>
@@ -456,9 +426,9 @@
                             alt="Urodzinowy zestaw prezentowy zawierający personalizowany projektor dla pracownika">
                     </div>
                     <div class="portfolio-info">
-                        <div class="portfolio-tag" data-i18n="port_3_tag">Urodzinowe zestawy prezentowe</div>
-                        <h3 data-i18n="port_3_h3">Paczki urodzinowe dla pracowników</h3>
-                        <p data-i18n="port_3_p">Spersonalizowane pudełka urodzinowe - idealny prezent, by celebrować ten wyjątkowy dzień.</p>
+                        <div class="portfolio-tag">Urodzinowe zestawy prezentowe</div>
+                        <h3>Paczki urodzinowe dla pracowników</h3>
+                        <p>Spersonalizowane pudełka urodzinowe - idealny prezent, by celebrować ten wyjątkowy dzień.</p>
                     </div>
                 </div>
                 <div class="portfolio-card reveal" style="transition-delay: 0.1s;">
@@ -467,9 +437,9 @@
                             alt="Ekskluzywny prezent na rocznicę firmy z realistycznie odwzorowanym brandingiem na produktach premium dla studia gamedev">
                     </div>
                     <div class="portfolio-info">
-                        <div class="portfolio-tag" data-i18n="port_4_tag">Prezenty na rocznicę firmy</div>
-                        <h3 data-i18n="port_4_h3">Zestawy na rocznicę firmy</h3>
-                        <p data-i18n="port_4_p">Ekskluzywne upominki zaprojektowane specjalnie na obchody rocznicy założenia firmy.</p>
+                        <div class="portfolio-tag">Prezenty na rocznicę firmy</div>
+                        <h3>Zestawy na rocznicę firmy</h3>
+                        <p>Ekskluzywne upominki zaprojektowane specjalnie na obchody rocznicy założenia firmy.</p>
                     </div>
                 </div>
             </div>
@@ -479,11 +449,11 @@
     <!-- SEO B2B FAQ SECTION -->
     <section class="faq" id="faq">
         <div class="faq-inner">
-            <h2 class="reveal" data-i18n="faq_h2">Najczęściej zadawane pytania (FAQ)</h2>
+            <h2 class="reveal">Najczęściej zadawane pytania (FAQ)</h2>
             <div class="faq-list">
                 <details class="faq-item reveal" open>
-                    <summary data-i18n="faq_1_q">Jaka jest minimalna wielkość zamówienia (MOQ) na zestawy powitalne i odzież?</summary>
-                    <div class="faq-answer" data-i18n="faq_1_a">
+                    <summary>Jaka jest minimalna wielkość zamówienia (MOQ) na zestawy powitalne i odzież?</summary>
+                    <div class="faq-answer">
                         Realizujemy zamówienia B2B już od <strong>20–25 sztuk</strong> w przypadku zestawów powitalnych
                         (welcome packów), paczek świątecznych oraz personalizowanych bluz, koszulek i plecaków z logo.
                         Dobieramy asortyment tak, aby zoptymalizować koszty jednostkowe przy mniejszych i średnich
@@ -491,8 +461,8 @@
                     </div>
                 </details>
                 <details class="faq-item reveal">
-                    <summary data-i18n="faq_2_q">Jakie metody znakowania odzieży firmowej i gadżetów stosujecie?</summary>
-                    <div class="faq-answer" data-i18n="faq_2_a">
+                    <summary>Jakie metody znakowania odzieży firmowej i gadżetów stosujecie?</summary>
+                    <div class="faq-answer">
                         Stawiamy na trwały branding klasy retail. Na bluzach i koszulkach o wysokiej gramaturze
                         wykonujemy <strong>haft komputerowy</strong> (klasyczny oraz 3D), <strong>sitodruk</strong> oraz
                         <strong>nadruki DTF</strong>. Gadżety elektroniczne, termosy, butelki termiczne i akcesoria
@@ -501,8 +471,8 @@
                     </div>
                 </details>
                 <details class="faq-item reveal">
-                    <summary data-i18n="faq_3_q">Ile czasu trwa realizacja zamówienia od akceptacji darmowego mockupu?</summary>
-                    <div class="faq-answer" data-i18n="faq_3_a">
+                    <summary>Ile czasu trwa realizacja zamówienia od akceptacji darmowego mockupu?</summary>
+                    <div class="faq-answer">
                         Darmową wizualizację (mockup) w barwach Twojej firmy otrzymasz w ciągu <strong>24–48
                             godzin</strong>. Po wyborze produktów i zatwierdzeniu projektów, produkcja, znakowanie oraz
                         konfekcjonowanie gotowych zestawów zajmuje standardowo <strong>10–15 dni roboczych</strong> wraz
@@ -510,8 +480,8 @@
                     </div>
                 </details>
                 <details class="faq-item reveal">
-                    <summary data-i18n="faq_4_q">Czy wysyłacie welcome packi i paczki świąteczne na adresy domowe (home office)?</summary>
-                    <div class="faq-answer" data-i18n="faq_4_a">
+                    <summary>Czy wysyłacie welcome packi i paczki świąteczne na adresy domowe (home office)?</summary>
+                    <div class="faq-answer">
                         Tak — obsługujemy zarówno dostawy zbiorcze do biur w Warszawie i całej Polsce, jak i
                         <strong>indywidualną wysyłkę kurierską lub do Paczkomatów</strong> bezpośrednio do pracowników
                         pracujących zdalnie (remote / hybrid) na terenie Polski oraz Unii Europejskiej.
@@ -524,8 +494,8 @@
     <section class="cta-section" id="kontakt">
         <div class="cta-container">
             <div class="cta-info-col reveal">
-                <h2 data-i18n="cta_h2">Zamów darmowy mockup w barwach <span>Twojej firmy</span></h2>
-                <p data-i18n="cta_p">Przygotujemy realistyczny projekt odzieży lub zestawów powitalnych w kolorach Twojego brandu.
+                <h2>Zamów darmowy mockup w barwach <span>Twojej firmy</span></h2>
+                <p>Przygotujemy realistyczny projekt odzieży lub zestawów powitalnych w kolorach Twojego brandu.
                     Zobaczysz efekt przed podjęciem decyzji.</p>
 
                 <ul class="cta-perks">
@@ -536,7 +506,7 @@
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                         </span>
-                        <span data-i18n="cta_perk_1">Darmowy mockup graficzny z Twoim logo</span>
+                        <span>Darmowy mockup graficzny z Twoim logo</span>
                     </li>
                     <li class="cta-perk">
                         <span class="cta-perk-icon" aria-hidden="true">
@@ -545,7 +515,7 @@
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                         </span>
-                        <span data-i18n="cta_perk_2">Bez zobowiązań, bez haczyka</span>
+                        <span>Bez zobowiązań, bez haczyka</span>
                     </li>
                     <li class="cta-perk">
                         <span class="cta-perk-icon" aria-hidden="true">
@@ -554,13 +524,13 @@
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                         </span>
-                        <span data-i18n="cta_perk_3">Po prostu chcemy pokazać, co potrafimy</span>
+                        <span>Po prostu chcemy pokazać, co potrafimy</span>
                     </li>
                 </ul>
 
                 <div class="cta-direct-contact">
                     <div class="direct-item">
-                        <span class="direct-label" data-i18n="cta_phone_label">Telefon</span>
+                        <span class="direct-label">Telefon</span>
                         <a href="tel:+48500555291" class="direct-val">+48 500 555 291</a>
                     </div>
                     <div class="direct-item">
@@ -581,7 +551,7 @@
 
                     <div class="form-row-2">
                         <div class="form-group">
-                            <label for="contact-name" class="form-label" data-i18n="form_name">Imię i nazwisko</label>
+                            <label for="contact-name" class="form-label">Imię i nazwisko</label>
                             <input type="text" id="contact-name" name="name" class="form-input"
                                 placeholder="np. Anna Kowalska" required autocomplete="name">
                         </div>
@@ -594,20 +564,20 @@
 
                     <div class="form-row-2">
                         <div class="form-group">
-                            <label for="contact-company" class="form-label" data-i18n="form_company">Nazwa firmy</label>
+                            <label for="contact-company" class="form-label">Nazwa firmy</label>
                             <input type="text" id="contact-company" name="company" class="form-input"
                                 placeholder="np. Tech Solutions" required autocomplete="organization">
                         </div>
                         <div class="form-group">
-                            <label for="contact-phone" class="form-label"><span data-i18n="form_phone">Telefon</span> <span
-                                    class="optional" data-i18n="form_opt">(opcjonalnie)</span></label>
+                            <label for="contact-phone" class="form-label"><span>Telefon</span> <span
+                                    class="optional">(opcjonalnie)</span></label>
                             <input type="tel" id="contact-phone" name="phone" class="form-input"
                                 placeholder="+48 123 456 789" autocomplete="tel">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-message" class="form-label" data-i18n="form_msg">Wiadomość / Czego potrzebujesz?</label>
+                        <label for="contact-message" class="form-label">Wiadomość / Czego potrzebujesz?</label>
                         <textarea id="contact-message" name="message" class="form-textarea"
                             placeholder="Opisz krótko swoje potrzeby, np. orientacyjną liczbę bluz lub zestawów powitalnych..."></textarea>
                     </div>
@@ -615,7 +585,7 @@
                     <div class="consent-group">
                         <label class="consent-label">
                             <input type="checkbox" id="contact-consent" name="consent" required>
-                            <span data-i18n="form_consent">Wyrażam zgodę na kontakt. Szanujemy Twoją prywatność. <a href="rodo.html"
+                            <span>Wyrażam zgodę na kontakt. Szanujemy Twoją prywatność. <a href="rodo.html"
                                     class="rodo-link">RODO</a></span>
                         </label>
                     </div>
@@ -623,7 +593,7 @@
                     <div class="form-error-msg" id="form-error-msg" role="alert" aria-live="assertive"></div>
 
                     <button type="submit" class="submit-btn" id="contact-submit-btn">
-                        <span class="btn-text" data-i18n="form_submit">Wyślij →</span>
+                        <span class="btn-text">Wyślij →</span>
                         <span class="btn-spinner" aria-hidden="true"></span>
                     </button>
                 </form>
@@ -635,9 +605,9 @@
                             <path d="M20 6L9 17l-5-5" />
                         </svg>
                     </div>
-                    <h3 id="success-title" data-i18n="form_success_h3">Dziękujemy za kontakt!</h3>
-                    <p id="success-desc" data-i18n="form_success_p">Otrzymaliśmy Twoje zapytanie. Skontaktujemy się wkrótce.</p>
-                    <button type="button" class="btn-reset-form" id="btn-reset-form" data-i18n="form_reset">Wyślij kolejne zapytanie</button>
+                    <h3 id="success-title">Dziękujemy za kontakt!</h3>
+                    <p id="success-desc">Otrzymaliśmy Twoje zapytanie. Skontaktujemy się wkrótce.</p>
+                    <button type="button" class="btn-reset-form" id="btn-reset-form">Wyślij kolejne zapytanie</button>
                 </div>
             </div>
         </div>
@@ -693,7 +663,7 @@
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                         </span>
-                        <span data-i18n="footer_addr">Al. Jerozolimskie 200, 02-486 Warszawa</span>
+                        <span>Al. Jerozolimskie 200, 02-486 Warszawa</span>
                     </span>
                 </li>
                 <li>
@@ -712,7 +682,7 @@
                     </span>
                 </li>
             </ul>
-            <div class="footer-copy" data-i18n="footer_copy">© 2026 The Partners (JDG PARTNERS Andrii Sharanevych). Wszystkie prawa zastrzeżone.
+            <div class="footer-copy">© 2026 The Partners (JDG PARTNERS Andrii Sharanevych). Wszystkie prawa zastrzeżone.
             </div>
         </div>
     </footer>
@@ -720,6 +690,8 @@
     <!-- INTERACTION SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            try { localStorage.setItem('tp_lang', 'pl'); } catch (e) {}
+
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',

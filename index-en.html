@@ -162,45 +162,15 @@
     <!-- Unified Sticky Header: Holiday Banner + Navigation -->
     <header class="site-header">
         <aside class="holiday-banner" role="banner" aria-label="Holiday Catalog">
-            <div class="holiday-banner__container">
-                <div class="holiday-banner__text">
-                    <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
-                    <span class="holiday-banner__title">Holiday Gifts 2026</span>
-                    <span class="holiday-banner__desc">View catalog</span>
-                    <span class="holiday-banner__arrow" aria-hidden="true">→</span>
-                </div>
-
-                <div class="holiday-banner__lang-group" role="group" aria-label="Select catalog language">
-                    <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
-                        class="holiday-banner__lang-btn" title="Catalog in Polish">
-                        <svg class="flag-icon" viewBox="0 0 16 12" aria-hidden="true">
-                            <rect width="16" height="6" fill="#FFFFFF" />
-                            <rect y="6" width="16" height="6" fill="#DC143C" />
-                        </svg>
-                        <span>PL</span>
-                    </a>
-                    <a href="/prezenty-swiateczne-2026-the-partners-en.pdf" target="_blank" rel="noopener noreferrer"
-                        class="holiday-banner__lang-btn" title="Catalog in English">
-                        <svg class="flag-icon" viewBox="0 0 60 30" aria-hidden="true">
-                            <clipPath id="s">
-                                <path d="M0,0 v30 h60 v-30 z" />
-                            </clipPath>
-                            <clipPath id="t">
-                                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
-                            </clipPath>
-                            <g clip-path="url(#s)">
-                                <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
-                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
-                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E"
-                                    stroke-width="4" />
-                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
-                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
-                            </g>
-                        </svg>
-                        <span>EN</span>
-                    </a>
-                </div>
-            </div>
+            <a href="/prezenty-swiateczne-2026-the-partners-en.pdf" target="_blank" rel="noopener noreferrer"
+                class="holiday-banner__link" title="Open 2026 Holiday Gifts Catalog (PDF)">
+                <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
+                <span class="holiday-banner__title">Holiday Gifts 2026</span>
+                <span class="holiday-banner__cta">
+                    <span>View catalog</span>
+                    <span aria-hidden="true">→</span>
+                </span>
+            </a>
         </aside>
 
         <nav>
@@ -700,6 +670,8 @@
     <!-- INTERACTION SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            try { localStorage.setItem('tp_lang', 'en'); } catch (e) {}
+
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',

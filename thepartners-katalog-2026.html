@@ -49,52 +49,22 @@
     <!-- Unified Header matching index.html -->
     <header class="site-header" id="site-header">
         <aside class="holiday-banner" role="banner" aria-label="Katalog świąteczny">
-            <div class="holiday-banner__container">
-                <div class="holiday-banner__text">
-                    <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
-                    <span class="holiday-banner__title" data-i18n="banner_title">Prezenty świąteczne 2026</span>
-                    <span class="holiday-banner__desc" data-i18n="banner_desc">Sprawdź ofertę</span>
-                    <span class="holiday-banner__arrow" aria-hidden="true">→</span>
-                </div>
-
-                <div class="holiday-banner__lang-group" role="group" aria-label="Wybierz wersję katalogu">
-                    <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
-                        class="holiday-banner__lang-btn" title="Katalog w języku polskim">
-                        <svg class="flag-icon" viewBox="0 0 16 12" aria-hidden="true">
-                            <rect width="16" height="6" fill="#FFFFFF" />
-                            <rect y="6" width="16" height="6" fill="#DC143C" />
-                        </svg>
-                        <span>PL</span>
-                    </a>
-                    <a href="/prezenty-swiateczne-2026-the-partners-en.pdf" target="_blank" rel="noopener noreferrer"
-                        class="holiday-banner__lang-btn" title="Catalog in English">
-                        <svg class="flag-icon" viewBox="0 0 60 30" aria-hidden="true">
-                            <clipPath id="s">
-                                <path d="M0,0 v30 h60 v-30 z" />
-                            </clipPath>
-                            <clipPath id="t">
-                                <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
-                            </clipPath>
-                            <g clip-path="url(#s)">
-                                <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
-                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
-                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E"
-                                    stroke-width="4" />
-                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
-                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
-                            </g>
-                        </svg>
-                        <span>EN</span>
-                    </a>
-                </div>
-            </div>
+            <a href="/prezenty-swiateczne-2026-the-partners.pdf" target="_blank" rel="noopener noreferrer"
+                class="holiday-banner__link" id="holiday-banner-link" title="Otwórz katalog świąteczny 2026 (PDF)">
+                <span class="holiday-banner__icon" aria-hidden="true">🎁</span>
+                <span class="holiday-banner__title" data-i18n="banner_title">Prezenty świąteczne 2026</span>
+                <span class="holiday-banner__cta">
+                    <span data-i18n="banner_desc">Sprawdź ofertę</span>
+                    <span aria-hidden="true">→</span>
+                </span>
+            </a>
         </aside>
 
         <nav>
             <div class="nav-inner">
                 <a href="index.html" class="nav-logo" id="logo-home-link">THE <span>PARTNERS</span></a>
 
-                <!-- Desktop Controls (Hidden on Mobile) -->
+                <!-- Desktop Controls (Hidden below 960px so navbar never overflows) -->
                 <div class="catalog-controls desktop-controls">
                     <button class="ctrl-btn" id="prev-btn" title="Poprzednia strona">❮</button>
                     <span class="page-counter">
@@ -117,11 +87,11 @@
         </nav>
     </header>
 
-    <!-- INTERACTIVE FLIPBOOK STAGE (Takes full initial viewport height) -->
+    <!-- INTERACTIVE FLIPBOOK STAGE -->
     <main class="catalog-stage" id="catalog-stage">
         <div id="flipbook-container"></div>
 
-        <!-- Mobile Floating Bottom Bar (Visible only on < 768px) -->
+        <!-- Mobile / Tablet Floating Bottom Bar (Visible on <= 960px) -->
         <div class="mobile-bottom-bar">
             <button class="ctrl-btn" id="prev-btn-mob" aria-label="Poprzednia strona">❮</button>
             <span class="page-counter">
@@ -324,6 +294,7 @@
                 page_title: 'Katalog 2026 — Gadżety, Odzież Firmowa i Welcome Packi | The Partners',
                 banner_title: 'Prezenty świąteczne 2026',
                 banner_desc: 'Sprawdź ofertę',
+                banner_pdf: '/prezenty-swiateczne-2026-the-partners.pdf',
                 cat_download: 'Pobierz PDF',
                 cat_mockup: 'Darmowy mockup',
                 seo_h1: 'Katalog Gadżetów Firmowych i Merchu B2B <span>2026</span>',
@@ -370,6 +341,7 @@
                 page_title: '2026 Product Catalog — Corporate Merch, Apparel & Welcome Packs | The Partners',
                 banner_title: 'Holiday Gifts 2026',
                 banner_desc: 'View catalog',
+                banner_pdf: '/prezenty-swiateczne-2026-the-partners-en.pdf',
                 cat_download: 'Download PDF',
                 cat_mockup: 'Free mockup',
                 seo_h1: 'Corporate Merch & Promotional Gifts Catalog <span>2026</span>',
@@ -424,6 +396,7 @@
                 if (dict[key]) el.innerHTML = dict[key];
             });
 
+            document.getElementById('holiday-banner-link').setAttribute('href', dict.banner_pdf);
             document.getElementById('logo-home-link').setAttribute('href', dict.home_href);
             document.getElementById('mockup-cta-link').setAttribute('href', dict.mockup_href);
             document.getElementById('bottom-mockup-link').setAttribute('href', dict.mockup_href);
@@ -551,8 +524,8 @@
             const headerHeight = headerEl ? headerEl.offsetHeight : 88;
             const isMobile = window.innerWidth < 768;
 
-            // Reserve space for the bottom floating pill on mobile
-            const verticalPadding = isMobile ? 68 : 28;
+            // Reserve space for the bottom floating pill on mobile/tablet
+            const verticalPadding = window.innerWidth <= 960 ? 68 : 28;
             const horizontalPadding = isMobile ? 16 : 48;
 
             const availHeight = Math.max(460, window.innerHeight - headerHeight - verticalPadding);
@@ -689,7 +662,6 @@
                 if (document.activeElement === pageInputDesk || document.activeElement === pageInputMob) return;
                 if (Math.abs(e.deltaY) < 10) return;
 
-                // Allow scrolling down to the SEO text section if user is at the last page or scrolling outside the book
                 e.preventDefault();
                 if (isWheelLocked) return;
 
