@@ -716,7 +716,7 @@
                 lastScrollY = currentScrollY;
             }, { passive: true });
 
-            // Contact Form Handling
+            // Contact Form Handling (Dual-Format + Native Fallback for Brave/Adblockers)
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('contact-submit-btn');
             const successState = document.getElementById('form-success-state');
@@ -725,7 +725,24 @@
             const resetBtn = document.getElementById('btn-reset-form');
             const errorMsg = document.getElementById('form-error-msg');
 
+            // Show success message if returning from a native FormSubmit redirect (?sent=1)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('sent') === '1' && contactForm && successState) {
+                contactForm.style.display = 'none';
+                successState.style.display = 'block';
+                const kontaktEl = document.getElementById('kontakt');
+                if (kontaktEl) kontaktEl.scrollIntoView({ behavior: 'smooth' });
+            }
+
             if (contactForm && submitBtn && successState) {
+                if (!contactForm.querySelector('input[name="_next"]')) {
+                    const nextInput = document.createElement('input');
+                    nextInput.type = 'hidden';
+                    nextInput.name = '_next';
+                    nextInput.value = 'https://thepartners.biz/index-en.html?sent=1#kontakt';
+                    contactForm.appendChild(nextInput);
+                }
+
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
@@ -744,7 +761,10 @@
                     submitBtn.setAttribute('aria-busy', 'true');
 
                     const formData = new FormData(contactForm);
-                    const formObject = Object.fromEntries(formData.entries());
+                    if (formData.get('_honey') === '') {
+                        formData.delete('_honey');
+                    }
+
                     const endpoint = 'https://formsubmit.co/ajax/inquiries@thepartners.biz';
 
                     try {
@@ -757,23 +777,29 @@
                             return;
                         }
 
-                        const response = await fetch(endpoint, {
+                        let response = await fetch(endpoint, {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json',
                                 'Accept': 'application/json'
                             },
-                            body: JSON.stringify(formObject)
+                            body: formData
                         });
 
-                        const result = await response.json();
+                        let result = await response.json().catch(() => ({}));
+
+                        const isSuccess = response.ok && (
+                            result.success === "true" ||
+                            result.success === true ||
+                            (result.message && result.message.toLowerCase().includes('submitted'))
+                        );
 
                         const isActivationNotice = result.message && (
                             result.message.toLowerCase().includes('activation') ||
-                            result.message.toLowerCase().includes('activate form')
+                            result.message.toLowerCase().includes('activate') ||
+                            result.message.toLowerCase().includes('confirm')
                         );
 
-                        if (response.ok && (result.success === "true" || result.success === true)) {
+                        if (isSuccess) {
                             showSuccessState(
                                 'Thank you for reaching out!',
                                 'We have received your inquiry and will get back to you shortly.'
@@ -781,21 +807,14 @@
                         } else if (isActivationNotice) {
                             showSuccessState(
                                 'Confirm Form Activation',
-                                'Your message was sent! Since this is the first submission, an activation link was sent to inquiries@thepartners.biz.'
+                                'Your message was sent! Please check inquiries@thepartners.biz (including Spam) and click "Activate Form" in the email from FormSubmit.'
                             );
                         } else {
-                            throw new Error(result.message || 'Failed to submit the form.');
+                            throw new Error(result.message || 'AJAX submission rejected.');
                         }
                     } catch (err) {
-                        console.error('[Form Error]', err);
-                        submitBtn.classList.remove('loading');
-                        submitBtn.disabled = false;
-                        submitBtn.removeAttribute('aria-busy');
-
-                        if (errorMsg) {
-                            errorMsg.innerHTML = 'There was an issue sending your inquiry. Please try again or email us directly at: <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a>';
-                            errorMsg.style.display = 'block';
-                        }
+                        console.warn('[AJAX Fallback -> Native Submit]', err);
+                        HTMLFormElement.prototype.submit.call(contactForm);
                     }
                 });
 

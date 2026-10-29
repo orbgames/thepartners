@@ -736,7 +736,7 @@
                 lastScrollY = currentScrollY;
             }, { passive: true });
 
-            // Contact Form Handling
+            // Contact Form Handling (Dual-Format + Native Fallback for Brave/Adblockers)
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('contact-submit-btn');
             const successState = document.getElementById('form-success-state');
@@ -745,7 +745,25 @@
             const resetBtn = document.getElementById('btn-reset-form');
             const errorMsg = document.getElementById('form-error-msg');
 
+            // Show success message if returning from a native FormSubmit redirect (?sent=1)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('sent') === '1' && contactForm && successState) {
+                contactForm.style.display = 'none';
+                successState.style.display = 'block';
+                const kontaktEl = document.getElementById('kontakt');
+                if (kontaktEl) kontaktEl.scrollIntoView({ behavior: 'smooth' });
+            }
+
             if (contactForm && submitBtn && successState) {
+                // Ensure native fallback returns to the page cleanly
+                if (!contactForm.querySelector('input[name="_next"]')) {
+                    const nextInput = document.createElement('input');
+                    nextInput.type = 'hidden';
+                    nextInput.name = '_next';
+                    nextInput.value = 'https://thepartners.biz/?sent=1#kontakt';
+                    contactForm.appendChild(nextInput);
+                }
+
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
@@ -764,7 +782,11 @@
                     submitBtn.setAttribute('aria-busy', 'true');
 
                     const formData = new FormData(contactForm);
-                    const formObject = Object.fromEntries(formData.entries());
+                    // Remove empty honeypot from AJAX payload so FormSubmit doesn't flag it
+                    if (formData.get('_honey') === '') {
+                        formData.delete('_honey');
+                    }
+
                     const endpoint = 'https://formsubmit.co/ajax/inquiries@thepartners.biz';
 
                     try {
@@ -777,23 +799,30 @@
                             return;
                         }
 
-                        const response = await fetch(endpoint, {
+                        // Attempt 1: Multipart FormData (most reliable with FormSubmit AJAX)
+                        let response = await fetch(endpoint, {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json',
                                 'Accept': 'application/json'
                             },
-                            body: JSON.stringify(formObject)
+                            body: formData
                         });
 
-                        const result = await response.json();
+                        let result = await response.json().catch(() => ({}));
+
+                        const isSuccess = response.ok && (
+                            result.success === "true" ||
+                            result.success === true ||
+                            (result.message && result.message.toLowerCase().includes('submitted'))
+                        );
 
                         const isActivationNotice = result.message && (
                             result.message.toLowerCase().includes('activation') ||
-                            result.message.toLowerCase().includes('activate form')
+                            result.message.toLowerCase().includes('activate') ||
+                            result.message.toLowerCase().includes('confirm')
                         );
 
-                        if (response.ok && (result.success === "true" || result.success === true)) {
+                        if (isSuccess) {
                             showSuccessState(
                                 'Dziękujemy za kontakt!',
                                 'Otrzymaliśmy Twoje zapytanie. Skontaktujemy się wkrótce.'
@@ -801,21 +830,15 @@
                         } else if (isActivationNotice) {
                             showSuccessState(
                                 'Potwierdź aktywację formularza',
-                                'Wiadomość została przesłana! Ponieważ jest to pierwsze zgłoszenie, na adres inquiries@thepartners.biz wysłano link aktywacyjny FormSubmit.'
+                                'Wiadomość została przesłana! Sprawdź skrzynkę inquiries@thepartners.biz (również folder Spam) i kliknij przycisk "Activate Form" w mailu od FormSubmit.'
                             );
                         } else {
-                            throw new Error(result.message || 'Nie udało się wysłać formularza.');
+                            throw new Error(result.message || 'AJAX submission rejected.');
                         }
                     } catch (err) {
-                        console.error('[Form Error]', err);
-                        submitBtn.classList.remove('loading');
-                        submitBtn.disabled = false;
-                        submitBtn.removeAttribute('aria-busy');
-
-                        if (errorMsg) {
-                            errorMsg.innerHTML = 'Wystąpił problem z wysłaniem zapytania. Spróbuj ponownie lub napisz na: <a href="mailto:inquiries@thepartners.biz">inquiries@thepartners.biz</a>';
-                            errorMsg.style.display = 'block';
-                        }
+                        console.warn('[AJAX Fallback -> Native Submit]', err);
+                        // If Brave Shields / AdBlocker blocks cross-origin fetch() or FormSubmit requires first-time activation page, submit natively:
+                        HTMLFormElement.prototype.submit.call(contactForm);
                     }
                 });
 
