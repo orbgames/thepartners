@@ -521,12 +521,12 @@
             </div>
 
             <div class="contact-card reveal" style="transition-delay: 0.15s;">
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/inquiries@thepartners.biz"
+                <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit"
                     method="POST" novalidate>
-                    <input type="hidden" name="_subject" value="New Free Mockup Request (EN) — The Partners">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off"
+                    <input type="hidden" name="access_key" value="ed85a919-72cc-4f6d-8016-3a5c33c224e8">
+                    <input type="hidden" name="subject" value="New Free Mockup Request (EN) — The Partners">
+                    <input type="hidden" name="from_name" value="The Partners Website (EN)">
+                    <input type="checkbox" name="botcheck" style="display:none !important;" tabindex="-1" autocomplete="off"
                         aria-hidden="true">
 
                     <div class="form-row-2">
@@ -716,7 +716,8 @@
                 lastScrollY = currentScrollY;
             }, { passive: true });
 
-            // Contact Form Handling (Dual-Format + Native Fallback for Brave/Adblockers)
+            // Contact Form Handling (Web3Forms Primary -> FormSubmit Failover -> Pre-filled Mailto)
+            const WEB3FORMS_ACCESS_KEY = 'ed85a919-72cc-4f6d-8016-3a5c33c224e8';
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('contact-submit-btn');
             const successState = document.getElementById('form-success-state');
@@ -724,25 +725,19 @@
             const successDesc = document.getElementById('success-desc');
             const resetBtn = document.getElementById('btn-reset-form');
             const errorMsg = document.getElementById('form-error-msg');
+            const isEnglish = document.documentElement.lang === 'en';
 
-            // Show success message if returning from a native FormSubmit redirect (?sent=1)
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('sent') === '1' && contactForm && successState) {
-                contactForm.style.display = 'none';
-                successState.style.display = 'block';
-                const kontaktEl = document.getElementById('kontakt');
-                if (kontaktEl) kontaktEl.scrollIntoView({ behavior: 'smooth' });
+            async function fetchWithTimeout(url, options, timeoutMs = 7000) {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), timeoutMs);
+                try {
+                    return await fetch(url, { ...options, signal: controller.signal });
+                } finally {
+                    clearTimeout(timer);
+                }
             }
 
             if (contactForm && submitBtn && successState) {
-                if (!contactForm.querySelector('input[name="_next"]')) {
-                    const nextInput = document.createElement('input');
-                    nextInput.type = 'hidden';
-                    nextInput.name = '_next';
-                    nextInput.value = 'https://thepartners.biz/index-en.html?sent=1#kontakt';
-                    contactForm.appendChild(nextInput);
-                }
-
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
@@ -761,60 +756,132 @@
                     submitBtn.setAttribute('aria-busy', 'true');
 
                     const formData = new FormData(contactForm);
-                    if (formData.get('_honey') === '') {
-                        formData.delete('_honey');
+                    if (formData.get('botcheck')) {
+                        // Honeypot triggered by bot
+                        return;
                     }
 
-                    const endpoint = 'https://formsubmit.co/ajax/inquiries@thepartners.biz';
+                    const nameVal = formData.get('name') || '';
+                    const emailVal = formData.get('email') || '';
+                    const companyVal = formData.get('company') || '';
+                    const phoneVal = formData.get('phone') || '-';
+                    const messageVal = formData.get('message') || '-';
 
                     try {
                         if (window.location.protocol === 'file:') {
-                            await new Promise(resolve => setTimeout(resolve, 800));
+                            await new Promise(resolve => setTimeout(resolve, 600));
                             showSuccessState(
-                                'Thank you for reaching out! (Preview Mode)',
-                                'The form is connected to FormSubmit (inquiries@thepartners.biz).'
+                                isEnglish ? 'Thank you for reaching out! (Preview)' : 'Dziękujemy za kontakt! (Tryb podglądu)',
+                                isEnglish ? 'Web3Forms is configured and ready.' : 'Formularz Web3Forms jest skonfigurowany i gotowy.'
                             );
                             return;
                         }
 
-                        let response = await fetch(endpoint, {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json'
-                            },
-                            body: formData
-                        });
+                        let delivered = false;
 
-                        let result = await response.json().catch(() => ({}));
-
-                        const isSuccess = response.ok && (
-                            result.success === "true" ||
-                            result.success === true ||
-                            (result.message && result.message.toLowerCase().includes('submitted'))
-                        );
-
-                        const isActivationNotice = result.message && (
-                            result.message.toLowerCase().includes('activation') ||
-                            result.message.toLowerCase().includes('activate') ||
-                            result.message.toLowerCase().includes('confirm')
-                        );
-
-                        if (isSuccess) {
-                            showSuccessState(
-                                'Thank you for reaching out!',
-                                'We have received your inquiry and will get back to you shortly.'
+                        // 1. Primary Endpoint: Web3Forms AWS API
+                        try {
+                            const w3Data = new FormData();
+                            w3Data.append('access_key', WEB3FORMS_ACCESS_KEY);
+                            w3Data.append('subject', isEnglish
+                                ? `New Free Mockup Request (${companyVal}) — The Partners`
+                                : `Nowe zapytanie o darmowy mockup (${companyVal}) — The Partners`
                             );
-                        } else if (isActivationNotice) {
-                            showSuccessState(
-                                'Confirm Form Activation',
-                                'Your message was sent! Please check inquiries@thepartners.biz (including Spam) and click "Activate Form" in the email from FormSubmit.'
+                            w3Data.append('from_name', nameVal || 'The Partners Website');
+                            w3Data.append('replyto', emailVal);
+                            w3Data.append('Imię i nazwisko / Name', nameVal);
+                            w3Data.append('E-mail', emailVal);
+                            w3Data.append('Firma / Company', companyVal);
+                            w3Data.append('Telefon / Phone', phoneVal);
+                            w3Data.append('Wiadomość / Message', messageVal);
+
+                            const w3Res = await fetchWithTimeout('https://api.web3forms.com/submit', {
+                                method: 'POST',
+                                headers: { 'Accept': 'application/json' },
+                                body: w3Data
+                            }, 7000);
+
+                            const w3Json = await w3Res.json().catch(() => ({}));
+                            if (w3Res.ok && w3Json.success) {
+                                delivered = true;
+                            } else {
+                                console.warn('[Web3Forms non-200]', w3Json);
+                            }
+                        } catch (w3Err) {
+                            console.warn('[Web3Forms failover -> trying FormSubmit]', w3Err);
+                        }
+
+                        // 2. Secondary Failover Endpoint: FormSubmit AJAX (if Web3Forms was blocked)
+                        if (!delivered) {
+                            const fsData = new FormData();
+                            fsData.append('_subject', isEnglish
+                                ? `New Free Mockup Request (${companyVal}) — The Partners`
+                                : `Nowe zapytanie o darmowy mockup (${companyVal}) — The Partners`
                             );
-                        } else {
-                            throw new Error(result.message || 'AJAX submission rejected.');
+                            fsData.append('_template', 'table');
+                            fsData.append('_captcha', 'false');
+                            fsData.append('name', nameVal);
+                            fsData.append('email', emailVal);
+                            fsData.append('company', companyVal);
+                            fsData.append('phone', phoneVal);
+                            fsData.append('message', messageVal);
+
+                            const fsRes = await fetchWithTimeout('https://formsubmit.co/ajax/inquiries@thepartners.biz', {
+                                method: 'POST',
+                                headers: { 'Accept': 'application/json' },
+                                body: fsData
+                            }, 6000);
+
+                            const fsJson = await fsRes.json().catch(() => ({}));
+                            if (fsRes.ok && (fsJson.success === 'true' || fsJson.success === true)) {
+                                delivered = true;
+                            } else {
+                                throw new Error(fsJson.message || `HTTP ${fsRes.status}`);
+                            }
+                        }
+
+                        if (delivered) {
+                            showSuccessState(
+                                isEnglish ? 'Thank you for reaching out!' : 'Dziękujemy za kontakt!',
+                                isEnglish ? 'We have received your inquiry and will get back to you shortly.' : 'Otrzymaliśmy Twoje zapytanie. Skontaktujemy się wkrótce.'
+                            );
                         }
                     } catch (err) {
-                        console.warn('[AJAX Fallback -> Native Submit]', err);
-                        HTMLFormElement.prototype.submit.call(contactForm);
+                        console.error('[All Form APIs Unreachable — Triggering Direct Email Fallback]', err);
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                        submitBtn.removeAttribute('aria-busy');
+
+                        const subject = encodeURIComponent(
+                            isEnglish
+                                ? `Free Mockup Inquiry — ${companyVal}`
+                                : `Zapytanie o darmowy mockup — ${companyVal}`
+                        );
+                        const body = encodeURIComponent(
+                            isEnglish
+                                ? `Name: ${nameVal}
+Company: ${companyVal}
+Email: ${emailVal}
+Phone: ${phoneVal}
+
+Message:
+${messageVal}`
+                                : `Imię i nazwisko: ${nameVal}
+Firma: ${companyVal}
+E-mail: ${emailVal}
+Telefon: ${phoneVal}
+
+Wiadomość:
+${messageVal}`
+                        );
+                        const mailtoUrl = `mailto:inquiries@thepartners.biz?subject=${subject}&body=${body}`;
+
+                        if (errorMsg) {
+                            errorMsg.innerHTML = isEnglish
+                                ? `There was a connection issue. <a href="${mailtoUrl}"><strong>Click here to send your filled message directly via email →</strong></a>`
+                                : `Wystąpił problem z połączeniem. <a href="${mailtoUrl}"><strong>Kliknij tutaj, aby wysłać wpisane zapytanie bezpośrednio przez e-mail →</strong></a>`;
+                            errorMsg.style.display = 'block';
+                        }
                     }
                 });
 
